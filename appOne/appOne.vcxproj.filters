@@ -120,6 +120,9 @@
     <ClCompile Include="LOADING.cpp">
       <Filter>scene</Filter>
     </ClCompile>
+    <ClCompile Include="ENEMY.cpp" />
+    <ClCompile Include="ITEM.cpp" />
+    <ClCompile Include="OBSTACLE.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -195,6 +198,9 @@
     <ClInclude Include="LOADING.h">
       <Filter>scene</Filter>
     </ClInclude>
+    <ClInclude Include="ENEMY.h" />
+    <ClInclude Include="ITEM.h" />
+    <ClInclude Include="OBSTACLE.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="assets\map1.txt">

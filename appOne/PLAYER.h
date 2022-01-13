@@ -10,6 +10,9 @@ public:
         int rightAnimId = 0;
         int leftAnimId = 1;
         int jumpFlag = 0;
+        float stamina = 0;
+        float maxStamina = 100;
+        float speed = 0;
         float curWx = 0;
         float initVecUp = 0;
         float initVecDown = 0;
@@ -17,6 +20,7 @@ public:
         char bulletCharaId = 0;
         float damageTime = 0;
         float damageInterval = 0;
+        float staminaDamage = 0.1f;
         COLOR color;
         COLOR damageColor;
         COLOR normalColor;
@@ -36,7 +40,10 @@ private:
         void CheckState();
 public:
     void damage();
+    void recover();
+    void init();
     bool died();
     bool survived();
     float overCenterVx();
+    float stamina() { return Player.stamina; }
 };

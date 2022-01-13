@@ -44,3 +44,11 @@ void CHARACTER::damage() {
         Chara.hp--;
     }
 }
+void CHARACTER::recover() {
+    if (Chara.hp > 0) {
+        Chara.stamina += 10;
+        if (Chara.stamina >= Chara.maxStamina) {
+            Chara.stamina = Chara.maxStamina;
+        }
+    }
+}

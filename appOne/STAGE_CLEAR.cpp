@@ -1,4 +1,3 @@
-//#include"libOne.h"
 #include"window.h"
 #include"graphic.h"
 #include"input.h"

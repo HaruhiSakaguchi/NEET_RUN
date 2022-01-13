@@ -28,6 +28,8 @@ public:
         float speed = 0;
         float angle = 0;
         float scale = 1;
+        float stamina = 0;
+        float maxStamina = 0;
 
         int hp = 0;
         float offsetLeft = 0;
@@ -45,7 +47,9 @@ public:
     virtual void update();
     virtual void draw();
     virtual void damage();
+    virtual void recover();
     int   hp() { return Chara.hp; }
+    float stamina() { return Chara.stamina; }
     int   groupId() { return Chara.groupId; }
     char  charaId() { return Chara.charaId; }
     float wLeft() { return Chara.wx + Chara.offsetLeft; }

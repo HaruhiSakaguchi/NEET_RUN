@@ -40,15 +40,16 @@ public:
 		NUM_TEXTS
 	};
 private:
+	class SCENE* Scenes[NUM_SCENES];
+	SCENE_ID CurSceneId = LOADING_ID;
+
 	class SCENE* CurScene = nullptr;
 	class FADE* Fade = nullptr;
 	class MESSAGE* Message;
 	class HP_GAUGE* HpGauge;
 	class BUTTON* Button;
 	class MAP* Map = nullptr;
-	class SCENE* Scenes[NUM_SCENES];
 	class LOADING* Loading = nullptr;
-	SCENE_ID CurSceneId = LOADING_ID;
 	STATE_ID CurStateId = FIRST;
 	TEXT_ID CurTextId = text_1;
 	class CHARACTER_MANAGER* CharacterManager = nullptr;
@@ -61,14 +62,16 @@ public:
 	class BUTTON* button() { return Button; }
 	class LOADING* loading() { return Loading; }
 public:
-	GAME();
-	~GAME();
-	void run();
 	void changeScene(SCENE_ID sceneId);
 	void changeState(STATE_ID stateId);
 	void changeText(TEXT_ID textId);
 	SCENE_ID curSceneId() { return CurSceneId; }
 	STATE_ID curStateId() { return CurStateId; }
 	TEXT_ID curTextId() { return CurTextId; }
+//ゲームマネージャー
+public:
+	GAME();
+	~GAME();
+	void run();
 };
 

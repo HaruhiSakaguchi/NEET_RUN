@@ -12,10 +12,12 @@ public:
         VECTOR2 pos;
         char str[16];
         int charaHp = 1;
-
+        int count = 0;
+        int maxCount = 3;
         int backImg = 0;
         int stageClearImg = 0;
         int gameOverImg = 0;
+        int flag = 0;
         COLOR backColor;
         COLOR gameOverColor;
         COLOR stageClearColor;
@@ -31,6 +33,8 @@ public:
     void create();
     void init();
     void update();
-    void setHp(int hp);
+    void countDown();
+    void stagePause();
+    void setPFlag(int flag);
 };
 

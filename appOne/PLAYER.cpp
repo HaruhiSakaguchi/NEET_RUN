@@ -10,6 +10,9 @@ void PLAYER::create() {
     Chara = game()->container()->data().playerChara;
     Player = game()->container()->data().player;
 }
+void PLAYER::init() {
+    Player.stamina = Player.maxStamina;
+}
 void PLAYER::appear(float wx , float wy, float vx, float vy) {
     Chara.hp = game()->container()->data().playerChara.hp;
     Chara.wx = wx;
@@ -25,7 +28,10 @@ void PLAYER::update() {
 
 void PLAYER::Move(){
     //ジャンプ
-    if (Player.jumpFlag==0 && isTrigger(KEY_K)) {
+    if (Chara.hp > 0) {
+        Player.stamina -= Player.staminaDamage;
+    }
+    if (Player.jumpFlag==0 && (isTrigger(KEY_K)||isTrigger(MOUSE_LBUTTON))) {
         Chara.vy = Player.initVecUp;
         Player.jumpFlag = 1;
     }
@@ -34,8 +40,14 @@ void PLAYER::Move(){
         Chara.wy += Chara.vy * 60 * delta;
     }
     //左右移動
-    //  移動ベクトルを決定
-    Chara.vx = 0.0f;
+    // 移動ベクトルを決定
+    //Chara.vx = 0.0f;
+    Player.speed = 3.4f * 6.0f * Player.stamina / 10;
+    Chara.vx = Player.speed * delta;
+    //Player.stamina -= 0.1f;
+    if (Player.stamina <= 1) Player.stamina = 1;
+    Chara.animId = Player.rightAnimId;
+#if _DEBUG
     if (isPress(KEY_A)) {
         Chara.vx = -Chara.speed * delta;
         Chara.animId = Player.leftAnimId;
@@ -44,6 +56,8 @@ void PLAYER::Move(){
         Chara.vx = Chara.speed * delta;
         Chara.animId = Player.rightAnimId;
     }
+    text(Player.stamina, 0, 0);
+#endif
     //  移動前に現在のChara.wxをPlayer.curWxにとっておく
     Player.curWx = Chara.wx;
     //  移動
@@ -107,10 +121,17 @@ void PLAYER::CheckState(){
 }
 void PLAYER::damage() {
     if (Chara.hp > 0) {
-        Chara.hp--;
         if (Chara.hp == 0) {
             State = STATE::DIED;
             Chara.vy = Player.initVecUp;//はね始めのトリガー
+        }
+    }
+}
+void PLAYER::recover() {
+    if (Chara.hp > 0) {
+        Player.stamina += 10;
+        if (Chara.stamina >= Chara.maxStamina) {
+            Chara.stamina = Chara.maxStamina;
         }
     }
 }

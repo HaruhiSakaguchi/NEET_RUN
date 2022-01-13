@@ -23,7 +23,7 @@ void LOADING::draw() {
 	game()->fade()->draw();
 }
 void LOADING::nextScene() {
-	if (Loading.goToTitleTime<=0) {
+	if (Loading.goToTitleTime <= 0) {
 		game()->fade()->outTrigger();
 	}
 	if (game()->fade()->outEndFlag()) {

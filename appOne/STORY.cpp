@@ -1,10 +1,11 @@
 #include"STORY.h"
 #include"GAME.h"
+#include"graphic.h"
+#include"input.h"
 #include"CONTAINER.h"
 #include"FADE.h"
 #include"MESSAGE.h"
 #include"BUTTON.h"
-#include"libOne.h"
 STORY::STORY(class GAME* game) :
 	SCENE(game) {
 }

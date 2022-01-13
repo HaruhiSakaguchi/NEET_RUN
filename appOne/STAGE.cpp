@@ -4,11 +4,11 @@
 #include"GAME.h"
 #include"CONTAINER.h"
 #include"FADE.h"
+#include"HP_GAUGE.h"
 #include"MAP.h"
 #include"CHARACTER_MANAGER.h"
 #include"PLAYER.h"
 #include"STAGE.h"
-
 void STAGE::create() {
 	Stage = game()->container()->data().stage;
 }
@@ -16,17 +16,27 @@ void STAGE::init() {
 	game()->map()->init();
 	game()->characterManager()->init();
 	game()->fade()->inTrigger();
+	Stage.count = Stage.maxCount;
 }
 void STAGE::update() {
-	game()->characterManager()->update();
-	game()->map()->update();
-
-	if (isTrigger(KEY_Z)) {
-		setHp(1);
+	Stage.flag = 0;
+	if (Stage.count != 0) {
+		countDown();
 	}
-	else if (isTrigger(KEY_X)) {
-		setHp(0);
+	if (Stage.count == 0 &&Stage.flag == 0) {
+		game()->characterManager()->update();
+		game()->map()->update();
 	}
+	if (Stage.flag == 0 && isTrigger(MOUSE_RBUTTON)) {
+		Stage.flag = 1;
+	}
+	if (Stage.flag == 1) {
+		stagePause();
+		if (isTrigger(MOUSE_RBUTTON)) { Stage.flag = 0; }
+	}
+	textSize(Stage.textSize);
+	text(Stage.flag, Stage.pos.x + Stage.textSize * 4, Stage.pos.y);
+	
 
 }
 void STAGE::draw() {
@@ -35,6 +45,11 @@ void STAGE::draw() {
 	fill(Stage.textColor);
 	textSize(Stage.textSize);
 	text(Stage.str, Stage.pos.x, Stage.pos.y);
+
+	if (Stage.count != 0) {
+		textSize(300);
+		text(Stage.count, width / 2, height / 2);
+	}
 
 
 #ifdef _DEBUG
@@ -51,26 +66,20 @@ void STAGE::draw() {
 
 	fill(Stage.textColor);
 	textSize(Stage.textSize);
-	text(stageNum, 750, 400);
-	textSize(30);
-	text("hp=", 0, 30);
-	text(Stage.charaHp, 60, 30);
-	fill(255, 255, 255);
-
-	text("ZキーでHPを１に、XキーでHPを０に", 90, 30);
-	text("SPACEキーで進行　HP１以上でステージクリア、HP０でゲームオーバー", 90, 60);
+	text(stageNum, Stage.pos.x + Stage.textSize*3, Stage.pos.y);
 
 #endif
+	game()->hpGauge()->draw();
 	game()->characterManager()->draw();
 	game()->fade()->draw();
 }
-void STAGE::setHp(int setHp) {
-	Stage.charaHp = setHp;
-}
 void STAGE::backGround() {
 	clear();
+	
+
 	rectMode(CORNER);
 	//imageColor(Stage.backColor);
+	
 	image(Stage.backImg, 0, 0);
 
 }
@@ -78,16 +87,32 @@ void STAGE::logo(int img, const COLOR& color) {
 
 }
 void STAGE::nextScene() {
-	if (isTrigger(KEY_SPACE) || isTrigger(MOUSE_LBUTTON)) {
+	if (game()->characterManager()->player()->survived()) {
 		game()->fade()->outTrigger();
+	    if (game()->fade()->outEndFlag()) {
+	    	game()->changeScene(GAME::STAGE_CLEAR_ID);
+	    }
 	}
-	if (game()->fade()->outEndFlag() && Stage.charaHp == 1) {
-		game()->changeScene(GAME::STAGE_CLEAR_ID);
-	}
-	else if (game()->fade()->outEndFlag() && Stage.charaHp == 0) {
-		game()->changeScene(GAME::GAME_OVER_ID);
+	else if (game()->characterManager()->player()->died()) {
+		game()->fade()->outTrigger();
+		if (game()->fade()->outEndFlag()) {
+			game()->changeScene(GAME::GAME_OVER_ID);
+		}
 	}
 	if (game()->curStateId() == GAME::END) {
 		game()->changeScene(GAME::STORY_ID);
 	}
+}
+void STAGE::countDown() {
+	if (Stage.count > 0) {
+		if(isTrigger(MOUSE_LBUTTON))
+		Stage.count -= 1;
+	}
+	if (Stage.count <= 0) {
+		Stage.count = 0;
+	}
+}
+void STAGE::stagePause() {
+	
+	Stage.count = Stage.maxCount;
 }

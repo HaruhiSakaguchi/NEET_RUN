@@ -1,4 +1,5 @@
 #pragma once
+#include"SCENE.h"
 #include"ANIM.h"
 class LOADING :public SCENE
 {
@@ -9,7 +10,9 @@ public:
         ANIM_DATA animData;
         float goToTitleTime = 0;
     };
+private:
     DATA Loading;
+public:
     LOADING(class GAME* game):SCENE(game){}
     void init();
     void create();

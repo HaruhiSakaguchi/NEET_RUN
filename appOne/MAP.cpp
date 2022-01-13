@@ -93,8 +93,14 @@ void MAP::draw() {
             if (charaId >= '0' && charaId <= '9') {
                 float px = wx - Map.wx;
                 float py = wy - Map.wy;
-                if     (charaId == '1')image(Map.blockImg, px, py);
-                else if(charaId == '2')image(Map.goalImg, px, py);
+                if (charaId == '1') {
+                    imageColor(0, 0, 0, 128);
+                    image(Map.blockImg, px, py, Map.angle, Map.scale);
+                }
+                else if (charaId == '2') {
+                    imageColor(0, 0, 0, 128);
+                    image(Map.goalImg, px, py, Map.angle, Map.scale);
+                }
             }
             else if (charaId >= 'a' && charaId <= 'z') {
                 game()->characterManager()->appear(charaId, wx, wy);

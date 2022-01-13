@@ -1,5 +1,4 @@
 #pragma once
-//#include"libOne.h"
 #include"COLOR.h"
 #include"VECTOR2.h"
 #include "SCENE.h"

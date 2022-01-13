@@ -5,7 +5,7 @@
 #include"input.h"
 #include"STAGE.h"
 #include"BUTTON.h"
-#include "TITLE.h"
+#include"TITLE.h"
 TITLE::TITLE(class GAME* game) :
 	SCENE(game) {
 
@@ -44,7 +44,7 @@ void TITLE::draw() {
 #ifdef _DEBUG
 	fill(255, 255, 255);
 	textSize(30);
-	text("SPACEで進行", 30, 30);
+	//text("SPACEで進行", 30, 30);
 	game()->button()->selectButton(1, Title.buttonPos, Title.buttonRadius, Title.color1, Title.color2, Title.text1, Title.buttonNameTextSize, Title.charaNum);
 #endif
 	game()->button()->drawCursor();

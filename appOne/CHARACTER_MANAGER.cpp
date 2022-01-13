@@ -1,6 +1,7 @@
 #include"GAME.h"
 #include"CONTAINER.h"
 #include"CHARACTER.h"
+#include"ENEMY.h"
 #include"PLAYER.h"
 #include"PUMPKIN.h"
 #include"BAT.h"
@@ -82,6 +83,9 @@ void CHARACTER_MANAGER::update() {
                 //“–‚½‚Á‚½
                 Characters[i]->damage();
                 Characters[j]->damage();
+                Characters[i]->recover();
+                Characters[j]->recover();
+
             }
         }
     }

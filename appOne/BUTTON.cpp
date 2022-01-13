@@ -110,7 +110,7 @@ void BUTTON::circleButton(VECTOR2 pos, float buttonR, COLOR buttonColor,
 }
 void BUTTON::drawCursor() {
 	Button.cursorPos = VECTOR2(mouseX, mouseY);
-	fill(200, 200, 200, 128);
+	fill(255,0,0,128);
 	strokeWeight(5);
 	noStroke();
 	circle(Button.cursorPos.x, Button.cursorPos.y, Button.radius * 2);

@@ -1,3 +1,4 @@
+#include"input.h"
 #include"graphic.h"
 #include"CONTAINER.h"
 #include"ANIMS.h"
@@ -80,10 +81,10 @@ void CONTAINER::CreateData() {
 	//ステージクラスのデータ
 	Data.stage.backColor = COLOR(0, 50, 0);
 	Data.stage.textColor = COLOR(0, 255, 0);
-	Data.stage.pos.x = 0;
-	Data.stage.pos.y = 400;
+	Data.stage.pos.x = 900;
+	Data.stage.pos.y = 30;
 
-	Data.stage.textSize = 300;
+	Data.stage.textSize = 30;
 	strcpy_s(Data.stage.str, "STAGE");
 	//ステージクリアクラスのデータ
 	Data.stageClear.backColor = COLOR(0, 50, 0);
@@ -185,7 +186,7 @@ void CONTAINER::CreateData() {
 	Data.playerChara.charaId = MAP::PLAYER_ID;
 	Data.playerChara.hp = 1;
 	Data.playerChara.groupId = 0;//味方グループは0
-	Data.playerChara.speed = 3.4f * 60;
+	//Data.playerChara.speed = 3.4f * 60;
 	Data.playerChara.offsetLeft = 10.0f;
 	Data.playerChara.offsetTop = 1.0f;
 	Data.playerChara.offsetRight = 40.0f;
@@ -205,7 +206,7 @@ void CONTAINER::CreateData() {
 
     Data.pumpkinChara.charaId = MAP::PUMPKIN_ID;
     Data.pumpkinChara.groupId = 1;//敵グループは1
-    Data.pumpkinChara.hp = 4;
+    Data.pumpkinChara.hp = 1;
     Data.pumpkinChara.speed = 1.4f * 60;
     Data.pumpkinChara.offsetLeft = 10.0f;
     Data.pumpkinChara.offsetTop = 12.0f;
@@ -222,7 +223,7 @@ void CONTAINER::CreateData() {
     Data.pumpkin.explosionCharaId = MAP::EXPLOSION_ID;
 
     Data.batChara.charaId = MAP::BAT_ID;
-    Data.batChara.hp = 10;
+    Data.batChara.hp = 1;
     Data.batChara.groupId = 1;//敵グループは1
     Data.batChara.offsetLeft = 10.0f;
     Data.batChara.offsetTop = 10.0f;
@@ -271,6 +272,7 @@ void CONTAINER::CreateData() {
 	//ボタンクラスのデータ
 	Data.button.radius = 5;
 	//マップクラスのデータ
+	Data.map.fileName = 0;
 	Data.map.fileName1 = "assets\\map1.txt";
 	Data.map.fileName2 = "assets\\map2.txt";
 	Data.map.fileName3 = "assets\\map3.txt";

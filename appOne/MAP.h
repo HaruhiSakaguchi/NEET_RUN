@@ -12,6 +12,8 @@ public:
         const char* fileName4 = 0;
         const char* fileName5 = 0;
 
+        float scale = 1;
+        float angle = 0;
         int blockImg = 0;
         int goalImg = 0;
         int chipSize = 0; //正方形マップチップ画像の一辺のドット数

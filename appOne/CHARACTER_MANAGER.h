@@ -15,6 +15,9 @@ private:
     int Total=0;
     DATA CharaMng;
     class CHARACTER** Characters = nullptr;
+    class ENEMY** Enemies = nullptr;
+    class ITEM** Items = nullptr;
+    class OBSTACLE** Obstacles = nullptr;
     class PLAYER* Player = nullptr;
 public:
     CHARACTER_MANAGER(class GAME* game);
