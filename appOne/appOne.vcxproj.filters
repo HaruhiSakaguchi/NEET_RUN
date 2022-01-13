@@ -29,8 +29,14 @@
     <Filter Include="button">
       <UniqueIdentifier>{10fd0c66-94b5-4281-a158-238f9f230669}</UniqueIdentifier>
     </Filter>
+    <Filter Include="hpGauge">
+      <UniqueIdentifier>{4665e2d4-7b30-4cff-a2bf-1f16a1209dc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="map\map_text">
+      <UniqueIdentifier>{07192a06-99f3-4e3e-941d-7e2339224c8b}</UniqueIdentifier>
+    </Filter>
     <Filter Include="message">
-      <UniqueIdentifier>{6e86e4db-18fb-4133-8caa-987379f742ae}</UniqueIdentifier>
+      <UniqueIdentifier>{8d4a6eae-a490-4e59-92fa-c39be983ec27}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -101,10 +107,6 @@
     <ClCompile Include="BUTTON.cpp">
       <Filter>button</Filter>
     </ClCompile>
-    <ClCompile Include="MESSAGE.cpp">
-      <Filter>message</Filter>
-    </ClCompile>
-    <ClCompile Include="HP_GAUGE.cpp" />
     <ClCompile Include="ENDING.cpp">
       <Filter>scene</Filter>
     </ClCompile>
@@ -120,9 +122,21 @@
     <ClCompile Include="LOADING.cpp">
       <Filter>scene</Filter>
     </ClCompile>
-    <ClCompile Include="ENEMY.cpp" />
-    <ClCompile Include="ITEM.cpp" />
-    <ClCompile Include="OBSTACLE.cpp" />
+    <ClCompile Include="ENEMY.cpp">
+      <Filter>character\anim,base,manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ITEM.cpp">
+      <Filter>character\anim,base,manager</Filter>
+    </ClCompile>
+    <ClCompile Include="OBSTACLE.cpp">
+      <Filter>character\anim,base,manager</Filter>
+    </ClCompile>
+    <ClCompile Include="HP_GAUGE.cpp">
+      <Filter>hpGauge</Filter>
+    </ClCompile>
+    <ClCompile Include="MESSAGE.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -179,10 +193,6 @@
     <ClInclude Include="BUTTON.h">
       <Filter>button</Filter>
     </ClInclude>
-    <ClInclude Include="MESSAGE.h">
-      <Filter>message</Filter>
-    </ClInclude>
-    <ClInclude Include="HP_GAUGE.h" />
     <ClInclude Include="ENDING.h">
       <Filter>scene</Filter>
     </ClInclude>
@@ -198,25 +208,37 @@
     <ClInclude Include="LOADING.h">
       <Filter>scene</Filter>
     </ClInclude>
-    <ClInclude Include="ENEMY.h" />
-    <ClInclude Include="ITEM.h" />
-    <ClInclude Include="OBSTACLE.h" />
+    <ClInclude Include="ENEMY.h">
+      <Filter>character\anim,base,manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ITEM.h">
+      <Filter>character\anim,base,manager</Filter>
+    </ClInclude>
+    <ClInclude Include="OBSTACLE.h">
+      <Filter>character\anim,base,manager</Filter>
+    </ClInclude>
+    <ClInclude Include="HP_GAUGE.h">
+      <Filter>hpGauge</Filter>
+    </ClInclude>
+    <ClInclude Include="MESSAGE.h">
+      <Filter>message</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="assets\map1.txt">
-      <Filter>map</Filter>
+      <Filter>map\map_text</Filter>
     </Text>
     <Text Include="Map2.txt">
-      <Filter>map</Filter>
+      <Filter>map\map_text</Filter>
     </Text>
     <Text Include="Map3.txt">
-      <Filter>map</Filter>
+      <Filter>map\map_text</Filter>
     </Text>
     <Text Include="Map4.txt">
-      <Filter>map</Filter>
+      <Filter>map\map_text</Filter>
     </Text>
     <Text Include="Map5.txt">
-      <Filter>map</Filter>
+      <Filter>map\map_text</Filter>
     </Text>
   </ItemGroup>
 </Project>
