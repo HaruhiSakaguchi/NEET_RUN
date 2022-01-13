@@ -20,6 +20,7 @@ public:
         int flag = 0;
         COLOR backColor;
         COLOR gameOverColor;
+
         COLOR stageClearColor;
     };
 private:
