@@ -8,7 +8,7 @@ void BAT::create() {
     Chara = game()->container()->data().batChara;
     Bat = game()->container()->data().bat;
 }
-void BAT::appear(float wx , float wy, float vx, float vy) {
+void BAT::appear(float wx, float wy, float vx, float vy) {
     Chara.hp = game()->container()->data().batChara.hp;
     Chara.wx = wx;
     Chara.wy = wy;
@@ -23,7 +23,7 @@ void BAT::update() {
         if (Bat.triggerCnt == Bat.trigger1st ||
             Bat.triggerCnt == Bat.trigger2nd ||
             Bat.triggerCnt == Bat.trigger3rd ||
-            Bat.triggerCnt == Bat.trigger4th ) {
+            Bat.triggerCnt == Bat.trigger4th) {
             game()->characterManager()->appear(Bat.bulletCharaId,
                 Chara.wx - Bat.bulletOffsetX, Chara.wy, -1, 0);
         }
@@ -39,7 +39,7 @@ void BAT::update() {
         Chara.color = Bat.damageColor;
     }
     else {
-        Chara.color= Bat.normalColor;
+        Chara.color = Bat.normalColor;
     }
 }
 void BAT::damage() {
@@ -47,7 +47,7 @@ void BAT::damage() {
         Bat.damageTime = Bat.damageInterval;
         Chara.hp--;
         if (Chara.hp == 0) {
-            game()->characterManager()->appear(Bat.explosionCharaId, 
+            game()->characterManager()->appear(Bat.explosionCharaId,
                 Chara.wx, Chara.wy);
         }
     }

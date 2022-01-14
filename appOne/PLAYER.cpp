@@ -13,7 +13,7 @@ void PLAYER::create() {
 void PLAYER::init() {
     Player.stamina = Player.maxStamina;
 }
-void PLAYER::appear(float wx , float wy, float vx, float vy) {
+void PLAYER::appear(float wx, float wy, float vx, float vy) {
     Chara.hp = game()->container()->data().playerChara.hp;
     Chara.wx = wx;
     Chara.wy = wy;
@@ -26,16 +26,16 @@ void PLAYER::update() {
     CheckState();
 }
 
-void PLAYER::Move(){
+void PLAYER::Move() {
     //ジャンプ
     if (Chara.hp > 0) {
         Player.stamina -= Player.staminaDamage;
     }
-    if (Player.jumpFlag==0 && (isTrigger(KEY_K)||isTrigger(MOUSE_LBUTTON))) {
+    if (Player.jumpFlag == 0 && (isTrigger(KEY_K) || isTrigger(MOUSE_LBUTTON))) {
         Chara.vy = Player.initVecUp;
         Player.jumpFlag = 1;
     }
-    if (Player.jumpFlag==1) {
+    if (Player.jumpFlag == 1) {
         Chara.vy += Player.gravity * delta;
         Chara.wy += Chara.vy * 60 * delta;
     }
@@ -71,7 +71,7 @@ void PLAYER::Move(){
         Chara.animData.elapsedTime = -delta;
     }
 }
-void PLAYER::CollisionWithMap(){
+void PLAYER::CollisionWithMap() {
     MAP* map = game()->map();
     // マップチップとキャラの右
     if (Chara.animId == Player.rightAnimId) {
@@ -106,7 +106,7 @@ void PLAYER::CollisionWithMap(){
         Player.jumpFlag = 1;//落ちてくトリガー。このフラッグを立てるだけで落ちていく。
     }
 }
-void PLAYER::CheckState(){
+void PLAYER::CheckState() {
     //画面の下に落ちた
     if (Chara.wy > height + game()->map()->chipSize()) {
         State = STATE::FALL;
@@ -121,6 +121,25 @@ void PLAYER::CheckState(){
 }
 void PLAYER::damage() {
     if (Chara.hp > 0) {
+        Player.stamina -= 10;
+        if (Chara.hp == 0) {
+            State = STATE::DIED;
+            Chara.vy = Player.initVecUp;//はね始めのトリガー
+        }
+    }
+}
+void PLAYER::damage2() {
+    if (Chara.hp > 0) {
+        Player.stamina -= 20;
+        if (Chara.hp == 0) {
+            State = STATE::DIED;
+            Chara.vy = Player.initVecUp;//はね始めのトリガー
+        }
+    }
+}
+void PLAYER::damage3() {
+    if (Chara.hp > 0) {
+        Chara.hp--;
         if (Chara.hp == 0) {
             State = STATE::DIED;
             Chara.vy = Player.initVecUp;//はね始めのトリガー
@@ -130,10 +149,30 @@ void PLAYER::damage() {
 void PLAYER::recover() {
     if (Chara.hp > 0) {
         Player.stamina += 10;
-        if (Chara.stamina >= Chara.maxStamina) {
+        if (Chara.stamina > Chara.maxStamina) {
             Chara.stamina = Chara.maxStamina;
         }
     }
+}
+void PLAYER::recover2() {
+    if (Chara.hp > 0) {
+        Player.stamina += 20;
+        if (Chara.stamina > Chara.maxStamina) {
+            Chara.stamina = Chara.maxStamina;
+        }
+    }
+}
+void PLAYER::recover3() {
+    if (Chara.hp > 0) {
+        Player.stamina += 30;
+        if (Chara.stamina > Chara.maxStamina) {
+            Chara.stamina = Chara.maxStamina;
+        }
+    }
+}
+void PLAYER::effect() {
+    damage();
+    recover();
 }
 bool PLAYER::died() {
     if (State == STATE::DIED) {
@@ -147,8 +186,8 @@ bool PLAYER::died() {
     }
     return false;
 }
-bool PLAYER::survived() { 
-    return State == STATE::SURVIVED; 
+bool PLAYER::survived() {
+    return State == STATE::SURVIVED;
 }
 float PLAYER::overCenterVx() {
     //マップをスクロールさせるためのベクトルを求める

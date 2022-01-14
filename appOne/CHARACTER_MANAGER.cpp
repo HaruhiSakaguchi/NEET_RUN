@@ -19,7 +19,7 @@ CHARACTER_MANAGER::~CHARACTER_MANAGER() {
 }
 void CHARACTER_MANAGER::create() {
     CharaMng = game()->container()->data().charaMng;
-    
+
     Total = 0;
     Total += CharaMng.numPlayers;
     Total += CharaMng.numPumpkins;
@@ -45,7 +45,7 @@ void CHARACTER_MANAGER::init() {
         Characters[i]->init();
     }
 }
-void CHARACTER_MANAGER::appear(char charaId, float wx , float wy, float vx, float vy){
+void CHARACTER_MANAGER::appear(char charaId, float wx, float wy, float vx, float vy) {
     // charaId‚Åw’è‚³‚ê‚½ƒLƒƒƒ‰‚ğoŒ»‚³‚¹‚é
     for (int i = 0; i < Total; i++) {
         if (Characters[i]->charaId() == charaId) {
@@ -81,10 +81,37 @@ void CHARACTER_MANAGER::update() {
                 Characters[i]->wTop() < Characters[j]->wBottom() &&
                 Characters[j]->wTop() < Characters[i]->wBottom()) {
                 //“–‚½‚Á‚½
-                Characters[i]->damage();
-                Characters[j]->damage();
-                Characters[i]->recover();
-                Characters[j]->recover();
+                if (Characters[i]->charaId() == 'a') {
+                    if (Characters[j]->charaId() == 'c') {
+                        Characters[i]->damage();
+                        Characters[j]->damage();
+                    }
+                    if (Characters[j]->charaId() == 'd') {
+                        Characters[i]->recover();
+                        Characters[j]->damage();
+                    }
+                    if (Characters[j]->charaId() == 'e') {
+                        Characters[i]->damage3();
+                        Characters[j]->damage();
+                    }
+
+                }
+                if (Characters[j]->charaId() == 'a') {
+                    if (Characters[i]->charaId() == 'c') {
+                        Characters[i]->damage();
+                        Characters[j]->damage();
+                    }
+                    if (Characters[i]->charaId() == 'd') {
+                        Characters[j]->recover();
+                        Characters[i]->damage();
+                    }
+                    if (Characters[i]->charaId() == 'e') {
+                        Characters[j]->damage3();
+                        Characters[i]->damage();
+                    }
+
+                }
+
 
             }
         }

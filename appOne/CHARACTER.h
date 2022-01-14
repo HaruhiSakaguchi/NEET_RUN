@@ -18,7 +18,7 @@ public:
         int img = 0;
         //çáê¨êF
         COLOR color;
-        
+
         char charaId = 0;
         int groupId = 0;
         float wx = 0;
@@ -43,11 +43,16 @@ public:
     CHARACTER(class GAME* game);
     virtual void create();
     virtual void init();
-    virtual void appear(float wx , float wy, float vx, float vy);
+    virtual void appear(float wx, float wy, float vx, float vy);
     virtual void update();
     virtual void draw();
     virtual void damage();
+    virtual void damage2();
+    virtual void damage3();
     virtual void recover();
+    virtual void recover2();
+    virtual void recover3();
+    virtual void effect();
     int   hp() { return Chara.hp; }
     float stamina() { return Chara.stamina; }
     int   groupId() { return Chara.groupId; }

@@ -5,14 +5,14 @@ class CHARACTER_MANAGER :
 {
 public:
     struct DATA {
-        int numPlayers=0;
+        int numPlayers = 0;
         int numPumpkins = 0;
         int numBats = 0;
         int numBatBullets = 0;
         int numExplosions = 0;
     };
 private:
-    int Total=0;
+    int Total = 0;
     DATA CharaMng;
     class CHARACTER** Characters = nullptr;
     class ENEMY** Enemies = nullptr;
@@ -24,7 +24,7 @@ public:
     ~CHARACTER_MANAGER();
     void create();
     void init();
-    void appear(char charaId, float wx, float wy, float vx=0, float vy=0);
+    void appear(char charaId, float wx, float wy, float vx = 0, float vy = 0);
     void update();
     void draw();
     class PLAYER* player() { return Player; }

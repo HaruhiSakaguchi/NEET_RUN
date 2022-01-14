@@ -25,22 +25,27 @@ public:
         COLOR damageColor;
         COLOR normalColor;
     };
-private: 
+private:
     DATA Player;
     enum class STATE { STRUGGLING, DIED, FALL, SURVIVED };
     STATE State = STATE::STRUGGLING;
 public:
     PLAYER(class GAME* game) :CHARACTER(game) {}
     void create();
-    void appear(float wx , float wy, float vx, float vy);
+    void appear(float wx, float wy, float vx, float vy);
     void update();
 private:
-        void Move();
-        void CollisionWithMap();
-        void CheckState();
+    void Move();
+    void CollisionWithMap();
+    void CheckState();
 public:
     void damage();
+    void damage2();
+    void damage3();
     void recover();
+    void recover2();
+    void recover3();
+    void effect();
     void init();
     bool died();
     bool survived();

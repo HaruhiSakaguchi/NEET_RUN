@@ -19,8 +19,8 @@ public:
         int image[3];
         float buttonNameTextSize = 40;
         float charaNum = 7;
-        float buttonW = buttonNameTextSize * charaNum;
-        float buttonH = buttonNameTextSize * 1.5f;
+        float buttonW = buttonNameTextSize * charaNum/2;
+        float buttonH = buttonNameTextSize * 1.5f/2;
         float skipTextSize = 30;
         float skipCharaNum = 6;
         COLOR skipButtonColor;
