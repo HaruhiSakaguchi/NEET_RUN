@@ -22,6 +22,7 @@ public:
 		SECOND,
 		THIRD,
 		FOURTH,
+		FIFTH,
 		END,
 		NUM_STATES
 	};

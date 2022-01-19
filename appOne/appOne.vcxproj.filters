@@ -86,7 +86,7 @@
     <ClCompile Include="PLAYER.cpp">
       <Filter>character</Filter>
     </ClCompile>
-    <ClCompile Include="PUMPKIN.cpp">
+    <ClCompile Include="ENEMY_BULLET.cpp">
       <Filter>character</Filter>
     </ClCompile>
     <ClCompile Include="CHARACTER.cpp">
@@ -172,7 +172,7 @@
     <ClInclude Include="PLAYER.h">
       <Filter>character</Filter>
     </ClInclude>
-    <ClInclude Include="PUMPKIN.h">
+    <ClInclude Include="ENEMY_BULLET.h">
       <Filter>character</Filter>
     </ClInclude>
     <ClInclude Include="CHARACTER.h">

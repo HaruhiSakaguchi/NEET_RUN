@@ -8,6 +8,8 @@
 #include"MAP.h"
 #include"CHARACTER_MANAGER.h"
 #include"PLAYER.h"
+#include"ENEMY.h"
+#include<Windows.h>
 #include"STAGE.h"
 void STAGE::create() {
 	Stage = game()->container()->data().stage;
@@ -23,10 +25,10 @@ void STAGE::update() {
 	if (Stage.count != 0) {
 		countDown();
 	}
-	if (Stage.count == 0 &&Stage.flag == 0) {
-		game()->characterManager()->update();
-		game()->map()->update();
-	}
+	
+	game()->characterManager()->update();
+	game()->map()->update();
+
 	if (Stage.flag == 0 && isTrigger(MOUSE_RBUTTON)) {
 		Stage.flag = 1;
 	}
@@ -62,7 +64,7 @@ void STAGE::draw() {
 	}
 	else if (game()->curStateId() == GAME::THIRD) stageNum = 3;
 	else if (game()->curStateId() == GAME::FOURTH)stageNum = 4;
-	else if (game()->curStateId() == GAME::END)stageNum = 5;
+	else if (game()->curStateId() == GAME::FIFTH)stageNum = 5;
 
 	fill(Stage.textColor);
 	textSize(Stage.textSize);
@@ -78,7 +80,7 @@ void STAGE::backGround() {
 	
 
 	rectMode(CORNER);
-	//imageColor(Stage.backColor);
+	imageColor(Stage.backColor);
 	
 	image(Stage.backImg, 0, 0);
 
@@ -93,7 +95,7 @@ void STAGE::nextScene() {
 	    	game()->changeScene(GAME::STAGE_CLEAR_ID);
 	    }
 	}
-	else if (game()->characterManager()->player()->died()) {
+	else if (game()->characterManager()->player()->died()||game()->characterManager()->enemy()->survived()) {
 		game()->fade()->outTrigger();
 		if (game()->fade()->outEndFlag()) {
 			game()->changeScene(GAME::GAME_OVER_ID);
@@ -107,12 +109,12 @@ void STAGE::countDown() {
 	if (Stage.count > 0) {
 		if(isTrigger(MOUSE_LBUTTON))
 		Stage.count -= 1;
+
 	}
 	if (Stage.count <= 0) {
 		Stage.count = 0;
 	}
 }
 void STAGE::stagePause() {
-	
 	Stage.count = Stage.maxCount;
 }

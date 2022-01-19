@@ -22,20 +22,24 @@ void CHARACTER::update() {
     if (px < -game()->map()->chipSize()) {
         Chara.hp = 0;
     }
+   
 }
 void CHARACTER::draw() {
     imageColor(Chara.color);
     float px = Chara.wx - game()->map()->wx();
     float py = Chara.wy - game()->map()->wy();
     if (Chara.anims) {
+        fill(Chara.color);
         Chara.anims->anim(Chara.animId)->draw(&Chara.animData,
             px, py, Chara.angle, Chara.scale);
     }
     else if (Chara.anim) {
+        fill(Chara.color);
         Chara.anim->draw(&Chara.animData,
             px, py, Chara.angle, Chara.scale);
     }
     else {
+        fill(Chara.color);
         image(Chara.img, px, py, Chara.angle, Chara.scale);
     }
 }

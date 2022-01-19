@@ -8,6 +8,8 @@ class STAGE_CLEAR :
 public:
     struct DATA {
         float textSize = 0;
+        int goFlag = 0;
+        int returnFlag = 0;
         COLOR textColor;
         COLOR backColor;
         VECTOR2 pos;
@@ -31,5 +33,7 @@ public:
     void nextScene();
     void create();
     void init();
+    void setGoFlag(int flag);
+    void setReturnFlag(int flag);
 };
 

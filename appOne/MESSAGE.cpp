@@ -37,7 +37,7 @@ void MESSAGE::draw() {
 			Message.text = Message.text4_1;
 			Message.charactername = Message.chara2;
 		}
-		if (game()->curStateId() == GAME::END) {
+		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_1;
 		}
 		break;
@@ -58,7 +58,7 @@ void MESSAGE::draw() {
 			Message.text = Message.text4_2;
 			Message.charactername = Message.chara1;
 		}
-		if (game()->curStateId() == GAME::END) {
+		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_2;
 		}
 		break;
@@ -79,7 +79,7 @@ void MESSAGE::draw() {
 			Message.text = Message.text4_3;
 			Message.charactername = Message.chara1;
 		}
-		if (game()->curStateId() == GAME::END) {
+		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_3;
 		}
 		break;
@@ -100,7 +100,7 @@ void MESSAGE::draw() {
 			Message.text = Message.text4_4;
 			Message.charactername = Message.chara2;
 		}
-		if (game()->curStateId() == GAME::END) {
+		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_4;
 		}
 		break;
@@ -121,7 +121,7 @@ void MESSAGE::draw() {
 			Message.text = Message.text4_5;
 			Message.charactername = Message.chara2;
 		}
-		if (game()->curStateId() == GAME::END) {
+		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_5;
 		}
 		break;
@@ -142,7 +142,7 @@ void MESSAGE::draw() {
 			Message.text = Message.text4_6;
 			Message.charactername = Message.chara1;
 		}
-		if (game()->curStateId() == GAME::END) {
+		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_6;
 		}
 		break;
@@ -163,7 +163,7 @@ void MESSAGE::draw() {
 			Message.text = Message.text4_7;
 			Message.charactername = Message.chara1;
 		}
-		if (game()->curStateId() == GAME::END) {
+		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_7;
 		}
 		break;
@@ -184,7 +184,7 @@ void MESSAGE::draw() {
 			Message.text = Message.text4_8;
 			Message.charactername = Message.chara1;
 		}
-		if (game()->curStateId() == GAME::END) {
+		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_8;
 		}
 		break;
@@ -205,7 +205,7 @@ void MESSAGE::draw() {
 			Message.text = Message.text4_9;
 			Message.charactername = Message.chara1;
 		}
-		if (game()->curStateId() == GAME::END) {
+		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_9;
 		}
 		break;
@@ -226,7 +226,7 @@ void MESSAGE::draw() {
 			Message.text = Message.text4_10;
 			Message.charactername = Message.chara1;
 		}
-		if (game()->curStateId() == GAME::END) {
+		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_10;
 		}
 		break;

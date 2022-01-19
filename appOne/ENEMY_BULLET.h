@@ -1,6 +1,6 @@
 #pragma once
 #include "CHARACTER.h"
-class PUMPKIN :
+class ENEMY_BULLET :
     public CHARACTER
 {
 public:
@@ -15,14 +15,14 @@ public:
         float alphaLowVal = 0;
         float damageTime = 0;
         float damageInterval = 0;
-        char explosionCharaId = 0;
+       // char explosionCharaId = 0;
         COLOR damageColor;
         COLOR normalColor;
     };
 private:
-    DATA Pumpkin;
+    DATA EnemyBullet;
 public:
-    PUMPKIN(class GAME* game) :CHARACTER(game) {}
+    ENEMY_BULLET(class GAME* game) :CHARACTER(game) {}
     void create();
     void appear(float wx , float wy, float vx, float vy);
     void update();

@@ -3,7 +3,7 @@
 #include"CHARACTER.h"
 #include"ENEMY.h"
 #include"PLAYER.h"
-#include"PUMPKIN.h"
+#include"ENEMY_BULLET.h"
 #include"BAT.h"
 #include"BAT_BULLET.h"
 #include"EXPLOSION.h"
@@ -22,19 +22,22 @@ void CHARACTER_MANAGER::create() {
 
     Total = 0;
     Total += CharaMng.numPlayers;
-    Total += CharaMng.numPumpkins;
+    Total += CharaMng.numEnemies;
+    Total += CharaMng.numEnemyBullets;
     Total += CharaMng.numBats;
     Total += CharaMng.numBatBullets;
-    Total += CharaMng.numExplosions;
+    //Total += CharaMng.numExplosions;
     Characters = new CHARACTER * [Total];
 
     Player = new PLAYER(game());
+    Enemy = new ENEMY(game());
     int i, j = 0;
     for (i = 0; i < CharaMng.numPlayers; i++)       Characters[j++] = Player;
-    for (i = 0; i < CharaMng.numPumpkins; i++)      Characters[j++] = new PUMPKIN(game());
+    for (i = 0; i < CharaMng.numEnemies; i++)      Characters[j++] = Enemy;
+    for (i = 0; i < CharaMng.numEnemyBullets; i++)    Characters[j++] = new ENEMY_BULLET(game());
     for (i = 0; i < CharaMng.numBats; i++)          Characters[j++] = new BAT(game());
     for (i = 0; i < CharaMng.numBatBullets; i++)    Characters[j++] = new BAT_BULLET(game());
-    for (i = 0; i < CharaMng.numExplosions; i++)    Characters[j++] = new EXPLOSION(game());
+    //for (i = 0; i < CharaMng.numExplosions; i++)    Characters[j++] = new EXPLOSION(game());
 
     for (int i = 0; i < Total; i++) {
         Characters[i]->create();
@@ -57,6 +60,7 @@ void CHARACTER_MANAGER::appear(char charaId, float wx, float wy, float vx, float
     }
 }
 void CHARACTER_MANAGER::update() {
+
     for (int i = 0; i < Total; i++) {
         if (Characters[i]->hp() > 0) {
             Characters[i]->update();
@@ -81,6 +85,7 @@ void CHARACTER_MANAGER::update() {
                 Characters[i]->wTop() < Characters[j]->wBottom() &&
                 Characters[j]->wTop() < Characters[i]->wBottom()) {
                 //“–‚½‚Á‚½
+                //ƒvƒŒƒCƒ„[‚Ì“–‚½‚è”»’è
                 if (Characters[i]->charaId() == 'a') {
                     if (Characters[j]->charaId() == 'c') {
                         Characters[i]->damage();
@@ -90,8 +95,12 @@ void CHARACTER_MANAGER::update() {
                         Characters[i]->recover();
                         Characters[j]->damage();
                     }
-                    if (Characters[j]->charaId() == 'e') {
+                    if (Characters[j]->charaId() == 'g') {
                         Characters[i]->damage3();
+                        Characters[j]->damage();
+                    }
+                    if (Characters[j]->charaId() == 'e') {
+                        Characters[i]->recover2();
                         Characters[j]->damage();
                     }
 
@@ -105,10 +114,30 @@ void CHARACTER_MANAGER::update() {
                         Characters[j]->recover();
                         Characters[i]->damage();
                     }
-                    if (Characters[i]->charaId() == 'e') {
+                    if (Characters[i]->charaId() == 'g') {
                         Characters[j]->damage3();
                         Characters[i]->damage();
                     }
+                    if (Characters[i]->charaId() == 'e') {
+                        Characters[j]->recover2();
+                        Characters[i]->damage();
+                    }
+
+                }
+                //“G‚Ì“–‚½‚è”»’è
+                if (Characters[i]->charaId() == 'g') {
+                    if (Characters[j]->charaId() == 'd') {
+                        Characters[i]->recover();
+                        Characters[j]->damage();
+                    }
+
+                }
+                if (Characters[j]->charaId() == 'g') {
+                    if (Characters[i]->charaId() == 'd') {
+                        Characters[j]->recover();
+                        Characters[i]->damage();
+                    }
+                    
 
                 }
 

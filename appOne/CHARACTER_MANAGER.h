@@ -6,19 +6,18 @@ class CHARACTER_MANAGER :
 public:
     struct DATA {
         int numPlayers = 0;
-        int numPumpkins = 0;
+        int numEnemies = 0;
+        int numEnemyBullets = 0;
         int numBats = 0;
         int numBatBullets = 0;
-        int numExplosions = 0;
+        //int numExplosions = 0;
     };
 private:
     int Total = 0;
     DATA CharaMng;
     class CHARACTER** Characters = nullptr;
-    class ENEMY** Enemies = nullptr;
-    class ITEM** Items = nullptr;
-    class OBSTACLE** Obstacles = nullptr;
     class PLAYER* Player = nullptr;
+    class ENEMY* Enemy = nullptr;
 public:
     CHARACTER_MANAGER(class GAME* game);
     ~CHARACTER_MANAGER();
@@ -28,4 +27,5 @@ public:
     void update();
     void draw();
     class PLAYER* player() { return Player; }
+    class ENEMY* enemy() { return Enemy; }
 };

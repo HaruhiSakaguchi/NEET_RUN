@@ -6,6 +6,8 @@ class GAME_OVER :
 public:
     struct DATA {
         float textSize = 0;
+        int retryFlag = 0;
+        int returnFlag = 0;
         COLOR textColor;
         COLOR backColor;
         VECTOR2 pos;
@@ -29,5 +31,7 @@ public:
     void draw();
     void nextScene();
     void init();
+    void setRetryFlag(int flag);
+    void setReturnFlag(int flag);
 };
 

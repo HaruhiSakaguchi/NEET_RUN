@@ -27,7 +27,7 @@ void MAP::init() {
     case GAME::FOURTH:
         Map.fileName = Map.fileName4;
         break;
-    case GAME::END:
+    case GAME::FIFTH:
         Map.fileName = Map.fileName5;
         break;
     }
@@ -98,7 +98,7 @@ void MAP::draw() {
                     image(Map.blockImg, px, py, Map.angle, Map.scale);
                 }
                 else if (charaId == '2') {
-                    imageColor(0, 0, 0, 128);
+                    //imageColor(0, 0, 0, 128);
                     image(Map.goalImg, px, py, Map.angle, Map.scale);
                 }
             }

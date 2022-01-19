@@ -37,5 +37,7 @@ public:
     void countDown();
     void stagePause();
     void setPFlag(int flag);
+    int count() { return Stage.count; }
+    int flag() { return Stage.flag; }
 };
 

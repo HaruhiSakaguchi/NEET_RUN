@@ -5,33 +5,41 @@
 #include"CONTAINER.h"
 #include"GAME.h"
 #include"MAP.h"
+#include"ENEMY.h"
 #include "PLAYER.h"
 void PLAYER::create() {
     Chara = game()->container()->data().playerChara;
     Player = game()->container()->data().player;
 }
 void PLAYER::init() {
+    Chara.hp = 0;
     Player.stamina = Player.maxStamina;
+    Chara.angle = 0;
 }
 void PLAYER::appear(float wx, float wy, float vx, float vy) {
     Chara.hp = game()->container()->data().playerChara.hp;
     Chara.wx = wx;
     Chara.wy = wy;
     Player.jumpFlag = 0;
-    State = STATE::STRUGGLING;
+    StateId = STATE_ID::STRUGGLING;
 }
 void PLAYER::update() {
+    
     Move();
+    
     CollisionWithMap();
     CheckState();
 }
 
 void PLAYER::Move() {
     //ジャンプ
-    if (Chara.hp > 0) {
+    if (Player.stamina > Player.maxStamina) {
+        Player.stamina = Player.maxStamina;
+    }
+    else if (Chara.hp > 0||Player.stamina<=0) {
         Player.stamina -= Player.staminaDamage;
     }
-    if (Player.jumpFlag == 0 && (isTrigger(KEY_K) || isTrigger(MOUSE_LBUTTON))) {
+    if (Player.jumpFlag == 0 && (isTrigger(KEY_SPACE) || isTrigger(MOUSE_LBUTTON))) {
         Chara.vy = Player.initVecUp;
         Player.jumpFlag = 1;
     }
@@ -45,19 +53,9 @@ void PLAYER::Move() {
     Player.speed = 3.4f * 6.0f * Player.stamina / 10;
     Chara.vx = Player.speed * delta;
     //Player.stamina -= 0.1f;
-    if (Player.stamina <= 1) Player.stamina = 1;
+    if (Player.stamina <= 10) Player.stamina = 10;
     Chara.animId = Player.rightAnimId;
-#if _DEBUG
-    if (isPress(KEY_A)) {
-        Chara.vx = -Chara.speed * delta;
-        Chara.animId = Player.leftAnimId;
-    }
-    if (isPress(KEY_D)) {
-        Chara.vx = Chara.speed * delta;
-        Chara.animId = Player.rightAnimId;
-    }
-    text(Player.stamina, 0, 0);
-#endif
+
     //  移動前に現在のChara.wxをPlayer.curWxにとっておく
     Player.curWx = Chara.wx;
     //  移動
@@ -109,13 +107,13 @@ void PLAYER::CollisionWithMap() {
 void PLAYER::CheckState() {
     //画面の下に落ちた
     if (Chara.wy > height + game()->map()->chipSize()) {
-        State = STATE::FALL;
+        StateId = STATE_ID::FALL;
         Chara.hp = 0;
         return;
     }
     //ステージクリアした
     if (Chara.wx > game()->map()->wDispRight()) {
-        State = STATE::SURVIVED;
+        StateId = STATE_ID::SURVIVED;
         Chara.hp = 0;
     }
 }
@@ -123,7 +121,7 @@ void PLAYER::damage() {
     if (Chara.hp > 0) {
         Player.stamina -= 10;
         if (Chara.hp == 0) {
-            State = STATE::DIED;
+            StateId = STATE_ID::DIED;
             Chara.vy = Player.initVecUp;//はね始めのトリガー
         }
     }
@@ -132,7 +130,7 @@ void PLAYER::damage2() {
     if (Chara.hp > 0) {
         Player.stamina -= 20;
         if (Chara.hp == 0) {
-            State = STATE::DIED;
+            StateId = STATE_ID::DIED;
             Chara.vy = Player.initVecUp;//はね始めのトリガー
         }
     }
@@ -141,33 +139,26 @@ void PLAYER::damage3() {
     if (Chara.hp > 0) {
         Chara.hp--;
         if (Chara.hp == 0) {
-            State = STATE::DIED;
+            StateId = STATE_ID::DIED;
             Chara.vy = Player.initVecUp;//はね始めのトリガー
         }
     }
 }
 void PLAYER::recover() {
     if (Chara.hp > 0) {
+        
         Player.stamina += 10;
-        if (Chara.stamina > Chara.maxStamina) {
-            Chara.stamina = Chara.maxStamina;
-        }
     }
 }
 void PLAYER::recover2() {
     if (Chara.hp > 0) {
         Player.stamina += 20;
-        if (Chara.stamina > Chara.maxStamina) {
-            Chara.stamina = Chara.maxStamina;
-        }
     }
 }
 void PLAYER::recover3() {
     if (Chara.hp > 0) {
+       
         Player.stamina += 30;
-        if (Chara.stamina > Chara.maxStamina) {
-            Chara.stamina = Chara.maxStamina;
-        }
     }
 }
 void PLAYER::effect() {
@@ -175,19 +166,28 @@ void PLAYER::effect() {
     recover();
 }
 bool PLAYER::died() {
-    if (State == STATE::DIED) {
-        Chara.vy += Player.gravity * delta;
-        Chara.wy += Chara.vy * 60 * delta;
+    if (StateId == STATE_ID::DIED) {
+        //Chara.vy += Player.gravity * delta;
+        //Chara.wy += Chara.vy * 60 * delta;
+        Chara.vx = 0;
+        Chara.vy = 0;
+        if (Chara.angle != 90) {
+            Chara.angle+=0.01f;
+            if (Chara.angle >= 90) {
+                Chara.angle = 90;
+            }
+        }
+        
         draw();
         return true;
     }
-    else if (State == STATE::FALL) {
+    else if (StateId == STATE_ID::FALL) {
         return true;
     }
     return false;
 }
 bool PLAYER::survived() {
-    return State == STATE::SURVIVED;
+    return StateId == STATE_ID::SURVIVED;
 }
 float PLAYER::overCenterVx() {
     //マップをスクロールさせるためのベクトルを求める
@@ -196,3 +196,4 @@ float PLAYER::overCenterVx() {
     if (overCenterVx < 0 || Chara.hp == 0)overCenterVx = 0;
     return overCenterVx;
 }
+

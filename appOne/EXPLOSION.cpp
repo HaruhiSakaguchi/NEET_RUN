@@ -6,11 +6,11 @@
 #include"MAP.h"
 #include "EXPLOSION.h"
 void EXPLOSION::create() {
-    Chara = game()->container()->data().explosionChara;
-    Explosion = game()->container()->data().explosion;
+    //Chara = game()->container()->data().explosionChara;
+    //Explosion = game()->container()->data().explosion;
 }
 void EXPLOSION::appear(float wx, float wy, float vx, float vy) {
-    Chara.hp = game()->container()->data().explosionChara.hp;
+    //Chara.hp = game()->container()->data().explosionChara.hp;
     Chara.wx = wx + Explosion.appearOffsetX;
     Chara.wy = wy + Explosion.appearOffsetY;
     Chara.angle = random() % 7 + 0.0f;

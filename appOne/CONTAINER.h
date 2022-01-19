@@ -12,10 +12,11 @@
 #include"MESSAGE.h"
 #include"BUTTON.h"
 #include"PLAYER.h"
-#include"PUMPKIN.h"
+#include"ENEMY_BULLET.h"
 #include"BAT.h"
 #include"BAT_BULLET.h"
-#include"EXPLOSION.h"
+//#include"EXPLOSION.h"
+#include"ENEMY.h"
 #include"CHARACTER_MANAGER.h"
 class CONTAINER
 {
@@ -37,16 +38,19 @@ private:
 		BUTTON::DATA button;
 		//キャラクターの実体
 		PLAYER::DATA player;
-		PUMPKIN::DATA pumpkin;
+		ENEMY::DATA enemy;
+	    ENEMY_BULLET::DATA enemyBullet;
 		BAT::DATA bat;
 		BAT_BULLET::DATA batBullet;
-		EXPLOSION::DATA explosion;
+		//EXPLOSION::DATA explosion;
 		//キャラクタークラス用
 		CHARACTER::DATA playerChara;
+		CHARACTER::DATA enemyChara;
 		CHARACTER::DATA pumpkinChara;
+		CHARACTER::DATA enemyBulletChara;
 		CHARACTER::DATA batChara;
 		CHARACTER::DATA batBulletChara;
-		CHARACTER::DATA explosionChara;
+		//CHARACTER::DATA explosionChara;
 		//キャラクターマネージャー
 		CHARACTER_MANAGER::DATA charaMng;
 

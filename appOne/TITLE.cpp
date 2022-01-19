@@ -52,11 +52,19 @@ void TITLE::draw() {
 
 }
 void TITLE::nextScene() {
-	if ((game()->button()->collisionRect(Title.buttonPos, Title.buttonW, Title.buttonH))
-		&& (isTrigger(KEY_SPACE) || isTrigger(MOUSE_LBUTTON))) {
-		game()->fade()->outTrigger();
+	if(Title.flag==0){
+		if ((game()->button()->collisionRect(Title.buttonPos, Title.buttonW, Title.buttonH)
+			&& isTrigger(MOUSE_LBUTTON))||(isTrigger(KEY_SPACE))){
+			setFlag(1);
+		}
 	}
+	else if(Title.flag==1)
+		game()->fade()->outTrigger();
 	if (game()->fade()->outEndFlag()) {
 		game()->changeScene(GAME::STORY_ID);
+		setFlag(0);
 	}
+}
+void TITLE::setFlag(int flag) {
+	Title.flag = flag;
 }

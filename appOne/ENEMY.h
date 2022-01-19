@@ -7,52 +7,75 @@
 #include"GAME.h"
 #include"GAME_OBJECT.h"
 class ENEMY :
-    public GAME_OBJECT
+    public CHARACTER
 {
 public:
-    struct DATA {
-        float speed = 0;
-        float stamina = 0;
-        float maxStamina = 0;
-        float wx = 0;
-        float wy = 0;
-        class ANIMS* anims = nullptr;
-        int animId = 0;
-        class ANIM* anim = nullptr;
-        ANIM_DATA animData;
-        COLOR color;
+   struct DATA {
+       float elapsedTime = 0;
+       float interval = 0;
+       int triggerCnt = 0;
+       int triggerInterval = 0;
+       int trigger1st = 0;
+       int trigger2nd = 0;
+       int trigger3rd = 0;
+       int trigger4th = 0;
+       float bulletOffsetX = 0;
+       char bulletCharaId = 0;
 
-        char charaId = 0;
-        int groupId = 0;
-        float angle = 0;
-        float scale = 1;
-        float offsetLeft = 0;
-        float offsetTop = 0;
-        float offsetRight = 0;
-        float offsetBottom = 0;
-        int hp = 0;
+       float speed = 0;
+      
+       int charaDamage = 0;
+       int rightAnimId = 0;
+       int leftAnimId = 1;
 
-    };
-protected:
+       int jumpFlag = 0;
+       float stamina = 0;
+       float maxStamina = 100;
+       
+       float curWx = 0;
+       float initVecUp = 0;
+       float initVecDown = 0;
+       float gravity = 0;
+       
+       float damageTime = 0;
+       float damageInterval = 0;
+       float staminaDamage = 0.01f;
+       COLOR color;
+       COLOR damageColor;
+       COLOR normalColor;
+        };
+private:
     DATA Enemy;
+    enum class STATE_ID { STRUGGLING, DIED, FALL, SURVIVED };
+    STATE_ID StateId = STATE_ID::STRUGGLING;
 public:
-    ENEMY(class GAME* game);
-    virtual void create();
-    virtual void init();
-    virtual void launch();
-    virtual void update();
-    virtual void draw();
-    virtual void damage();
-    virtual void recover();
-    virtual void appear(float wx, float wy, float vx, float vy);
-    int   hp() { return Enemy.hp; }
-    float stamina() { return Enemy.stamina; }
-    int   groupId() { return Enemy.groupId; }
-    char  charaId() { return Enemy.charaId; }
-    float wLeft() { return Enemy.wx + Enemy.offsetLeft; }
-    float wTop() { return Enemy.wy + Enemy.offsetTop; }
-    float wRight() { return Enemy.wx + Enemy.offsetRight; }
-    float wBottom() { return Enemy.wy + Enemy.offsetBottom; }
-    void setImgIdx(int i) { Enemy.animData.imgIdx = i; }
+    ENEMY(class GAME* game) :CHARACTER(game) {}
+    void create();
+    void appear(float wx, float wy, float vx, float vy);
+    void update();
+    void launch();
+private:
+        void Move();
+        void CollisionWithMap();
+public:
+    void damage();
+    void damage2();
+    void damage3();
+    void recover();
+    void recover2();
+    void recover3();
+    void effect();
+    void init();
+    void checkState();
+    void jump();
+    bool survived();
+   
+    int triggerCnt() { return Enemy.triggerCnt; }
+    int trigger1st() { return Enemy.trigger1st; }
+    int trigger2nd() { return Enemy.trigger2nd; }
+    int trigger3rd() { return Enemy.trigger3rd; }
+    int trigger4th() { return Enemy.trigger4th; }
+
 };
+       
 

@@ -25,7 +25,7 @@ void BAT::update() {
             Bat.triggerCnt == Bat.trigger3rd ||
             Bat.triggerCnt == Bat.trigger4th) {
             game()->characterManager()->appear(Bat.bulletCharaId,
-                Chara.wx - Bat.bulletOffsetX, Chara.wy, -1, 0);
+                Chara.wx - Bat.bulletOffsetX, Chara.wy, -1, 1);
         }
     }
     //ƒ}ƒbƒv------------------------------------------------------------------------
@@ -46,9 +46,9 @@ void BAT::damage() {
     if (Chara.hp > 0) {
         Bat.damageTime = Bat.damageInterval;
         Chara.hp--;
-        if (Chara.hp == 0) {
-            game()->characterManager()->appear(Bat.explosionCharaId,
-                Chara.wx, Chara.wy);
-        }
+        //if (Chara.hp == 0) {
+        //    game()->characterManager()->appear(Bat.explosionCharaId,
+        //        Chara.wx, Chara.wy);
+        //}
     }
 }

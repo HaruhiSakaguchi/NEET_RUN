@@ -4,6 +4,7 @@
 #include"GAME.h"
 #include"CONTAINER.h"
 #include"BUTTON.h"
+#include"STAGE.h"
 #include"GAME_OVER.h"
 GAME_OVER::GAME_OVER(class GAME* game) :
 	SCENE(game) {
@@ -37,23 +38,37 @@ void GAME_OVER::draw() {
 }
 void GAME_OVER::nextScene() {
 	//タイトルに戻る
-	if (game()->button()->collisionRect(GameOver.backToTitlePos, GameOver.buttonW, GameOver.buttonH)){
-		if (isTrigger(MOUSE_LBUTTON)) {
-			game()->fade()->outTrigger();
-		}
-		if (game()->fade()->outEndFlag()) {
-			game()->changeState(GAME::FIRST);
-			game()->changeScene(GAME::TITLE_ID);
-		}
-    }
-	//リトライ
-	if (game()->button()->collisionRect(GameOver.continuePos, GameOver.buttonW, GameOver.buttonH)) {
-		if (isTrigger(MOUSE_LBUTTON)) {
-			game()->fade()->outTrigger();
-		}
-		if (game()->fade()->outEndFlag()) {
-			game()->changeScene(GAME::STAGE_ID);
+	if (GameOver.returnFlag == 0) {
+		if (isTrigger(KEY_Z)||(game()->button()->collisionRect(GameOver.backToTitlePos, GameOver.buttonW, GameOver.buttonH)&&isTrigger(MOUSE_LBUTTON))){
+			setReturnFlag(1);
 		}
 	}
+	//リトライ
+	if (GameOver.retryFlag == 0) {
+		if (isTrigger(KEY_X)||(game()->button()->collisionRect(GameOver.continuePos, GameOver.buttonW, GameOver.buttonH)&&isTrigger(MOUSE_LBUTTON))) {
+			setRetryFlag(1);
+		}
+	}
+	if(GameOver.returnFlag==1||GameOver.retryFlag==1){
+		game()->fade()->outTrigger();
+	}
+	if (game()->fade()->outEndFlag()) {
+		if (GameOver.returnFlag == 1) {
+			game()->changeState(GAME::FIRST);
+			game()->changeScene(GAME::TITLE_ID);
+			setReturnFlag(0);
+		}
+		else if (GameOver.retryFlag == 1) {
+			game()->changeScene(GAME::STAGE_ID);
+			setRetryFlag(0);
+		}
+	}
+    
+}
+void GAME_OVER::setRetryFlag(int flag) {
+	GameOver.retryFlag = flag;
+}
+void GAME_OVER::setReturnFlag(int flag) {
+	GameOver.returnFlag = flag;
 }
 

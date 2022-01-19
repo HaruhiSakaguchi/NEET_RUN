@@ -4,11 +4,12 @@
 #include"ANIMS.h"
 CONTAINER::~CONTAINER() {
 	//１つのアニメーションの開放
-	delete Data.explosionChara.anim;
+	//delete Data.explosionChara.anim;
 	delete Data.batChara.anim;
 	delete Data.loading.anim;
 	//複数のアニメーションの開放
 	delete Data.pumpkinChara.anims;
+	delete Data.enemyChara.anims;
 	delete Data.playerChara.anims;
 }
 void CONTAINER::load() {
@@ -79,7 +80,7 @@ void CONTAINER::CreateData() {
 	Data.story.skipButtonPos.y = 30;
 
 	//ステージクラスのデータ
-	Data.stage.backColor = COLOR(0, 50, 0);
+	Data.stage.backColor;
 	Data.stage.textColor = COLOR(0, 255, 0);
 	Data.stage.pos.x = 900;
 	Data.stage.pos.y = 30;
@@ -204,27 +205,63 @@ void CONTAINER::CreateData() {
 	Data.player.damageColor = COLOR(255, 0, 0, 25);
 	Data.player.normalColor = COLOR(255, 255, 255);
 
-	Data.pumpkinChara.charaId = MAP::PUMPKIN_ID;
-	Data.pumpkinChara.groupId = 1;//敵グループは1
-	Data.pumpkinChara.hp = 1;
-	Data.pumpkinChara.speed = 1.4f * 60;
-	Data.pumpkinChara.offsetLeft = 10.0f;
-	Data.pumpkinChara.offsetTop = 12.0f;
-	Data.pumpkinChara.offsetRight = 40.0f;
-	Data.pumpkinChara.offsetBottom = 40.0f;
-	Data.pumpkin.rightAnimId = 0;
-	Data.pumpkin.leftAnimId = 1;
-	Data.pumpkin.damageInterval = 5 * 0.016f;
-	Data.pumpkin.initVecX = -1;
-	Data.pumpkin.initVecY = 0;
-	Data.pumpkin.gravity = 0.8f * 60;
-	Data.pumpkin.alphaLowVal = 25;
-	Data.pumpkin.damageColor = COLOR(255, 0, 0);
-	Data.pumpkin.explosionCharaId = MAP::EXPLOSION_ID;
+	//プレイヤークラスのデータ
+	Data.enemyChara.charaId = MAP::ENEMY_ID;
+	Data.enemyChara.hp = 1;
+	Data.enemyChara.groupId = 1;//味方グループは0
+	//Data.enemyChara.speed = 3.4f * 60;
+	Data.enemyChara.offsetLeft = 10.0f;
+	Data.enemyChara.offsetTop = 1.0f;
+	Data.enemyChara.offsetRight = 40.0f;
+	Data.enemyChara.offsetBottom = 49.0f;
+	Data.enemy.jumpFlag = 0;
+	Data.enemy.initVecUp = -16.0f;
+	Data.enemy.initVecDown = 3.0f;
+	Data.enemy.charaDamage = 0;
+	Data.enemy.gravity = 48;
+	Data.enemy.bulletOffsetX = 20.0f;
+
+	Data.enemy.damageTime = 0;
+	Data.enemy.damageInterval = 5 * 0.016f;
+	Data.enemy.color = Data.enemy.normalColor;
+
+	
+	Data.enemyChara.color = COLOR(0, 0, 0);
+
+	Data.enemy.elapsedTime = 0;
+	Data.enemy.interval = 0.016f;
+	Data.enemy.triggerCnt = 100;
+	Data.enemy.triggerInterval = 400;
+	Data.enemy.trigger1st = 220;
+	Data.enemy.trigger2nd = 270;
+	Data.enemy.trigger3rd = 380;
+	Data.enemy.trigger4th = 400;
+	Data.enemy.bulletCharaId = MAP::ENEMY_BULLET_ID;
+
+	Data.enemyBulletChara.charaId = MAP::ENEMY_BULLET_ID;
+	
+
+	
+	Data.enemyBulletChara.groupId = 1;//敵グループは1
+	Data.enemyBulletChara.hp = 1;
+	Data.enemyBulletChara.speed = 7.5f * 60;
+	Data.enemyBulletChara.offsetLeft = 10.0f;
+	Data.enemyBulletChara.offsetTop = 12.0f;
+	Data.enemyBulletChara.offsetRight = 40.0f;
+	Data.enemyBulletChara.offsetBottom = 40.0f;
+	Data.enemyBullet.rightAnimId = 0;
+	Data.enemyBullet.leftAnimId = 1;
+	Data.enemyBullet.damageInterval = 5 * 0.016f;
+	Data.enemyBullet.initVecX = 1;
+	Data.enemyBullet.initVecY = 0;
+	Data.enemyBullet.gravity = 0.8f * 60;
+	Data.enemyBullet.alphaLowVal = 25;
+	Data.enemyBullet.damageColor = COLOR(255, 0, 0);
+	
 
 	Data.batChara.charaId = MAP::BAT_ID;
 	Data.batChara.hp = 1;
-	Data.batChara.groupId = 1;//敵グループは1
+	Data.batChara.groupId = 2;//敵グループは1
 	Data.batChara.offsetLeft = 10.0f;
 	Data.batChara.offsetTop = 10.0f;
 	Data.batChara.offsetRight = 30.0f;
@@ -241,12 +278,11 @@ void CONTAINER::CreateData() {
 	Data.bat.damageTime = 0;
 	Data.bat.damageInterval = 5 * 0.016f;
 	Data.bat.bulletOffsetX = 20.0f;
-	Data.bat.explosionCharaId = MAP::EXPLOSION_ID;
 	Data.bat.damageColor = COLOR(255, 0, 0, 25);
 	Data.bat.normalColor = COLOR(255, 255, 255);
 
 	Data.batBulletChara.charaId = MAP::BAT_BULLET_ID;
-	Data.batBulletChara.groupId = 1;//敵グループは1
+	Data.batBulletChara.groupId = 2;//敵グループは1
 	Data.batBulletChara.hp = 1;
 	Data.batBulletChara.speed = 4.7f * 60;
 	Data.batBulletChara.offsetLeft = 20.0f;
@@ -254,17 +290,12 @@ void CONTAINER::CreateData() {
 	Data.batBulletChara.offsetRight = 30.0f;
 	Data.batBulletChara.offsetBottom = 30.0f;
 
-	Data.explosionChara.charaId = MAP::EXPLOSION_ID;
-	Data.explosionChara.hp = 1;
-	Data.explosionChara.color = COLOR(255, 255, 255, 220);
-	Data.explosion.appearOffsetX = -25;
-	Data.explosion.appearOffsetY = -25;
-
+	
 	Data.charaMng.numPlayers = 1;
-	Data.charaMng.numPumpkins = 5;
+	Data.charaMng.numEnemies = 1;
 	Data.charaMng.numBats = 5;
 	Data.charaMng.numBatBullets = 12;
-	Data.charaMng.numExplosions = 2;
+	Data.charaMng.numEnemyBullets = 12;
 
 	//フェードクラスのデータ
 	Data.fade.color = COLOR(60, 60, 60);
@@ -294,25 +325,22 @@ void CONTAINER::LoadGraphics() {
 	Data.map.goalImg = loadImage("assets\\goal.png");
 
 
+	Data.enemyBulletChara.img = loadImage("assets\\pumpkin\\1\\pumpkinL01.png");
+
+	Data.batChara.img = loadImage("assets\\bat\\0\\bat01.png");
 	Data.batBulletChara.img = loadImage("assets\\batBullet.png");
 
 	//ANIMS 複数のアニメーションセット
 	Data.loading.anim = new ANIM("assets\\loading\\load");
 	Data.loading.anim->noLoop();
-	//Data.loadingChara.animData.elapsedTime = 0.1f;
+	
 	Data.loading.animData.interval = 0.1f;
 
 	Data.playerChara.anims = new ANIMS("assets\\player");
 	Data.playerChara.animData.interval = 0.1f;
 
-	Data.pumpkinChara.anims = new ANIMS("assets\\pumpkin");
-	Data.pumpkinChara.animData.interval = 0.1f;
+	Data.enemyChara.anims = new ANIMS("assets\\player");
+	Data.enemyChara.animData.interval = 0.1f;
 
-	//ANIM １つのアニメーションセット
-	Data.batChara.anim = new ANIM("assets\\bat\\0");
-	Data.batChara.animData.interval = 0.1f;
-
-	Data.explosionChara.anim = new ANIM("assets\\explosion\\0");
-	Data.explosionChara.anim->noLoop();
-	Data.explosionChara.animData.interval = 0.032f;
+	
 }

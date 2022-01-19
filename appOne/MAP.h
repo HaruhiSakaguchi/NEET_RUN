@@ -30,13 +30,13 @@ public:
         float endWorldY = 0;
         float centerX = 0;
     };
-    enum CHARA_ID { 
+    enum CHARA_ID {
         PLAYER_ID = 'a',
         PLAYER_BULLET_ID = 'b',
-        PUMPKIN_ID = 'c',
+        ENEMY_BULLET_ID = 'c',
         BAT_ID = 'd',
         BAT_BULLET_ID = 'e',
-        EXPLOSION_ID = 'f'
+        ENEMY_ID = 'g',
     };
 private:
     DATA Map;

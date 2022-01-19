@@ -31,7 +31,7 @@ void STORY::draw() {
 	}
 	else if (game()->curStateId() == GAME::THIRD) i = 3;
 	else if (game()->curStateId() == GAME::FOURTH)i = 4;
-	else if (game()->curStateId() == GAME::END)i = 5;
+	else if (game()->curStateId() == GAME::FIFTH)i = 5;
 	fill(Story.textColor);
 	textSize(Story.textSize);
 	text(i, 750, 400);
@@ -65,7 +65,8 @@ void STORY::nextScene() {
 			if (game()->curStateId() == GAME::FIRST ||
 				game()->curStateId() == GAME::SECOND ||
 				game()->curStateId() == GAME::THIRD ||
-				game()->curStateId() == GAME::FOURTH
+				game()->curStateId() == GAME::FOURTH||
+				game()->curStateId()==GAME::FIFTH
 				) {
 				game()->changeScene(GAME::STAGE_ID);
 				game()->message()->init();
@@ -117,7 +118,8 @@ void STORY::nextScene() {
 		if (game()->curStateId() == GAME::FIRST ||
 			game()->curStateId() == GAME::SECOND ||
 			game()->curStateId() == GAME::THIRD ||
-			game()->curStateId() == GAME::FOURTH
+			game()->curStateId() == GAME::FOURTH||
+			game()->curStateId() == GAME::FIFTH
 			) {
 			game()->changeScene(GAME::STAGE_ID);
 			game()->message()->init();
@@ -131,7 +133,8 @@ void STORY::setAttentinonFlag(int flag) {
 }
 void STORY::update() {
 	if (Story.Flag == 0) {
-		if (game()->button()->collisionRect(Story.skipButtonPos, Story.skipButtonW, Story.skipButtonH)) {}
+		if (game()->button()->collisionRect(Story.skipButtonPos, Story.skipButtonW, Story.skipButtonH)) {
+		}
 		else {
 			game()->message()->nextText();
 		}

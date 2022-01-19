@@ -17,7 +17,7 @@ public:
         char bulletCharaId = 0;
         float damageTime = 0;
         float damageInterval = 0;
-        char explosionCharaId = 0;
+       // char explosionCharaId = 0;
         COLOR damageColor;
         COLOR normalColor;
     };

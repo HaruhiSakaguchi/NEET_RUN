@@ -28,7 +28,7 @@ void STAGE_CLEAR::draw() {
 #ifdef _DEBUG
 	textSize(30);
 	fill(255, 255, 255);
-	text("SPACEキーで進行", 30, 30);
+	text("SPACEキーで進行　Zキーでタイトルに戻る", 30, 30);
 #endif
 	game()->button()->rectButton(StageClear.backToTitlePos, game()->container()->data().message.buttonColor, game()->container()->data().message.textColor, StageClear.backToTitleText, StageClear.buttonNameTextSize, StageClear.charaNum);
 	game()->button()->rectButton(StageClear.nextPos, game()->container()->data().message.buttonColor, game()->container()->data().message.textColor, StageClear.nextText, StageClear.buttonNameTextSize, StageClear.charaNum);
@@ -37,32 +37,52 @@ void STAGE_CLEAR::draw() {
 	game()->fade()->draw();
 }
 void STAGE_CLEAR::nextScene() {
-	if (isTrigger(KEY_SPACE) || (isTrigger(MOUSE_LBUTTON) && game()->button()->collisionRect(StageClear.nextPos, StageClear.buttonW, StageClear.buttonH))) {
+	if (StageClear.goFlag == 0) {
+		if (isTrigger(KEY_SPACE) || (isTrigger(MOUSE_LBUTTON) && game()->button()->collisionRect(StageClear.nextPos, StageClear.buttonW, StageClear.buttonH))) {
+			setGoFlag(1);
+		}
+	}
+	if(StageClear.returnFlag==0){
+		if (isTrigger(KEY_Z)||(game()->button()->collisionRect(StageClear.backToTitlePos, StageClear.buttonW, StageClear.buttonH)&&isTrigger(MOUSE_LBUTTON))) {
+			setReturnFlag(1);
+		}
+	}
+	if (StageClear.goFlag == 1|| StageClear.returnFlag == 1) {
 		game()->fade()->outTrigger();
 	}
-	if (game()->fade()->outEndFlag() && game()->button()->collisionRect(StageClear.nextPos, StageClear.buttonW, StageClear.buttonH)) {
-		switch (game()->curStateId()) {
-		case GAME::FIRST:
-			game()->changeState(GAME::SECOND);
-			break;
-		case GAME::SECOND:
-			game()->changeState(GAME::THIRD);
-			break;
-		case GAME::THIRD:
-			game()->changeState(GAME::FOURTH);
-			break;
-		case GAME::FOURTH:
-			game()->changeState(GAME::END);
-			break;
+	if (game()->fade()->outEndFlag()) {
+		if (StageClear.goFlag == 1) {
+			switch (game()->curStateId()) {
+			case GAME::FIRST:
+				game()->changeState(GAME::SECOND);
+				break;
+			case GAME::SECOND:
+				game()->changeState(GAME::THIRD);
+				break;
+			case GAME::THIRD:
+				game()->changeState(GAME::FOURTH);
+				break;
+			case GAME::FOURTH:
+				game()->changeState(GAME::FIFTH);
+				break;
+			case GAME::FIFTH:
+				game()->changeState(GAME::END);
+				break;
+			}
+
+			game()->changeScene(GAME::STORY_ID);
+			setGoFlag(0);
 		}
-		game()->changeScene(GAME::STORY_ID);
-	}
-	if (game()->button()->collisionRect(StageClear.backToTitlePos, StageClear.buttonW, StageClear.buttonH)) {
-		if (isTrigger(MOUSE_LBUTTON)) {
-			game()->fade()->outTrigger();
+		else if (StageClear.returnFlag == 1) {
+		 game()->changeScene(GAME::TITLE_ID);
+		 setReturnFlag(0);
 		}
-	    if (game()->fade()->outEndFlag()) {
-		    game()->changeScene(GAME::TITLE_ID);
-	    }
+	
 	}
+}
+void STAGE_CLEAR::setGoFlag(int flag) {
+	StageClear.goFlag = flag;
+}
+void STAGE_CLEAR::setReturnFlag(int flag) {
+	StageClear.returnFlag = flag;
 }

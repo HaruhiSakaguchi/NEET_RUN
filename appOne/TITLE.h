@@ -10,6 +10,7 @@ public:
         float textSize = 0;
         int image = 0;
         int image2 = 0;
+        int flag = 0;
         COLOR textColor;
         COLOR backColor;
         VECTOR2 pos;
@@ -34,5 +35,6 @@ public:
     void draw();
     void nextScene();
     void init();
+    void setFlag(int flag);
 };
 

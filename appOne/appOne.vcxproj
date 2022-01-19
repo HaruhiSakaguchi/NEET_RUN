@@ -175,7 +175,7 @@
     <ClCompile Include="MESSAGE.cpp" />
     <ClCompile Include="OBSTACLE.cpp" />
     <ClCompile Include="PLAYER.cpp" />
-    <ClCompile Include="PUMPKIN.cpp" />
+    <ClCompile Include="ENEMY_BULLET.cpp" />
     <ClCompile Include="SCENE.cpp" />
     <ClCompile Include="STAGE.cpp" />
     <ClCompile Include="STAGE_CLEAR.cpp" />
@@ -211,7 +211,7 @@
     <ClInclude Include="MESSAGE.h" />
     <ClInclude Include="OBSTACLE.h" />
     <ClInclude Include="PLAYER.h" />
-    <ClInclude Include="PUMPKIN.h" />
+    <ClInclude Include="ENEMY_BULLET.h" />
     <ClInclude Include="SCENE.h" />
     <ClInclude Include="STAGE.h" />
     <ClInclude Include="STAGE_CLEAR.h" />
