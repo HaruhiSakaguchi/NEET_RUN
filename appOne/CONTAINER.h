@@ -13,9 +13,9 @@
 #include"BUTTON.h"
 #include"PLAYER.h"
 #include"ENEMY_BULLET.h"
-#include"BAT.h"
+#include"CAT.h"
+#include"HOLE.h"
 #include"BAT_BULLET.h"
-//#include"EXPLOSION.h"
 #include"ENEMY.h"
 #include"CHARACTER_MANAGER.h"
 class CONTAINER
@@ -40,7 +40,7 @@ private:
 		PLAYER::DATA player;
 		ENEMY::DATA enemy;
 	    ENEMY_BULLET::DATA enemyBullet;
-		BAT::DATA bat;
+		CAT::DATA cat;
 		BAT_BULLET::DATA batBullet;
 		//EXPLOSION::DATA explosion;
 		//キャラクタークラス用
@@ -48,8 +48,9 @@ private:
 		CHARACTER::DATA enemyChara;
 		CHARACTER::DATA pumpkinChara;
 		CHARACTER::DATA enemyBulletChara;
-		CHARACTER::DATA batChara;
+		CHARACTER::DATA catChara;
 		CHARACTER::DATA batBulletChara;
+		CHARACTER::DATA holeChara;
 		//CHARACTER::DATA explosionChara;
 		//キャラクターマネージャー
 		CHARACTER_MANAGER::DATA charaMng;

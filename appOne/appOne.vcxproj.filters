@@ -38,6 +38,15 @@
     <Filter Include="message">
       <UniqueIdentifier>{8d4a6eae-a490-4e59-92fa-c39be983ec27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="obstacle&amp;trap">
+      <UniqueIdentifier>{78135ee6-0ea2-446a-9a09-aaff34117872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="recover_item">
+      <UniqueIdentifier>{47abe27a-c582-4331-b357-98ee029f5c54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="damage_item">
+      <UniqueIdentifier>{ad53e0f9-d164-416b-8ee5-db2e2ceee4ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
@@ -74,13 +83,7 @@
     <ClCompile Include="SCENE.cpp">
       <Filter>scene\base</Filter>
     </ClCompile>
-    <ClCompile Include="BAT.cpp">
-      <Filter>character</Filter>
-    </ClCompile>
     <ClCompile Include="BAT_BULLET.cpp">
-      <Filter>character</Filter>
-    </ClCompile>
-    <ClCompile Include="EXPLOSION.cpp">
       <Filter>character</Filter>
     </ClCompile>
     <ClCompile Include="PLAYER.cpp">
@@ -128,14 +131,17 @@
     <ClCompile Include="ITEM.cpp">
       <Filter>character\anim,base,manager</Filter>
     </ClCompile>
-    <ClCompile Include="OBSTACLE.cpp">
-      <Filter>character\anim,base,manager</Filter>
-    </ClCompile>
     <ClCompile Include="HP_GAUGE.cpp">
       <Filter>hpGauge</Filter>
     </ClCompile>
     <ClCompile Include="MESSAGE.cpp">
       <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="CAT.cpp">
+      <Filter>obstacle&amp;trap</Filter>
+    </ClCompile>
+    <ClCompile Include="HOLE.cpp">
+      <Filter>obstacle&amp;trap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,13 +166,7 @@
     <ClInclude Include="SCENE.h">
       <Filter>scene\base</Filter>
     </ClInclude>
-    <ClInclude Include="BAT.h">
-      <Filter>character</Filter>
-    </ClInclude>
     <ClInclude Include="BAT_BULLET.h">
-      <Filter>character</Filter>
-    </ClInclude>
-    <ClInclude Include="EXPLOSION.h">
       <Filter>character</Filter>
     </ClInclude>
     <ClInclude Include="PLAYER.h">
@@ -214,14 +214,17 @@
     <ClInclude Include="ITEM.h">
       <Filter>character\anim,base,manager</Filter>
     </ClInclude>
-    <ClInclude Include="OBSTACLE.h">
-      <Filter>character\anim,base,manager</Filter>
-    </ClInclude>
     <ClInclude Include="HP_GAUGE.h">
       <Filter>hpGauge</Filter>
     </ClInclude>
     <ClInclude Include="MESSAGE.h">
       <Filter>message</Filter>
+    </ClInclude>
+    <ClInclude Include="CAT.h">
+      <Filter>obstacle&amp;trap</Filter>
+    </ClInclude>
+    <ClInclude Include="HOLE.h">
+      <Filter>obstacle&amp;trap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

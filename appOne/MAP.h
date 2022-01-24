@@ -34,8 +34,9 @@ public:
         PLAYER_ID = 'a',
         PLAYER_BULLET_ID = 'b',
         ENEMY_BULLET_ID = 'c',
-        BAT_ID = 'd',
+        CAT_ID = 'd',
         BAT_BULLET_ID = 'e',
+        MANHOLE_ID = 'f',
         ENEMY_ID = 'g',
     };
 private:

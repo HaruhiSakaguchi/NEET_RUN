@@ -11,6 +11,7 @@ public:
         int image = 0;
         int image2 = 0;
         int flag = 0;
+        int chapter = 0;
         COLOR textColor;
         COLOR backColor;
         VECTOR2 pos;
@@ -33,8 +34,11 @@ public:
     ~TITLE();
     void create();
     void draw();
+    void update();
     void nextScene();
     void init();
+    void chapter();
+    void setChapter(int capter);
     void setFlag(int flag);
 };
 

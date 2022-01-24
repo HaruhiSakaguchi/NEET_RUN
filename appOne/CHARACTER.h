@@ -46,13 +46,13 @@ public:
     virtual void appear(float wx, float wy, float vx, float vy);
     virtual void update();
     virtual void draw();
-    virtual void damage();
-    virtual void damage2();
-    virtual void damage3();
-    virtual void recover();
-    virtual void recover2();
-    virtual void recover3();
-    virtual void effect();
+    virtual void Sdamage();
+    virtual void Mdamage();
+    virtual void Ldamage();
+    virtual void Ddamage();
+    virtual void Srecover();
+    virtual void Mrecover();
+    virtual void Lrecover();
     int   hp() { return Chara.hp; }
     float stamina() { return Chara.stamina; }
     int   groupId() { return Chara.groupId; }

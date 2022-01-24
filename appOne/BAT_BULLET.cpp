@@ -8,7 +8,7 @@
 void BAT_BULLET::create() {
     Chara = game()->container()->data().batBulletChara;
 }
-void BAT_BULLET::appear(float wx , float wy, float vx, float vy) {
+void BAT_BULLET::appear(float wx, float wy, float vx, float vy) {
     Chara.hp = game()->container()->data().batBulletChara.hp;
     Chara.wx = wx;
     Chara.wy = wy;

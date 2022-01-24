@@ -4,9 +4,9 @@
 #include"ENEMY.h"
 #include"PLAYER.h"
 #include"ENEMY_BULLET.h"
-#include"BAT.h"
+#include"CAT.h"
 #include"BAT_BULLET.h"
-#include"EXPLOSION.h"
+#include"HOLE.h"
 #include"CHARACTER_MANAGER.h"
 CHARACTER_MANAGER::CHARACTER_MANAGER(class GAME* game) :
     GAME_OBJECT(game) {
@@ -24,9 +24,9 @@ void CHARACTER_MANAGER::create() {
     Total += CharaMng.numPlayers;
     Total += CharaMng.numEnemies;
     Total += CharaMng.numEnemyBullets;
-    Total += CharaMng.numBats;
+    Total += CharaMng.numCats;
     Total += CharaMng.numBatBullets;
-    //Total += CharaMng.numExplosions;
+    Total += CharaMng.numHoles;
     Characters = new CHARACTER * [Total];
 
     Player = new PLAYER(game());
@@ -35,10 +35,9 @@ void CHARACTER_MANAGER::create() {
     for (i = 0; i < CharaMng.numPlayers; i++)       Characters[j++] = Player;
     for (i = 0; i < CharaMng.numEnemies; i++)      Characters[j++] = Enemy;
     for (i = 0; i < CharaMng.numEnemyBullets; i++)    Characters[j++] = new ENEMY_BULLET(game());
-    for (i = 0; i < CharaMng.numBats; i++)          Characters[j++] = new BAT(game());
+    for (i = 0; i < CharaMng.numCats; i++)          Characters[j++] = new CAT(game());
     for (i = 0; i < CharaMng.numBatBullets; i++)    Characters[j++] = new BAT_BULLET(game());
-    //for (i = 0; i < CharaMng.numExplosions; i++)    Characters[j++] = new EXPLOSION(game());
-
+    for (i = 0; i < CharaMng.numHoles; i++)    Characters[j++] = new HOLE(game());
     for (int i = 0; i < Total; i++) {
         Characters[i]->create();
     }
@@ -88,54 +87,49 @@ void CHARACTER_MANAGER::update() {
                 //ƒvƒŒƒCƒ„[‚Ì“–‚½‚è”»’è
                 if (Characters[i]->charaId() == 'a') {
                     if (Characters[j]->charaId() == 'c') {
-                        Characters[i]->damage();
-                        Characters[j]->damage();
+                        Characters[i]->Sdamage();
+                        Characters[j]->Ddamage();
                     }
                     if (Characters[j]->charaId() == 'd') {
-                        Characters[i]->recover();
-                        Characters[j]->damage();
+                        Characters[i]->Sdamage();
                     }
-                    if (Characters[j]->charaId() == 'g') {
-                        Characters[i]->damage3();
-                        Characters[j]->damage();
+                    if (Characters[j]->charaId() == 'g'|| Characters[j]->charaId() == 'f') {
+                        Characters[i]->Ddamage();
                     }
                     if (Characters[j]->charaId() == 'e') {
-                        Characters[i]->recover2();
-                        Characters[j]->damage();
+                        Characters[i]->Srecover();
                     }
 
                 }
                 if (Characters[j]->charaId() == 'a') {
                     if (Characters[i]->charaId() == 'c') {
-                        Characters[i]->damage();
-                        Characters[j]->damage();
+                        Characters[i]->Sdamage();
+                        Characters[j]->Ddamage();
                     }
                     if (Characters[i]->charaId() == 'd') {
-                        Characters[j]->recover();
-                        Characters[i]->damage();
+                        Characters[j]->Sdamage();
                     }
-                    if (Characters[i]->charaId() == 'g') {
-                        Characters[j]->damage3();
-                        Characters[i]->damage();
+                    if (Characters[i]->charaId() == 'g' || Characters[i]->charaId() == 'f') {
+                        Characters[j]->Ddamage();
                     }
                     if (Characters[i]->charaId() == 'e') {
-                        Characters[j]->recover2();
-                        Characters[i]->damage();
+                        Characters[j]->Srecover();
+                        Characters[i]->Ddamage();
                     }
 
                 }
                 //“G‚Ì“–‚½‚è”»’è
                 if (Characters[i]->charaId() == 'g') {
                     if (Characters[j]->charaId() == 'd') {
-                        Characters[i]->recover();
-                        Characters[j]->damage();
+                        Characters[i]->Mrecover();
+                        Characters[j]->Ddamage();
                     }
 
                 }
                 if (Characters[j]->charaId() == 'g') {
                     if (Characters[i]->charaId() == 'd') {
-                        Characters[j]->recover();
-                        Characters[i]->damage();
+                        Characters[j]->Mrecover();
+                        Characters[i]->Ddamage();
                     }
                     
 

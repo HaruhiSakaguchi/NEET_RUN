@@ -22,22 +22,22 @@ void STAGE::init() {
 }
 void STAGE::update() {
 	Stage.flag = 0;
-	if (Stage.count != 0) {
-		countDown();
-	}
+	//if (Stage.count != 0) {
+	//	countDown();
+	//}
 	
 	game()->characterManager()->update();
 	game()->map()->update();
 
-	if (Stage.flag == 0 && isTrigger(MOUSE_RBUTTON)) {
-		Stage.flag = 1;
-	}
-	if (Stage.flag == 1) {
-		stagePause();
-		if (isTrigger(MOUSE_RBUTTON)) { Stage.flag = 0; }
-	}
-	textSize(Stage.textSize);
-	text(Stage.flag, Stage.pos.x + Stage.textSize * 4, Stage.pos.y);
+	//if (Stage.flag == 0 && isTrigger(MOUSE_RBUTTON)) {
+	//	Stage.flag = 1;
+	//}
+	//if (Stage.flag == 1) {
+	//	stagePause();
+	//	if (isTrigger(MOUSE_RBUTTON)) { Stage.flag = 0; }
+	//}
+	//textSize(Stage.textSize);
+	//text(Stage.flag, Stage.pos.x + Stage.textSize * 4, Stage.pos.y);
 	
 
 }
@@ -91,16 +91,26 @@ void STAGE::logo(int img, const COLOR& color) {
 void STAGE::nextScene() {
 	if (game()->characterManager()->player()->survived()) {
 		game()->fade()->outTrigger();
-	    if (game()->fade()->outEndFlag()) {
-	    	game()->changeScene(GAME::STAGE_CLEAR_ID);
-	    }
-	}
-	else if (game()->characterManager()->player()->died()||game()->characterManager()->enemy()->survived()) {
-		game()->fade()->outTrigger();
 		if (game()->fade()->outEndFlag()) {
-			game()->changeScene(GAME::GAME_OVER_ID);
+			game()->changeScene(GAME::STAGE_CLEAR_ID);
 		}
 	}
+	if (game()->characterManager()->player()->died() || game()->characterManager()->enemy()->survived()) {
+		game()->fade()->outTrigger();
+	}
+	if (game()->fade()->outEndFlag()) {
+		if (game()->curStateId() == GAME::FIFTH) {
+			if (game()->characterManager()->player()->died()) {
+				game()->changeScene(GAME::STAGE_CLEAR_ID);
+			}
+			else if(game()->characterManager()->enemy()->survived()) {
+				game()->changeScene(GAME::GAME_OVER_ID);
+			}
+		}
+		else game()->changeScene(GAME::GAME_OVER_ID);
+	}
+		
+	
 	if (game()->curStateId() == GAME::END) {
 		game()->changeScene(GAME::STORY_ID);
 	}

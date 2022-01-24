@@ -85,6 +85,17 @@ public:
         const char* text5_9 = 0;
         const char* text5_10 = 0;
 
+        const char* textLast_1 = 0;
+        const char* textLast_2 = 0;
+        const char* textLast_3 = 0;
+        const char* textLast_4 = 0;
+        const char* textLast_5 = 0;
+        const char* textLast_6 = 0;
+        const char* textLast_7 = 0;
+        const char* textLast_8 = 0;
+        const char* textLast_9 = 0;
+        const char* textLast_10 = 0;
+
         const char* text_Last = 0;
 
         //会話シーンでキャラ名を表示するためのデータ

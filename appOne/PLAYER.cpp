@@ -6,7 +6,7 @@
 #include"GAME.h"
 #include"MAP.h"
 #include"ENEMY.h"
-#include "PLAYER.h"
+#include"PLAYER.h"
 void PLAYER::create() {
     Chara = game()->container()->data().playerChara;
     Player = game()->container()->data().player;
@@ -29,7 +29,17 @@ void PLAYER::update() {
     
     CollisionWithMap();
     CheckState();
+    //ダメージを受けたときちょっとだけ透明化する------------------------------------
+    if (Player.damageTime > 0) {
+        Player.damageTime -= delta;
+        Chara.color = Player.damageColor;
+    }
+    else {
+        Chara.color = Player.normalColor;
+    }
 }
+
+
 
 void PLAYER::Move() {
     //ジャンプ
@@ -117,25 +127,30 @@ void PLAYER::CheckState() {
         Chara.hp = 0;
     }
 }
-void PLAYER::damage() {
+void PLAYER::Sdamage() {
     if (Chara.hp > 0) {
+        if(Player.damageTime==0)
         Player.stamina -= 10;
+        Player.damageTime = Player.damageInterval;
         if (Chara.hp == 0) {
             StateId = STATE_ID::DIED;
             Chara.vy = Player.initVecUp;//はね始めのトリガー
         }
     }
 }
-void PLAYER::damage2() {
+void PLAYER::Mdamage() {
     if (Chara.hp > 0) {
-        Player.stamina -= 20;
+        if (Player.damageTime == 0)
+            Player.stamina -= 20;
+            
+        Player.damageTime = Player.damageInterval;
         if (Chara.hp == 0) {
             StateId = STATE_ID::DIED;
             Chara.vy = Player.initVecUp;//はね始めのトリガー
         }
     }
 }
-void PLAYER::damage3() {
+void PLAYER::Ddamage() {
     if (Chara.hp > 0) {
         Chara.hp--;
         if (Chara.hp == 0) {
@@ -144,26 +159,34 @@ void PLAYER::damage3() {
         }
     }
 }
-void PLAYER::recover() {
+void PLAYER::Ldamage() {
+    if (Chara.hp > 0) {
+        if (Player.damageTime == 0)
+            Player.stamina -= 30;
+            
+        Player.damageTime = Player.damageInterval;
+        if (Chara.hp == 0) {
+            StateId = STATE_ID::DIED;
+            Chara.vy = Player.initVecUp;//はね始めのトリガー
+        }
+    }
+}
+void PLAYER::Srecover() {
     if (Chara.hp > 0) {
         
         Player.stamina += 10;
     }
 }
-void PLAYER::recover2() {
+void PLAYER::Mrecover() {
     if (Chara.hp > 0) {
         Player.stamina += 20;
     }
 }
-void PLAYER::recover3() {
+void PLAYER::Lrecover() {
     if (Chara.hp > 0) {
        
         Player.stamina += 30;
     }
-}
-void PLAYER::effect() {
-    damage();
-    recover();
 }
 bool PLAYER::died() {
     if (StateId == STATE_ID::DIED) {
@@ -171,10 +194,13 @@ bool PLAYER::died() {
         //Chara.wy += Chara.vy * 60 * delta;
         Chara.vx = 0;
         Chara.vy = 0;
-        if (Chara.angle != 90) {
-            Chara.angle+=0.01f;
-            if (Chara.angle >= 90) {
-                Chara.angle = 90;
+        if (game()->curStateId() == GAME::FIFTH) {}
+        else {
+            if (Chara.angle != 90) {
+                Chara.angle += 0.01f;
+                if (Chara.angle >= 90) {
+                    Chara.angle = 90;
+                }
             }
         }
         

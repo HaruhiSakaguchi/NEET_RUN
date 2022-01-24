@@ -1,6 +1,6 @@
 #pragma once
 #include "CHARACTER.h"
-class BAT :
+class CAT :
     public CHARACTER
 {
 public:
@@ -22,12 +22,11 @@ public:
         COLOR normalColor;
     };
 private:
-    DATA Bat;
+    DATA Cat;
 public:
-    BAT(class GAME* game) :CHARACTER(game) {}
+    CAT(class GAME* game) :CHARACTER(game) {}
     void create();
     void appear(float wx, float wy, float vx, float vy);
     void update();
-    void damage();
 };
 

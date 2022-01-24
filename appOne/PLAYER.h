@@ -41,13 +41,13 @@ private:
     void CollisionWithMap();
     void CheckState();
 public:
-    void damage();
-    void damage2();
-    void damage3();
-    void recover();
-    void recover2();
-    void recover3();
-    void effect();
+    void Sdamage();
+    void Mdamage();
+    void Ldamage();
+    void Ddamage();
+    void Srecover();
+    void Mrecover();
+    void Lrecover();
     void init();
     bool died();
     bool survived();

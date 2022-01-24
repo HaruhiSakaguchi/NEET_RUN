@@ -43,44 +43,44 @@ void CHARACTER::draw() {
         image(Chara.img, px, py, Chara.angle, Chara.scale);
     }
 }
-void CHARACTER::damage() {
+void CHARACTER::Sdamage() {
     if (Chara.hp > 0) {
         Chara.hp--;
     }
 }
-void CHARACTER::damage2() {
+void CHARACTER::Mdamage() {
     if (Chara.hp > 0) {
         Chara.hp--;
     }
 }
-void CHARACTER::damage3() {
+void CHARACTER::Ldamage() {
     if (Chara.hp > 0) {
         Chara.hp--;
     }
 }
-void CHARACTER::recover() {
+void CHARACTER::Ddamage() {
+    if (Chara.hp > 0) {
+        Chara.hp--;
+    }
+}
+void CHARACTER::Srecover() {
     if (Chara.hp > 0) {
         if (Chara.stamina >= Chara.maxStamina) {
             Chara.stamina = Chara.maxStamina;
         }
     }
 }
-void CHARACTER::recover2() {
+void CHARACTER::Mrecover() {
     if (Chara.hp > 0) {
         if (Chara.stamina >= Chara.maxStamina) {
             Chara.stamina = Chara.maxStamina;
         }
     }
 }
-void CHARACTER::recover3() {
+void CHARACTER::Lrecover() {
     if (Chara.hp > 0) {
         if (Chara.stamina >= Chara.maxStamina) {
             Chara.stamina = Chara.maxStamina;
         }
-    }
-}
-void CHARACTER::effect() {
-    if (Chara.hp > 0) {
-        Chara.hp--;
     }
 }

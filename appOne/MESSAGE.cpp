@@ -40,6 +40,9 @@ void MESSAGE::draw() {
 		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_1;
 		}
+		if (game()->curStateId() == GAME::END) {
+			Message.text = Message.textLast_1;
+		}
 		break;
 	case GAME::text_2:
 		if (game()->curStateId() == 0) {
@@ -60,6 +63,9 @@ void MESSAGE::draw() {
 		}
 		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_2;
+		}
+		if (game()->curStateId() == GAME::END) {
+			Message.text = Message.textLast_2;
 		}
 		break;
 	case GAME::text_3:
@@ -82,6 +88,9 @@ void MESSAGE::draw() {
 		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_3;
 		}
+		if (game()->curStateId() == GAME::END) {
+			Message.text = Message.textLast_3;
+		}
 		break;
 	case GAME::text_4:
 		if (game()->curStateId() == GAME::FIRST) {
@@ -102,6 +111,9 @@ void MESSAGE::draw() {
 		}
 		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_4;
+		}
+		if (game()->curStateId() == GAME::END) {
+			Message.text = Message.textLast_4;
 		}
 		break;
 	case GAME::text_5:
@@ -124,6 +136,9 @@ void MESSAGE::draw() {
 		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_5;
 		}
+		if (game()->curStateId() == GAME::END) {
+			Message.text = Message.textLast_5;
+		}
 		break;
 	case GAME::text_6:
 		if (game()->curStateId() == GAME::FIRST) {
@@ -144,6 +159,9 @@ void MESSAGE::draw() {
 		}
 		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_6;
+		}
+		if (game()->curStateId() == GAME::END) {
+			Message.text = Message.textLast_6;
 		}
 		break;
 	case GAME::text_7:
@@ -166,6 +184,9 @@ void MESSAGE::draw() {
 		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_7;
 		}
+		if (game()->curStateId() == GAME::END) {
+			Message.text = Message.textLast_7;
+		}
 		break;
 	case GAME::text_8:
 		if (game()->curStateId() == GAME::FIRST) {
@@ -186,6 +207,9 @@ void MESSAGE::draw() {
 		}
 		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_8;
+		}
+		if (game()->curStateId() == GAME::END) {
+			Message.text = Message.textLast_8;
 		}
 		break;
 	case GAME::text_9:
@@ -208,6 +232,9 @@ void MESSAGE::draw() {
 		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_9;
 		}
+		if (game()->curStateId() == GAME::END) {
+			Message.text = Message.textLast_9;
+		}
 		break;
 	case GAME::text_10:
 		if (game()->curStateId() == GAME::FIRST) {
@@ -228,6 +255,9 @@ void MESSAGE::draw() {
 		}
 		if (game()->curStateId() == GAME::FIFTH) {
 			Message.text = Message.text5_10;
+		}
+		if (game()->curStateId() == GAME::END) {
+			Message.text = Message.textLast_10;
 		}
 		break;
 	case GAME::text_Last:

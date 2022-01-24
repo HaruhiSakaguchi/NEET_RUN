@@ -123,22 +123,22 @@ void ENEMY::CollisionWithMap() {
     }
 }
 
-void ENEMY::damage() {
+void ENEMY::Sdamage() {
     if (Chara.hp > 0) {
         Enemy.stamina -= 10;
     }
 }
-void ENEMY::damage2() {
+void ENEMY::Mdamage() {
     if (Chara.hp > 0) {
         Enemy.stamina -= 20;
     }
 }
-void ENEMY::damage3() {
+void ENEMY::Ldamage() {
     if (Chara.hp > 0) {
-        Chara.hp--;
+        Enemy.stamina -= 30;
     }
 }
-void ENEMY::recover() {
+void ENEMY::Srecover() {
     if (Chara.hp > 0) {
         Enemy.stamina += 10;
         if (Chara.stamina > Chara.maxStamina) {
@@ -146,7 +146,7 @@ void ENEMY::recover() {
         }
     }
 }
-void ENEMY::recover2() {
+void ENEMY::Mrecover() {
     if (Chara.hp > 0) {
         Enemy.stamina += 20;
         if (Chara.stamina > Chara.maxStamina) {
@@ -154,17 +154,13 @@ void ENEMY::recover2() {
         }
     }
 }
-void ENEMY::recover3() {
+void ENEMY::Lrecover() {
     if (Chara.hp > 0) {
         Enemy.stamina += 30;
         if (Chara.stamina > Chara.maxStamina) {
             Chara.stamina = Chara.maxStamina;
         }
     }
-}
-void ENEMY::effect() {
-    damage();
-    recover();
 }
 void ENEMY::launch() {
     //’e”­ŽË----------------------------------------------------------------
@@ -176,6 +172,7 @@ void ENEMY::launch() {
             Enemy.triggerCnt == Enemy.trigger2nd ||
             Enemy.triggerCnt == Enemy.trigger3rd ||
             Enemy.triggerCnt == Enemy.trigger4th  ) {
+            Chara.animId = game()->container()->data().enemyBullet.leftAnimId;
             game()->characterManager()->appear(Enemy.bulletCharaId,
                 Chara.wx + Enemy.bulletOffsetX, Chara.wy, 1, 0);
         }

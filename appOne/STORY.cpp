@@ -32,6 +32,7 @@ void STORY::draw() {
 	else if (game()->curStateId() == GAME::THIRD) i = 3;
 	else if (game()->curStateId() == GAME::FOURTH)i = 4;
 	else if (game()->curStateId() == GAME::FIFTH)i = 5;
+	else if (game()->curStateId() == GAME::END)i = 6;
 	fill(Story.textColor);
 	textSize(Story.textSize);
 	text(i, 750, 400);

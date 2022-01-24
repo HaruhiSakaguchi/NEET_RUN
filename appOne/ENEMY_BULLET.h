@@ -30,5 +30,5 @@ private:
     void Move();
     void CollisionWithMap();
     void ChangeColor();
-    void damage();
+    void Ddamage();
 };

@@ -58,13 +58,12 @@ private:
         void Move();
         void CollisionWithMap();
 public:
-    void damage();
-    void damage2();
-    void damage3();
-    void recover();
-    void recover2();
-    void recover3();
-    void effect();
+    void Sdamage();
+    void Mdamage();
+    void Ldamage();
+    void Srecover();
+    void Mrecover();
+    void Lrecover();
     void init();
     void checkState();
     void jump();

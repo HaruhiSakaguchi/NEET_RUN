@@ -15,7 +15,7 @@ void ENEMY_BULLET::appear(float wx , float wy, float vx, float vy){
     Chara.wy = wy;
     Chara.vx = EnemyBullet.initVecX;
     Chara.vy = EnemyBullet.initVecY;
-    Chara.animId = EnemyBullet.rightAnimId;
+    Chara.animId = EnemyBullet.leftAnimId;
    
     EnemyBullet.fallFlag = 0;
 }
@@ -91,7 +91,7 @@ void ENEMY_BULLET::ChangeColor(){
         Chara.color = EnemyBullet.normalColor;
     }
 }
-void ENEMY_BULLET::damage(){
+void ENEMY_BULLET::Ddamage(){
     if (Chara.hp > 0) {
         EnemyBullet.damageTime = EnemyBullet.damageInterval;
         Chara.hp--;
