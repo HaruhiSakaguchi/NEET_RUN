@@ -128,9 +128,6 @@
     <ClCompile Include="ENEMY.cpp">
       <Filter>character\anim,base,manager</Filter>
     </ClCompile>
-    <ClCompile Include="ITEM.cpp">
-      <Filter>character\anim,base,manager</Filter>
-    </ClCompile>
     <ClCompile Include="HP_GAUGE.cpp">
       <Filter>hpGauge</Filter>
     </ClCompile>
@@ -141,6 +138,24 @@
       <Filter>obstacle&amp;trap</Filter>
     </ClCompile>
     <ClCompile Include="HOLE.cpp">
+      <Filter>obstacle&amp;trap</Filter>
+    </ClCompile>
+    <ClCompile Include="COKE.cpp">
+      <Filter>recover_item</Filter>
+    </ClCompile>
+    <ClCompile Include="TIPS.cpp">
+      <Filter>recover_item</Filter>
+    </ClCompile>
+    <ClCompile Include="RAMEN.cpp">
+      <Filter>recover_item</Filter>
+    </ClCompile>
+    <ClCompile Include="BEAR.cpp">
+      <Filter>recover_item</Filter>
+    </ClCompile>
+    <ClCompile Include="EBIFURAI.cpp">
+      <Filter>obstacle&amp;trap</Filter>
+    </ClCompile>
+    <ClCompile Include="RYMAN.cpp">
       <Filter>obstacle&amp;trap</Filter>
     </ClCompile>
   </ItemGroup>
@@ -211,9 +226,6 @@
     <ClInclude Include="ENEMY.h">
       <Filter>character\anim,base,manager</Filter>
     </ClInclude>
-    <ClInclude Include="ITEM.h">
-      <Filter>character\anim,base,manager</Filter>
-    </ClInclude>
     <ClInclude Include="HP_GAUGE.h">
       <Filter>hpGauge</Filter>
     </ClInclude>
@@ -224,6 +236,24 @@
       <Filter>obstacle&amp;trap</Filter>
     </ClInclude>
     <ClInclude Include="HOLE.h">
+      <Filter>obstacle&amp;trap</Filter>
+    </ClInclude>
+    <ClInclude Include="COKE.h">
+      <Filter>recover_item</Filter>
+    </ClInclude>
+    <ClInclude Include="TIPS.h">
+      <Filter>recover_item</Filter>
+    </ClInclude>
+    <ClInclude Include="RAMEN.h">
+      <Filter>recover_item</Filter>
+    </ClInclude>
+    <ClInclude Include="BEAR.h">
+      <Filter>recover_item</Filter>
+    </ClInclude>
+    <ClInclude Include="EBIFURAI.h">
+      <Filter>obstacle&amp;trap</Filter>
+    </ClInclude>
+    <ClInclude Include="RYMAN.h">
       <Filter>obstacle&amp;trap</Filter>
     </ClInclude>
   </ItemGroup>

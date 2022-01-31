@@ -39,7 +39,7 @@ public:
        
        float damageTime = 0;
        float damageInterval = 0;
-       float staminaDamage = 0.01f;
+       float staminaDamage = 0.02f;
        COLOR color;
        COLOR damageColor;
        COLOR normalColor;
@@ -58,12 +58,6 @@ private:
         void Move();
         void CollisionWithMap();
 public:
-    void Sdamage();
-    void Mdamage();
-    void Ldamage();
-    void Srecover();
-    void Mrecover();
-    void Lrecover();
     void init();
     void checkState();
     void jump();

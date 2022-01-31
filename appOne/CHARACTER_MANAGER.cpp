@@ -7,6 +7,12 @@
 #include"CAT.h"
 #include"BAT_BULLET.h"
 #include"HOLE.h"
+#include"COKE.h"
+#include"TIPS.h"
+#include"RAMEN.h"
+#include"BEAR.h"
+#include"RYMAN.h"
+#include"EBIFURAI.h"
 #include"CHARACTER_MANAGER.h"
 CHARACTER_MANAGER::CHARACTER_MANAGER(class GAME* game) :
     GAME_OBJECT(game) {
@@ -27,6 +33,13 @@ void CHARACTER_MANAGER::create() {
     Total += CharaMng.numCats;
     Total += CharaMng.numBatBullets;
     Total += CharaMng.numHoles;
+    Total += CharaMng.numCokes;
+    Total += CharaMng.numTips;
+    Total += CharaMng.numRamens;
+    Total += CharaMng.numBears;
+    Total += CharaMng.numRymans;
+    Total += CharaMng.numEbifurais;
+
     Characters = new CHARACTER * [Total];
 
     Player = new PLAYER(game());
@@ -37,7 +50,15 @@ void CHARACTER_MANAGER::create() {
     for (i = 0; i < CharaMng.numEnemyBullets; i++)    Characters[j++] = new ENEMY_BULLET(game());
     for (i = 0; i < CharaMng.numCats; i++)          Characters[j++] = new CAT(game());
     for (i = 0; i < CharaMng.numBatBullets; i++)    Characters[j++] = new BAT_BULLET(game());
+    for (i = 0; i < CharaMng.numCokes; i++)    Characters[j++] = new COKE(game());
+    for (i = 0; i < CharaMng.numTips; i++)    Characters[j++] = new TIPS(game());
     for (i = 0; i < CharaMng.numHoles; i++)    Characters[j++] = new HOLE(game());
+    for (i = 0; i < CharaMng.numRamens; i++)    Characters[j++] = new RAMEN(game());
+    for (i = 0; i < CharaMng.numBears; i++)    Characters[j++] = new BEAR(game());
+    for (i = 0; i < CharaMng.numRymans; i++)    Characters[j++] = new RYMAN(game());
+    for (i = 0; i < CharaMng.numEbifurais; i++)    Characters[j++] = new EBIFURAI(game());
+
+
     for (int i = 0; i < Total; i++) {
         Characters[i]->create();
     }
@@ -93,53 +114,89 @@ void CHARACTER_MANAGER::update() {
                     if (Characters[j]->charaId() == 'd') {
                         Characters[i]->Sdamage();
                     }
-                    if (Characters[j]->charaId() == 'g'|| Characters[j]->charaId() == 'f') {
+                    if (Characters[j]->charaId() == 'g')
                         Characters[i]->Ddamage();
+
+                    if (Characters[j]->charaId() == 'f') {
+                        Characters[i]->fall();
                     }
+
                     if (Characters[j]->charaId() == 'e') {
                         Characters[i]->Srecover();
                     }
 
-                }
-                if (Characters[j]->charaId() == 'a') {
-                    if (Characters[i]->charaId() == 'c') {
-                        Characters[i]->Sdamage();
+                    if (Characters[j]->charaId() == 'h') {
+                        Characters[i]->Srecover();
                         Characters[j]->Ddamage();
-                    }
-                    if (Characters[i]->charaId() == 'd') {
-                        Characters[j]->Sdamage();
-                    }
-                    if (Characters[i]->charaId() == 'g' || Characters[i]->charaId() == 'f') {
-                        Characters[j]->Ddamage();
-                    }
-                    if (Characters[i]->charaId() == 'e') {
-                        Characters[j]->Srecover();
-                        Characters[i]->Ddamage();
+
                     }
 
+                    if (Characters[j]->charaId() == 'i') {
+                        Characters[i]->Mrecover();
+                        Characters[j]->Ddamage();
+
+                    }
+
+                    if (Characters[j]->charaId() == 'j') {
+                        Characters[i]->Lrecover();
+                        Characters[j]->Ddamage();
+
+                    }
+
+                    if (Characters[j]->charaId() == 'k') {
+                        Characters[1]->knock();
+                        Characters[0]->Lrecover();
+                        Characters[j]->Ddamage();
+
+                    }
+
+                    if (Characters[j]->charaId() == 'l') {
+                        Characters[i]->Ldamage();
+
+                    }
+                    if (Characters[j]->charaId() == 'm') {
+                        Characters[i]->Mdamage();
+                    }
+
+
                 }
-                //“G‚Ì“–‚½‚è”»’è
                 if (Characters[i]->charaId() == 'g') {
                     if (Characters[j]->charaId() == 'd') {
+                        Characters[i]->Sdamage();
+                    }
+                    if (Characters[j]->charaId() == 'h') {
+                        Characters[i]->Srecover();
+                        Characters[j]->Ddamage();
+                    }
+                    if (Characters[j]->charaId() == 'i') {
                         Characters[i]->Mrecover();
                         Characters[j]->Ddamage();
                     }
-
-                }
-                if (Characters[j]->charaId() == 'g') {
-                    if (Characters[i]->charaId() == 'd') {
-                        Characters[j]->Mrecover();
-                        Characters[i]->Ddamage();
+                    if (Characters[j]->charaId() == 'j') {
+                        Characters[i]->Lrecover();
+                        Characters[j]->Ddamage();
                     }
-                    
+                    if (Characters[j]->charaId() == 'k') {
+                        Characters[0]->knock();
+                        Characters[1]->Lrecover();
+                        Characters[j]->Ddamage();
+                    }
+                    if (Characters[j]->charaId() == 'l') {
+                        Characters[i]->Ldamage();
+
+                    }
+                    if (Characters[j]->charaId() == 'm') {
+                        Characters[i]->Mdamage();
+                    }
 
                 }
-
-
             }
+
         }
     }
+  
 }
+
 void CHARACTER_MANAGER::draw() {
     for (int i = 0; i < Total; i++) {
         if (Characters[i]->hp() > 0) {

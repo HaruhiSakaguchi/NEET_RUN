@@ -70,7 +70,7 @@ void MAP::init() {
     if (fileSize % Map.cols != 0) {
         WARNING(1, "最後の行を改行していない", "");
     }
-    Map.dispCols = (int)width / Map.chipSize + 1;//表示すべき列数
+    Map.dispCols = (int)width / Map.chipSize + 1 * Map.scale;//表示すべき列数
     Map.worldWidth = (float)Map.chipSize * (Map.cols - 2);//ワールドの横幅
     Map.endWorldX = Map.worldWidth - width;//表示できる最後の座標
     Map.wx = 0.0f;//現在表示しているワールド座標
@@ -127,14 +127,14 @@ bool MAP::collisionCheck(float wx, float wy) {
 }
 //　マップチップとキャラの左辺が重なっているか
 bool MAP::collisionCharaLeft(float wx, float wy) {
-    bool leftTop = collisionCheck(wx, wy);
-    bool leftBottom = collisionCheck(wx, wy + Map.chipSize - 1);
+    bool leftTop = collisionCheck(wx , wy);
+    bool leftBottom = collisionCheck(wx, (wy + Map.chipSize - 1));
     return leftTop || leftBottom;
 }
 //　マップチップとキャラの右辺が重なっているか
 bool MAP::collisionCharaRight(float wx, float wy) {
-    bool rightTop = collisionCheck(wx + Map.chipSize - 1, wy);
-    bool rightBottom = collisionCheck(wx + Map.chipSize - 1, wy + Map.chipSize - 1);
+    bool rightTop = collisionCheck((wx + Map.chipSize - 1), wy);
+    bool rightBottom = collisionCheck((wx + Map.chipSize - 1), (wy + Map.chipSize - 1));
     return rightTop || rightBottom;
 }
 //　マップチップとキャラの上辺が重なっているか
@@ -147,8 +147,8 @@ bool MAP::collisionCharaTop(float wx, float wy) {
 bool MAP::collisionCharaBottom(float wx, float wy) {
     // wy + Map.chipSizeをCheck関数に渡すことにより
     // キャラがマップチップと接しているかチェックできる。
-    bool bottomLeft = collisionCheck(wx, wy + Map.chipSize);
-    bool bottomRight = collisionCheck(wx + Map.chipSize - 1, wy + Map.chipSize);
+    bool bottomLeft = collisionCheck(wx, (wy + Map.chipSize));
+    bool bottomRight = collisionCheck((wx + Map.chipSize - 1), (wy + Map.chipSize) );
     return bottomLeft || bottomRight;
 }
 //　マップチップと弾の当たり判定に使用

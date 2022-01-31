@@ -19,6 +19,7 @@ void ENEMY::appear(float wx, float wy, float vx, float vy) {
     Chara.hp = game()->container()->data().enemyChara.hp;
     Chara.wx = wx;
     Chara.wy = wy;
+    Chara.stamina = Chara.maxStamina;
     Enemy.jumpFlag = 0; 
     Enemy.triggerCnt = game()->container()->data().enemy.triggerCnt;
     StateId = STATE_ID::STRUGGLING;
@@ -54,7 +55,7 @@ void ENEMY::Move() {
     jump();
     launch();
     if (Chara.hp > 0) {
-        Enemy.stamina -= Enemy.staminaDamage;
+        Chara.stamina -= Enemy.staminaDamage;
     }
     //if (Enemy.jumpFlag == 0 && (isTrigger(KEY_K) || isTrigger(MOUSE_LBUTTON))) {
     //    Chara.vy = Enemy.initVecUp;
@@ -120,46 +121,6 @@ void ENEMY::CollisionWithMap() {
     }
     else {
         Enemy.jumpFlag = 1;//落ちてくトリガー。このフラッグを立てるだけで落ちていく。
-    }
-}
-
-void ENEMY::Sdamage() {
-    if (Chara.hp > 0) {
-        Enemy.stamina -= 10;
-    }
-}
-void ENEMY::Mdamage() {
-    if (Chara.hp > 0) {
-        Enemy.stamina -= 20;
-    }
-}
-void ENEMY::Ldamage() {
-    if (Chara.hp > 0) {
-        Enemy.stamina -= 30;
-    }
-}
-void ENEMY::Srecover() {
-    if (Chara.hp > 0) {
-        Enemy.stamina += 10;
-        if (Chara.stamina > Chara.maxStamina) {
-            Chara.stamina = Chara.maxStamina;
-        }
-    }
-}
-void ENEMY::Mrecover() {
-    if (Chara.hp > 0) {
-        Enemy.stamina += 20;
-        if (Chara.stamina > Chara.maxStamina) {
-            Chara.stamina = Chara.maxStamina;
-        }
-    }
-}
-void ENEMY::Lrecover() {
-    if (Chara.hp > 0) {
-        Enemy.stamina += 30;
-        if (Chara.stamina > Chara.maxStamina) {
-            Chara.stamina = Chara.maxStamina;
-        }
     }
 }
 void ENEMY::launch() {

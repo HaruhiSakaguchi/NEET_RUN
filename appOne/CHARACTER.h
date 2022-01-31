@@ -27,9 +27,13 @@ public:
         float vy = 0;
         float speed = 0;
         float angle = 0;
-        float scale = 1;
+        float damageTime = 0;
+        float damageInterval = 0;
         float stamina = 0;
         float maxStamina = 0;
+        float knockBackVx = 0;
+        float knockBackVy = 0;
+
 
         int hp = 0;
         float offsetLeft = 0;
@@ -53,6 +57,8 @@ public:
     virtual void Srecover();
     virtual void Mrecover();
     virtual void Lrecover();
+    virtual void knock();
+    virtual void fall();
     int   hp() { return Chara.hp; }
     float stamina() { return Chara.stamina; }
     int   groupId() { return Chara.groupId; }

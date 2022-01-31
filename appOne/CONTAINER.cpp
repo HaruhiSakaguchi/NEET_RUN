@@ -1,6 +1,7 @@
 #include"input.h"
 #include"graphic.h"
 #include"CONTAINER.h"
+#include"GAME.h"
 #include"ANIMS.h"
 CONTAINER::~CONTAINER() {
 	//１つのアニメーションの開放
@@ -199,18 +200,23 @@ void CONTAINER::CreateData() {
 	Data.playerChara.hp = 1;
 	Data.playerChara.groupId = 0;//味方グループは0
 	//Data.playerChara.speed = 3.4f * 60;
-	Data.playerChara.offsetLeft = 10.0f;
-	Data.playerChara.offsetTop = 1.0f;
-	Data.playerChara.offsetRight = 40.0f;
-	Data.playerChara.offsetBottom = 49.0f;
+	Data.playerChara.offsetLeft = 10.0f * Data.map.scale;
+	Data.playerChara.offsetTop = 1.0f * Data.map.scale;
+	Data.playerChara.offsetRight = 40.0f * Data.map.scale;
+	Data.playerChara.offsetBottom = 49.0f * Data.map.scale;
+	Data.playerChara.maxStamina = 100;
+	Data.playerChara.stamina = 0;
+	Data.player.maxStamina = Data.playerChara.maxStamina;
 	Data.player.jumpFlag = 0;
-	Data.player.initVecUp = -16.0f;
-	Data.player.initVecDown = 3.0f;
-	Data.player.charaDamage = 0;
+	Data.player.initVecUp = -16.0f * Data.map.scale;
+	Data.player.initVecDown = 3.0f * Data.map.scale;
 	Data.player.gravity = 48;
 
-	Data.player.damageTime = 0;
-	Data.player.damageInterval = 5 * 0.016f;
+	Data.playerChara.knockBackVx = 100;
+	Data.playerChara.knockBackVy = 100;
+
+	Data.playerChara.damageTime = 0;
+	Data.playerChara.damageInterval = 5 * 0.016f;
 	Data.player.color = Data.player.normalColor;
 
 	Data.player.damageColor = COLOR(255, 0, 0, 25);
@@ -221,21 +227,26 @@ void CONTAINER::CreateData() {
 	Data.enemyChara.hp = 1;
 	Data.enemyChara.groupId = 1;//味方グループは0
 	//Data.enemyChara.speed = 3.4f * 60;
-	Data.enemyChara.offsetLeft = 10.0f;
-	Data.enemyChara.offsetTop = 1.0f;
-	Data.enemyChara.offsetRight = 40.0f;
-	Data.enemyChara.offsetBottom = 49.0f;
+	Data.enemyChara.offsetLeft = 10.0f * Data.map.scale;
+	Data.enemyChara.offsetTop = 1.0f * Data.map.scale;
+	Data.enemyChara.offsetRight = 40.0f * Data.map.scale;
+	Data.enemyChara.offsetBottom = 49.0f * Data.map.scale;
 	Data.enemy.jumpFlag = 0;
-	Data.enemy.initVecUp = -16.0f;
-	Data.enemy.initVecDown = 3.0f;
+	Data.enemy.initVecUp = -16.0f * Data.map.scale;
+	Data.enemy.initVecDown = 3.0f * Data.map.scale;
 	Data.enemy.charaDamage = 0;
 	Data.enemy.gravity = 48;
-	Data.enemy.bulletOffsetX = 20.0f;
+	Data.enemy.bulletOffsetX = 20.0f * Data.map.scale;
+	Data.enemyChara.maxStamina = 100;
+	Data.enemyChara.stamina = 0;
+	Data.enemy.maxStamina = Data.playerChara.maxStamina;
 
-	Data.enemy.damageTime = 0;
-	Data.enemy.damageInterval = 5 * 0.016f;
+	Data.enemyChara.damageTime = 0;
+	Data.enemyChara.damageInterval = 5 * 0.016f;
 	Data.enemy.color = Data.enemy.normalColor;
 
+	Data.enemyChara.knockBackVx = -100;
+	Data.enemyChara.knockBackVy = 100;
 	
 	Data.enemyChara.color = COLOR(0, 0, 0);
 
@@ -254,10 +265,10 @@ void CONTAINER::CreateData() {
 	Data.enemyBulletChara.groupId = 1;//敵グループは1
 	Data.enemyBulletChara.hp = 1;
 	Data.enemyBulletChara.speed = 7.5f * 60;
-	Data.enemyBulletChara.offsetLeft = 10.0f;
-	Data.enemyBulletChara.offsetTop = 12.0f;
-	Data.enemyBulletChara.offsetRight = 40.0f;
-	Data.enemyBulletChara.offsetBottom = 40.0f;
+	Data.enemyBulletChara.offsetLeft = 10.0f * Data.map.scale;
+	Data.enemyBulletChara.offsetTop = 12.0f * Data.map.scale;
+	Data.enemyBulletChara.offsetRight = 40.0f * Data.map.scale;
+	Data.enemyBulletChara.offsetBottom = 40.0f * Data.map.scale;
 	Data.enemyBullet.rightAnimId = 0;
 	Data.enemyBullet.leftAnimId = 1;
 	Data.enemyBullet.damageInterval = 5 * 0.016f;
@@ -271,38 +282,82 @@ void CONTAINER::CreateData() {
 	Data.catChara.charaId = MAP::CAT_ID;
 	Data.catChara.hp = 1;
 	Data.catChara.groupId = 2;//敵グループは1
-	Data.catChara.offsetLeft = 10.0f;
-	Data.catChara.offsetTop = 10.0f;
-	Data.catChara.offsetRight = 30.0f;
-	Data.catChara.offsetBottom = 35.0f;
-	Data.cat.elapsedTime = 0;
-	Data.cat.interval = 0.016f;
-	Data.cat.triggerCnt = 60;
-	Data.cat.triggerInterval = 240;
-	Data.cat.trigger1st = 220;
-	Data.cat.trigger2nd = 225;
-	Data.cat.trigger3rd = 230;
-	Data.cat.trigger4th = 235;
-	Data.cat.bulletCharaId = MAP::BAT_BULLET_ID;
-	Data.cat.damageTime = 0;
-	Data.cat.damageInterval = 5 * 0.016f;
-	Data.cat.bulletOffsetX = 20.0f;
-	Data.cat.damageColor = COLOR(255, 0, 0, 25);
-	Data.cat.normalColor = COLOR(255, 255, 255);
+	Data.catChara.offsetLeft = 10.0f * Data.map.scale;
+	Data.catChara.offsetTop = 10.0f * Data.map.scale;
+	Data.catChara.offsetRight = 30.0f * Data.map.scale;
+	Data.catChara.offsetBottom = 35.0f * Data.map.scale;
 	Data.catChara.speed = -3.4f * 60;
+
+	Data.cokeChara.charaId = MAP::COKE_ID;
+	Data.cokeChara.hp = 1;
+	Data.cokeChara.groupId = 2;
+	Data.cokeChara.offsetLeft = 20.0f * Data.map.scale;
+	Data.cokeChara.offsetTop = 20.0f * Data.map.scale;
+	Data.cokeChara.offsetRight = 30.0f * Data.map.scale;
+	Data.cokeChara.offsetBottom = 30.0f * Data.map.scale;
+
+	Data.tipsChara.charaId = MAP::TIPS_ID;
+	Data.tipsChara.hp = 1;
+	Data.tipsChara.groupId = 2;
+	Data.tipsChara.offsetLeft = 20.0f * Data.map.scale;
+	Data.tipsChara.offsetTop = 20.0f * Data.map.scale;
+	Data.tipsChara.offsetRight = 30.0f * Data.map.scale;
+	Data.tipsChara.offsetBottom = 30.0f * Data.map.scale;
+
+	Data.ramenChara.charaId = MAP::RAMEN_ID;
+	Data.ramenChara.hp = 1;
+	Data.ramenChara.groupId = 2;
+	Data.ramenChara.offsetLeft = 20.0f * Data.map.scale;
+	Data.ramenChara.offsetTop = 20.0f * Data.map.scale;
+	Data.ramenChara.offsetRight = 30.0f * Data.map.scale;
+	Data.ramenChara.offsetBottom = 30.0f * Data.map.scale;
+
+	Data.bearChara.charaId = MAP::BEAR_ID;
+	Data.bearChara.hp = 1;
+	Data.bearChara.groupId = 2;
+	Data.bearChara.offsetLeft = 20.0f * Data.map.scale;
+	Data.bearChara.offsetTop = 20.0f * Data.map.scale;
+	Data.bearChara.offsetRight = 30.0f * Data.map.scale;
+	Data.bearChara.offsetBottom = 30.0f * Data.map.scale;
 
 	Data.batBulletChara.charaId = MAP::BAT_BULLET_ID;
 	Data.batBulletChara.groupId = 2;//敵グループは1
 	Data.batBulletChara.hp = 1;
 	Data.batBulletChara.speed = 4.7f * 60;
-	Data.batBulletChara.offsetLeft = 20.0f;
-	Data.batBulletChara.offsetTop = 20.0f;
-	Data.batBulletChara.offsetRight = 30.0f;
-	Data.batBulletChara.offsetBottom = 30.0f;
+	Data.batBulletChara.offsetLeft = 20.0f * Data.map.scale;
+	Data.batBulletChara.offsetTop = 20.0f * Data.map.scale;
+	Data.batBulletChara.offsetRight = 30.0f * Data.map.scale;
+	Data.batBulletChara.offsetBottom = 30.0f * Data.map.scale;
 
 	Data.holeChara.charaId = MAP::MANHOLE_ID;
 	Data.holeChara.groupId = 1;//敵グループは1
 	Data.holeChara.hp = 1;
+	Data.holeChara.offsetLeft = 20.0f * Data.map.scale;
+	Data.holeChara.offsetTop = 20.0f * Data.map.scale;
+	Data.holeChara.offsetRight = 30.0f * Data.map.scale;
+	Data.holeChara.offsetBottom = 30.0f * Data.map.scale;
+
+	Data.ebifuraiChara.charaId = MAP::EBIFURAI_ID;
+	Data.ebifuraiChara.hp = 1;
+	Data.ebifuraiChara.speed = -2.5f * 60;
+	Data.ebifuraiChara.groupId = 2;
+	Data.ebifuraiChara.offsetLeft = 20.0f* Data.map.scale;
+	Data.ebifuraiChara.offsetTop = 20.0f * Data.map.scale;
+	Data.ebifuraiChara.offsetRight = 30.0f * Data.map.scale;
+	Data.ebifuraiChara.offsetBottom = 30.0f * Data.map.scale;
+	Data.ebifurai.jumpFlag = 0;
+	Data.ebifurai.initVecUp = -16.0f;
+	Data.ebifurai.initVecDown = 3.0f;
+	Data.ebifurai.gravity = 48;
+
+	Data.rymanChara.charaId = MAP::RYMAN_ID;
+	Data.rymanChara.hp = 1;
+	Data.rymanChara.speed = -4.0f * 60;
+	Data.rymanChara.groupId = 2;
+	Data.rymanChara.offsetLeft = 20.0f * Data.map.scale;
+	Data.rymanChara.offsetTop = 20.0f * Data.map.scale;
+	Data.rymanChara.offsetRight = 30.0f * Data.map.scale;
+	Data.rymanChara.offsetBottom = 30.0f * Data.map.scale;
 
 	Data.charaMng.numPlayers = 1;
 	Data.charaMng.numEnemies = 1;
@@ -310,6 +365,13 @@ void CONTAINER::CreateData() {
 	Data.charaMng.numBatBullets = 12;
 	Data.charaMng.numEnemyBullets = 20;
 	Data.charaMng.numHoles = 2;
+	Data.charaMng.numCokes = 5;
+	Data.charaMng.numTips = 3;
+	Data.charaMng.numBears = 2;
+	Data.charaMng.numRamens = 1;
+	Data.charaMng.numEbifurais = 4;
+	Data.charaMng.numRymans = 2;
+
 
 	//フェードクラスのデータ
 	Data.fade.color = COLOR(60, 60, 60);
@@ -324,7 +386,8 @@ void CONTAINER::CreateData() {
 	Data.map.fileName4 = "assets\\map4.txt";
 	Data.map.fileName5 = "assets\\map5.txt";
 
-	Data.map.chipSize = 50;
+	Data.map.chipSize = 100;
+	Data.map.scale = 2;
 	Data.map.centerX = width / 2 - Data.map.chipSize / 2;
 }
 void CONTAINER::LoadGraphics() {
@@ -342,9 +405,16 @@ void CONTAINER::LoadGraphics() {
 	Data.enemyBulletChara.img = loadImage("assets\\pumpkin\\1\\pumpkinL01.png");
 
 	Data.holeChara.img = loadImage("assets\\manholeImg.png");
+	Data.cokeChara.img = loadImage("assets\\cokeImg.png");
+	Data.tipsChara.img = loadImage("assets\\tipsImg.png");
+	Data.ramenChara.img = loadImage("assets\\ramenImg.png");
+	Data.bearChara.img = loadImage("assets\\bearImg.png");
 
 	Data.catChara.img = loadImage("assets\\catImg.png");
 	Data.batBulletChara.img = loadImage("assets\\batBullet.png");
+
+	Data.ebifuraiChara.img = loadImage("assets\\ebihuraiImg.png");
+	Data.rymanChara.img = loadImage("assets\\salary-manImg.png");
 
 	//ANIMS 複数のアニメーションセット
 	Data.loading.anim = new ANIM("assets\\loading\\load");

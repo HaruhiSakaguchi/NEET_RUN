@@ -11,7 +11,12 @@ public:
         int numCats = 0;
         int numBatBullets = 0;
         int numHoles = 0;
-        //int numExplosions = 0;
+        int numCokes = 0;
+        int numTips = 0;
+        int numRamens = 0;
+        int numBears = 0;
+        int numRymans = 0;
+        int numEbifurais = 0;
     };
 private:
     int Total = 0;

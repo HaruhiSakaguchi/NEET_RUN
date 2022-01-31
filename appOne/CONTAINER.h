@@ -17,6 +17,9 @@
 #include"HOLE.h"
 #include"BAT_BULLET.h"
 #include"ENEMY.h"
+#include"BEAR.h"
+#include"EBIFURAI.h"
+#include"RYMAN.h"
 #include"CHARACTER_MANAGER.h"
 class CONTAINER
 {
@@ -39,10 +42,10 @@ private:
 		//キャラクターの実体
 		PLAYER::DATA player;
 		ENEMY::DATA enemy;
+		EBIFURAI::DATA ebifurai;
 	    ENEMY_BULLET::DATA enemyBullet;
 		CAT::DATA cat;
 		BAT_BULLET::DATA batBullet;
-		//EXPLOSION::DATA explosion;
 		//キャラクタークラス用
 		CHARACTER::DATA playerChara;
 		CHARACTER::DATA enemyChara;
@@ -51,7 +54,12 @@ private:
 		CHARACTER::DATA catChara;
 		CHARACTER::DATA batBulletChara;
 		CHARACTER::DATA holeChara;
-		//CHARACTER::DATA explosionChara;
+		CHARACTER::DATA cokeChara;
+		CHARACTER::DATA tipsChara;
+		CHARACTER::DATA ramenChara;
+		CHARACTER::DATA bearChara;
+		CHARACTER::DATA ebifuraiChara;
+		CHARACTER::DATA rymanChara;
 		//キャラクターマネージャー
 		CHARACTER_MANAGER::DATA charaMng;
 

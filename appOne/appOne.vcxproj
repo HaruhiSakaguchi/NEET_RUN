@@ -154,12 +154,14 @@
   <ItemGroup>
     <ClCompile Include="ANIM.cpp" />
     <ClCompile Include="ANIMS.cpp" />
+    <ClCompile Include="BEAR.cpp" />
     <ClCompile Include="CAT.cpp" />
     <ClCompile Include="BAT_BULLET.cpp" />
     <ClCompile Include="BUTTON.cpp" />
     <ClCompile Include="CHARACTER.cpp" />
     <ClCompile Include="CHARACTER_MANAGER.cpp" />
     <ClCompile Include="CONTAINER.cpp" />
+    <ClCompile Include="EBIFURAI.cpp" />
     <ClCompile Include="ENDING.cpp" />
     <ClCompile Include="ENEMY.cpp" />
     <ClCompile Include="FADE.cpp" />
@@ -168,17 +170,20 @@
     <ClCompile Include="GAME_OVER.cpp" />
     <ClCompile Include="gmain.cpp" />
     <ClCompile Include="HP_GAUGE.cpp" />
-    <ClCompile Include="ITEM.cpp" />
+    <ClCompile Include="COKE.cpp" />
     <ClCompile Include="LOADING.cpp" />
     <ClCompile Include="MAP.cpp" />
     <ClCompile Include="MESSAGE.cpp" />
     <ClCompile Include="HOLE.cpp" />
     <ClCompile Include="PLAYER.cpp" />
     <ClCompile Include="ENEMY_BULLET.cpp" />
+    <ClCompile Include="RAMEN.cpp" />
+    <ClCompile Include="RYMAN.cpp" />
     <ClCompile Include="SCENE.cpp" />
     <ClCompile Include="STAGE.cpp" />
     <ClCompile Include="STAGE_CLEAR.cpp" />
     <ClCompile Include="STORY.cpp" />
+    <ClCompile Include="TIPS.cpp" />
     <ClCompile Include="TITLE.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -190,12 +195,14 @@
   <ItemGroup>
     <ClInclude Include="ANIM.h" />
     <ClInclude Include="ANIMS.h" />
+    <ClInclude Include="BEAR.h" />
     <ClInclude Include="CAT.h" />
     <ClInclude Include="BAT_BULLET.h" />
     <ClInclude Include="BUTTON.h" />
     <ClInclude Include="CHARACTER.h" />
     <ClInclude Include="CHARACTER_MANAGER.h" />
     <ClInclude Include="CONTAINER.h" />
+    <ClInclude Include="EBIFURAI.h" />
     <ClInclude Include="ENDING.h" />
     <ClInclude Include="ENEMY.h" />
     <ClInclude Include="FADE.h" />
@@ -203,17 +210,20 @@
     <ClInclude Include="GAME_OBJECT.h" />
     <ClInclude Include="GAME_OVER.h" />
     <ClInclude Include="HP_GAUGE.h" />
-    <ClInclude Include="ITEM.h" />
+    <ClInclude Include="COKE.h" />
     <ClInclude Include="LOADING.h" />
     <ClInclude Include="MAP.h" />
     <ClInclude Include="MESSAGE.h" />
     <ClInclude Include="HOLE.h" />
     <ClInclude Include="PLAYER.h" />
     <ClInclude Include="ENEMY_BULLET.h" />
+    <ClInclude Include="RAMEN.h" />
+    <ClInclude Include="RYMAN.h" />
     <ClInclude Include="SCENE.h" />
     <ClInclude Include="STAGE.h" />
     <ClInclude Include="STAGE_CLEAR.h" />
     <ClInclude Include="STORY.h" />
+    <ClInclude Include="TIPS.h" />
     <ClInclude Include="TITLE.h" />
   </ItemGroup>
   <ItemGroup>

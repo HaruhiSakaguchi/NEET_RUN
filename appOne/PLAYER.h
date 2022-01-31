@@ -5,13 +5,11 @@ class PLAYER :
 {
 public:
     struct DATA {
-        int charaDamage = 0;
-
         int rightAnimId = 0;
         int leftAnimId = 1;
         int jumpFlag = 0;
         float stamina = 0;
-        float maxStamina = 100;
+        float maxStamina = 0;
         float speed = 0;
         float maxSpeed = 0;
         float curWx = 0;
@@ -20,8 +18,7 @@ public:
         float gravity = 0;
         char bulletCharaId = 0;
         float damageTime = 0;
-        float damageInterval = 0;
-        float staminaDamage = 0.01f;
+        float staminaDamage = 0.03f;
         COLOR color;
         COLOR damageColor;
         COLOR normalColor;
@@ -41,14 +38,8 @@ private:
     void CollisionWithMap();
     void CheckState();
 public:
-    void Sdamage();
-    void Mdamage();
-    void Ldamage();
+    void fall();
     void Ddamage();
-    void Srecover();
-    void Mrecover();
-    void Lrecover();
-    void init();
     bool died();
     bool survived();
     float overCenterVx();
@@ -56,4 +47,5 @@ public:
     
     STATE_ID stateId() { return StateId; }
     float stamina() { return Player.stamina; }
+    float damageTime() { return Player.damageTime; }
 };

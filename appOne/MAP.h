@@ -38,6 +38,12 @@ public:
         BAT_BULLET_ID = 'e',
         MANHOLE_ID = 'f',
         ENEMY_ID = 'g',
+        COKE_ID = 'h',
+        TIPS_ID = 'i',
+        RAMEN_ID = 'j',
+        BEAR_ID = 'k',
+        EBIFURAI_ID = 'l',
+        RYMAN_ID = 'm',
     };
 private:
     DATA Map;
@@ -61,5 +67,7 @@ public:
     //ウィンドウ枠からのはみだし判定用---------------------------------------------------
     float wDispLeft();
     float wDispRight();
+
+    float scale() { return Map.scale; }
 };
 
