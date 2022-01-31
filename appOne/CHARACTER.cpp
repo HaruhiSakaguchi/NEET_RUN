@@ -109,3 +109,9 @@ void CHARACTER::knock() {
 void CHARACTER::fall() {
 
 }
+void CHARACTER::caught() {
+
+}
+void CHARACTER::noDamage() {
+
+}

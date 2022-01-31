@@ -158,6 +158,9 @@
     <ClCompile Include="RYMAN.cpp">
       <Filter>obstacle&amp;trap</Filter>
     </ClCompile>
+    <ClCompile Include="PROLOGUE.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -255,6 +258,9 @@
     </ClInclude>
     <ClInclude Include="RYMAN.h">
       <Filter>obstacle&amp;trap</Filter>
+    </ClInclude>
+    <ClInclude Include="PROLOGUE.h">
+      <Filter>scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

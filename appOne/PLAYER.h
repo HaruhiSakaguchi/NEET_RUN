@@ -42,6 +42,7 @@ public:
     void Ddamage();
     bool died();
     bool survived();
+    void caught();
     float overCenterVx();
 
     

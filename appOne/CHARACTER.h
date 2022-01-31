@@ -59,6 +59,8 @@ public:
     virtual void Lrecover();
     virtual void knock();
     virtual void fall();
+    virtual void caught();
+    virtual void noDamage();
     int   hp() { return Chara.hp; }
     float stamina() { return Chara.stamina; }
     int   groupId() { return Chara.groupId; }

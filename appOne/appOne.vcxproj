@@ -177,6 +177,7 @@
     <ClCompile Include="HOLE.cpp" />
     <ClCompile Include="PLAYER.cpp" />
     <ClCompile Include="ENEMY_BULLET.cpp" />
+    <ClCompile Include="PROLOGUE.cpp" />
     <ClCompile Include="RAMEN.cpp" />
     <ClCompile Include="RYMAN.cpp" />
     <ClCompile Include="SCENE.cpp" />
@@ -217,6 +218,7 @@
     <ClInclude Include="HOLE.h" />
     <ClInclude Include="PLAYER.h" />
     <ClInclude Include="ENEMY_BULLET.h" />
+    <ClInclude Include="PROLOGUE.h" />
     <ClInclude Include="RAMEN.h" />
     <ClInclude Include="RYMAN.h" />
     <ClInclude Include="SCENE.h" />

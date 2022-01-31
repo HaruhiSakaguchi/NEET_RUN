@@ -114,8 +114,15 @@ void CHARACTER_MANAGER::update() {
                     if (Characters[j]->charaId() == 'd') {
                         Characters[i]->Sdamage();
                     }
-                    if (Characters[j]->charaId() == 'g')
-                        Characters[i]->Ddamage();
+                    if (Characters[j]->charaId() == 'g') {
+                        if (game()->curStateId() != GAME::FIFTH) {
+                            Characters[i]->Ddamage();
+                        }
+                        else {
+                            Characters[i]->noDamage();
+                            Characters[i]->caught();
+                        }
+                    }
 
                     if (Characters[j]->charaId() == 'f') {
                         Characters[i]->fall();

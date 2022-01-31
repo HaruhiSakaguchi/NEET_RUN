@@ -3,6 +3,7 @@
 #include"window.h"
 #include"CONTAINER.h"
 #include"LOADING.h"
+#include"PROLOGUE.h"
 #include"TITLE.h"
 #include"STORY.h"
 
@@ -23,6 +24,7 @@ GAME::GAME() {
 	Container = new CONTAINER();
 	//シーケンス
 	Scenes[LOADING_ID] = new LOADING(this);
+	Scenes[PROLOGUE_ID] = new PROLOGUE(this);
 	Scenes[TITLE_ID] = new TITLE(this);
 	Scenes[STORY_ID] = new STORY(this);
 	Scenes[STAGE_ID] = new STAGE(this);
@@ -61,6 +63,9 @@ void GAME::changeState(STATE_ID stateId) {
 }
 void GAME::changeText(TEXT_ID textId) {
 	CurTextId = textId;
+}
+void GAME::settextNum(PTEXT_ID textId) {
+	CurPTextId = textId;
 }
 void GAME::run() {
 	window(1050, 590, full);

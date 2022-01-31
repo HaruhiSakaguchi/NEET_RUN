@@ -15,7 +15,7 @@ void PLAYER::appear(float wx, float wy, float vx, float vy) {
     Chara.hp = game()->container()->data().playerChara.hp;
     Chara.wx = wx;
     Chara.wy = wy;
-    Chara.stamina = Chara.maxStamina;
+    Chara.stamina = Player.maxStamina;
     Player.jumpFlag = 0;
     StateId = STATE_ID::STRUGGLING;
 }
@@ -117,7 +117,7 @@ void PLAYER::CheckState() {
         return;
     }
     //ステージクリアした
-    else if (Chara.wx > game()->map()->wDispRight()) {
+    else if (Chara.wx > game()->map()->wDispRight()||survived()) {
         StateId = STATE_ID::SURVIVED;
         Chara.hp = 0;
     }
@@ -152,9 +152,10 @@ bool PLAYER::died() {
 }
 void PLAYER::Ddamage() {
     if (Chara.hp > 0) {
-        for (int i = 0; Chara.hp != 0; i ++) {
-            Chara.hp -= 0.0001f;
+        if (game()->curStateId() != GAME::FIFTH) {
+            Chara.hp--;
         }
+        else Chara.hp -= 0;
     }
 }
 bool PLAYER::survived() {
@@ -167,4 +168,6 @@ float PLAYER::overCenterVx() {
     if (overCenterVx < 0 || Chara.hp == 0)overCenterVx = 0;
     return overCenterVx;
 }
-
+void PLAYER::caught() {
+    StateId = STATE_ID::SURVIVED;
+}

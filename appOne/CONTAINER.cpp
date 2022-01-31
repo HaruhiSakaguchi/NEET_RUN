@@ -53,6 +53,21 @@ void CONTAINER::CreateData() {
 	Data.message.buttonColor = COLOR(200, 200, 255);
 	//ローディングクラスのデータ
 	Data.loading.goToTitleTime = 2;
+	//プロローグクラスのデータ
+	Data.message.sw = 3;
+	Data.prologue.textSize = 30;
+	Data.prologue.textPosOfst.x = 50;
+	Data.prologue.textPosOfst.y = 50;
+	Data.prologue.winH = 195;
+	Data.prologue.windowPos.x = width / 2;
+	Data.prologue.windowPos.y = height - Data.message.winH - Data.message.sw + 95;
+	Data.prologue.winW = width - Data.message.sw * 2 - 200;
+	Data.prologue.textPos.x = Data.message.windowPos.x + Data.message.textPosOfst.x - Data.message.winW / 2;
+	Data.prologue.textPos.y = Data.message.windowPos.y + Data.message.textPosOfst.y - Data.message.winH / 2;
+	Data.prologue.charaNameTextSize = 50;
+	Data.prologue.textColor = COLOR(0, 0, 0);
+	Data.prologue.winColor = COLOR(255, 255, 255);
+	Data.prologue.edgeColor = COLOR(0, 0, 0);
 	//タイトルクラスのデータ
 	Data.title.backColor = COLOR(0, 50, 0);
 	Data.title.textColor = COLOR(0, 255, 0);

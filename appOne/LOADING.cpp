@@ -6,7 +6,7 @@
 #include"GAME.h"
 #include"SCENE.h"
 #include"FADE.h"
-#include "LOADING.h"
+#include"LOADING.h"
 void LOADING::create() {
 	Loading = game()->container()->data().loading;
 }
@@ -27,7 +27,7 @@ void LOADING::nextScene() {
 		game()->fade()->outTrigger();
 	}
 	if (game()->fade()->outEndFlag()) {
-		game()->changeScene(GAME::TITLE_ID);
+		game()->changeScene(GAME::PROLOGUE_ID);
 	}
 }
 void LOADING::update() {

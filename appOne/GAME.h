@@ -9,6 +9,7 @@ public:
 public:
 	enum SCENE_ID {
 		LOADING_ID,
+		PROLOGUE_ID,
 		TITLE_ID,
 		STORY_ID,
 		STAGE_ID,
@@ -40,6 +41,30 @@ public:
 		text_Last,
 		NUM_TEXTS
 	};
+	enum PTEXT_ID {
+		t1,
+		t2,
+		t3,
+		t4,
+		t5,
+		t6,
+		t7,
+		t8,
+		t9,
+		t10,
+		t11,
+		t12,
+		t13,
+		t14,
+		t15,
+		t16,
+		t17,
+		t18,
+		t19,
+		t20,
+		Plast,
+		textNum
+	};
 private:
 	class SCENE* Scenes[NUM_SCENES];
 	SCENE_ID CurSceneId = LOADING_ID;
@@ -51,8 +76,10 @@ private:
 	class BUTTON* Button;
 	class MAP* Map = nullptr;
 	class LOADING* Loading = nullptr;
+	class PROLOGUE* Prologue = nullptr;
 	STATE_ID CurStateId = FIRST;
 	TEXT_ID CurTextId = text_1;
+	PTEXT_ID CurPTextId = t1;
 	class CHARACTER_MANAGER* CharacterManager = nullptr;
 public:
 	class MAP* map() { return Map; }
@@ -62,13 +89,18 @@ public:
 	class MESSAGE* message() { return Message; }
 	class BUTTON* button() { return Button; }
 	class LOADING* loading() { return Loading; }
+	class PROLOGUE* prologue() { return Prologue; }
 public:
 	void changeScene(SCENE_ID sceneId);
 	void changeState(STATE_ID stateId);
 	void changeText(TEXT_ID textId);
+	void settextNum(PTEXT_ID textNum);
 	SCENE_ID curSceneId() { return CurSceneId; }
 	STATE_ID curStateId() { return CurStateId; }
 	TEXT_ID curTextId() { return CurTextId; }
+	PTEXT_ID curPTextId() { return CurPTextId; }
+	
+
 //ゲームマネージャー
 public:
 	GAME();

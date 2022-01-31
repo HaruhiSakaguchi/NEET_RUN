@@ -1,5 +1,6 @@
 #pragma once
 #include"LOADING.h"
+#include"PROLOGUE.h"
 #include"TITLE.h"
 #include"STORY.h"
 #include"STAGE.h"
@@ -27,6 +28,7 @@ private:
 	struct ALL_DATA {
 		//ÉVÅ[Éì
 		LOADING::DATA loading;
+		PROLOGUE::DATA prologue;
 		TITLE::DATA title;
 		STORY::DATA story;
 		STAGE::DATA stage;
