@@ -44,6 +44,9 @@ void CHARACTER_MANAGER::create() {
 
     Player = new PLAYER(game());
     Enemy = new ENEMY(game());
+    
+    Hole = new HOLE(game());
+    
     int i, j = 0;
     for (i = 0; i < CharaMng.numPlayers; i++)       Characters[j++] = Player;
     for (i = 0; i < CharaMng.numEnemies; i++)      Characters[j++] = Enemy;
@@ -52,7 +55,7 @@ void CHARACTER_MANAGER::create() {
     for (i = 0; i < CharaMng.numBatBullets; i++)    Characters[j++] = new BAT_BULLET(game());
     for (i = 0; i < CharaMng.numCokes; i++)    Characters[j++] = new COKE(game());
     for (i = 0; i < CharaMng.numTips; i++)    Characters[j++] = new TIPS(game());
-    for (i = 0; i < CharaMng.numHoles; i++)    Characters[j++] = new HOLE(game());
+    for (i = 0; i < CharaMng.numHoles; i++)    Characters[j++] = Hole;
     for (i = 0; i < CharaMng.numRamens; i++)    Characters[j++] = new RAMEN(game());
     for (i = 0; i < CharaMng.numBears; i++)    Characters[j++] = new BEAR(game());
     for (i = 0; i < CharaMng.numRymans; i++)    Characters[j++] = new RYMAN(game());

@@ -47,12 +47,11 @@ void STAGE::draw() {
 	fill(Stage.textColor);
 	textSize(Stage.textSize);
 	text(Stage.str, Stage.pos.x, Stage.pos.y);
+	text(game()->characterManager()->player()->PlayerSta(), 100, 100);
+	text(game()->characterManager()->player()->interval(), 100, 150);
 
-	if (Stage.count != 0) {
-		textSize(300);
-		text(Stage.count, width / 2, height / 2);
-	}
 
+	
 
 #ifdef _DEBUG
 	int stageNum = 0;
@@ -70,6 +69,9 @@ void STAGE::draw() {
 	textSize(Stage.textSize);
 	text(stageNum, Stage.pos.x + Stage.textSize*3, Stage.pos.y);
 
+	text(delta,700,100);
+
+
 #endif
 	game()->hpGauge()->draw();
 	game()->characterManager()->draw();
@@ -78,6 +80,7 @@ void STAGE::draw() {
 void STAGE::backGround() {
 	clear();
 	
+
 
 	rectMode(CORNER);
 	imageColor(Stage.backColor);
@@ -114,17 +117,4 @@ void STAGE::nextScene() {
 	if (game()->curStateId() == GAME::END) {
 		game()->changeScene(GAME::STORY_ID);
 	}
-}
-void STAGE::countDown() {
-	if (Stage.count > 0) {
-		if(isTrigger(MOUSE_LBUTTON))
-		Stage.count -= 1;
-
-	}
-	if (Stage.count <= 0) {
-		Stage.count = 0;
-	}
-}
-void STAGE::stagePause() {
-	Stage.count = Stage.maxCount;
 }

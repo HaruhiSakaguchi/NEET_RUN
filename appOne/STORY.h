@@ -16,7 +16,10 @@ public:
         const char* text2 = 0;
         const char* text3 = 0;
         int Flag = 0;
-        int image[3];
+        int backImage = 0;
+        int backImg[5];
+        int charaImg1 = 0;
+        int charaImg2 = 0;
         float buttonNameTextSize = 40;
         float charaNum = 7;
         float buttonW = buttonNameTextSize * charaNum/2;
@@ -28,6 +31,7 @@ public:
         float skipButtonW = skipTextSize * skipCharaNum;
         float skipButtonH = skipTextSize * 1.5f;
         const char* skipText = "  スキップ";
+
     };
 private:
     DATA Story;
@@ -40,6 +44,7 @@ public:
     void init();
     void setAttentinonFlag(int flag = 0);
     void update();
+    void backGround();
 
 };
 

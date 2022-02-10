@@ -24,6 +24,7 @@ private:
     class CHARACTER** Characters = nullptr;
     class PLAYER* Player = nullptr;
     class ENEMY* Enemy = nullptr;
+    class HOLE* Hole = nullptr;
 public:
     CHARACTER_MANAGER(class GAME* game);
     ~CHARACTER_MANAGER();
@@ -34,4 +35,8 @@ public:
     void draw();
     class PLAYER* player() { return Player; }
     class ENEMY* enemy() { return Enemy; }
+
+    class HOLE* hole() { return Hole; }
+   
+
 };

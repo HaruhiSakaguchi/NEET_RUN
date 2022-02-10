@@ -11,6 +11,7 @@
 #include"STAGE_CLEAR.h"
 #include"GAME_OVER.h"
 #include"ENDING.h"
+#include"COUNT_DOWN.h"
 #include"FADE.h"
 #include"MAP.h"
 #include"MESSAGE.h"
@@ -31,7 +32,7 @@ GAME::GAME() {
 	Scenes[STAGE_CLEAR_ID] = new STAGE_CLEAR(this);
 	Scenes[GAME_OVER_ID] = new GAME_OVER(this);
 	Scenes[ENDING_ID] = new ENDING(this);
-
+	Scenes[COUNT_DOWN_ID] = new COUNT_DOWN(this);
 	HpGauge = new HP_GAUGE(this);
 	Message = new MESSAGE(this);
 	Button = new BUTTON(this);
@@ -86,7 +87,7 @@ void GAME::run() {
 	Button->create();
 	CharacterManager->create();
 
-	CurScene = Scenes[3];
+	CurScene = Scenes[5];
 	CurScene->init();
 	initDeltaTime();
 	while (notQuit) {

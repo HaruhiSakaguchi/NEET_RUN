@@ -16,6 +16,11 @@ public:
         ANIM_DATA animData;
         //ê√é~âÊ
         int img = 0;
+        int img1 = 0;
+        int img2 = 0;
+        int img3 = 0;
+        int img4 = 0;
+        int img5 = 0;
         //çáê¨êF
         COLOR color;
 
@@ -27,10 +32,12 @@ public:
         float vy = 0;
         float speed = 0;
         float angle = 0;
+
         float damageTime = 0;
-        float damageInterval = 0;
         float stamina = 0;
         float maxStamina = 0;
+        float damageInterval = 0;
+       
         float knockBackVx = 0;
         float knockBackVy = 0;
 
@@ -50,19 +57,19 @@ public:
     virtual void appear(float wx, float wy, float vx, float vy);
     virtual void update();
     virtual void draw();
-    virtual void Sdamage();
-    virtual void Mdamage();
-    virtual void Ldamage();
     virtual void Ddamage();
     virtual void Srecover();
     virtual void Mrecover();
     virtual void Lrecover();
+    virtual void Sdamage();
+    virtual void Mdamage();
+    virtual void Ldamage();
     virtual void knock();
     virtual void fall();
     virtual void caught();
     virtual void noDamage();
+    virtual void drawRectArea(float px, float py, float Left, float Top, float Right, float Bottom);
     int   hp() { return Chara.hp; }
-    float stamina() { return Chara.stamina; }
     int   groupId() { return Chara.groupId; }
     char  charaId() { return Chara.charaId; }
     float wLeft() { return Chara.wx + Chara.offsetLeft; }
@@ -70,5 +77,6 @@ public:
     float wRight() { return Chara.wx + Chara.offsetRight; }
     float wBottom() { return Chara.wy + Chara.offsetBottom; }
     void setImgIdx(int i) { Chara.animData.imgIdx = i; }
+    float px() { return Chara.wx; }
 };
 

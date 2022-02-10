@@ -161,6 +161,7 @@
     <ClCompile Include="PROLOGUE.cpp">
       <Filter>scene</Filter>
     </ClCompile>
+    <ClCompile Include="COUNT_DOWN.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -262,6 +263,7 @@
     <ClInclude Include="PROLOGUE.h">
       <Filter>scene</Filter>
     </ClInclude>
+    <ClInclude Include="COUNT_DOWN.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="assets\map1.txt">

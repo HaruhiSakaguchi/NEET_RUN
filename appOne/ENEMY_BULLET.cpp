@@ -10,6 +10,28 @@ void ENEMY_BULLET::create() {
     EnemyBullet = game()->container()->data().enemyBullet;
 }
 void ENEMY_BULLET::appear(float wx , float wy, float vx, float vy){
+    switch (game()->curStateId()) {
+    case GAME::FIRST:
+        Chara.img = Chara.img1;
+        Chara.angle = 0;
+        break;
+    case GAME::SECOND:
+        Chara.img = Chara.img2;
+        Chara.angle = 45;
+        break;
+    case GAME::THIRD:
+        Chara.img = Chara.img3;
+        Chara.angle = 30;
+        break;
+    case GAME::FOURTH:
+        Chara.img = Chara.img4;
+        Chara.angle = -90;
+        break;
+    default:
+        Chara.img = Chara.img1;
+        Chara.angle = 0;
+        break;
+    }
     Chara.hp = game()->container()->data().enemyBulletChara.hp;
     Chara.wx = wx;
     Chara.wy = wy;
@@ -29,6 +51,7 @@ void ENEMY_BULLET::Move(){
     
     //Œ»Ý‚ÌˆÊ’u‚ð‚Æ‚Á‚Ä‚¨‚­
     EnemyBullet.curWx = Chara.wx;
+    Chara.angle+=0.1f;
     //¶‰E‚É‚¤‚²‚­
     //Chara.wx += Chara.vx * (Chara.speed * delta);
     
@@ -56,7 +79,7 @@ void ENEMY_BULLET::CollisionWithMap(){
         if (map->collisionCharaLeft(Chara.wx, Chara.wy) ||
             map->collisionCharaRight(Chara.wx, Chara.wy)) {
             Chara.animId = 1 - Chara.animId;
-            Chara.vx = -Chara.vx;
+            Chara.vx = 0;
             Chara.wx = EnemyBullet.curWx;
         }
     }

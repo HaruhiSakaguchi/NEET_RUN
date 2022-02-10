@@ -126,7 +126,10 @@ void PROLOGUE::draw() {
 	text(Prologue.text, Prologue.textPos.x+Prologue.textPosOfst.x, Prologue.textPos.y + Prologue.textPosOfst.y);
 	text(Prologue.text2, Prologue.textPos.x + Prologue.textPosOfst.x, Prologue.textPos.y + Prologue.textPosOfst.y*2);
 	textSize(Prologue.charaNameTextSize);
-	text(Prologue.charactername, Prologue.textPos.x - 30, Prologue.textPos.y + 10);
+	if (game()->curPTextId() != GAME::Plast) {
+		text(Prologue.charactername, Prologue.textPos.x - 30, Prologue.textPos.y + 10);
+	}
+	game()->fade()->draw();
 }
 void PROLOGUE::update() {
 	//テキストが入力されていないなら、強制的にラストのテキストを表示する
@@ -203,11 +206,10 @@ void PROLOGUE::update() {
 }
 void PROLOGUE::nextScene() {
 	if (game()->curPTextId() == GAME::Plast) {
-		if (isTrigger(KEY_SPACE) || isTrigger(MOUSE_LBUTTON)) {
-			game()->fade()->outTrigger();
-		}
-		if(game()->fade()->outEndFlag()) {
-			game()->changeScene(GAME::TITLE_ID);
-		}
+		game()->fade()->outTrigger();
 	}
+	if(game()->fade()->outEndFlag()) {
+		game()->changeScene(GAME::TITLE_ID);
+	}
+	
 }

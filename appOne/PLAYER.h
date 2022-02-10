@@ -8,8 +8,6 @@ public:
         int rightAnimId = 0;
         int leftAnimId = 1;
         int jumpFlag = 0;
-        float stamina = 0;
-        float maxStamina = 0;
         float speed = 0;
         float maxSpeed = 0;
         float curWx = 0;
@@ -17,9 +15,7 @@ public:
         float initVecDown = 0;
         float gravity = 0;
         char bulletCharaId = 0;
-        float damageTime = 0;
         float staminaDamage = 0.03f;
-        COLOR color;
         COLOR damageColor;
         COLOR normalColor;
     };
@@ -47,6 +43,7 @@ public:
 
     
     STATE_ID stateId() { return StateId; }
-    float stamina() { return Player.stamina; }
-    float damageTime() { return Player.damageTime; }
+    float PlayerSta() { return Chara.stamina; }
+    float interval() { return Chara.damageTime; }
+    
 };

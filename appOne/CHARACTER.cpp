@@ -3,6 +3,7 @@
 #include"CONTAINER.h"
 #include"GAME.h"
 #include"MAP.h"
+#include"window.h"
 #include"CHARACTER.h"
 CHARACTER::CHARACTER(GAME* game) :
     GAME_OBJECT(game) {
@@ -13,12 +14,13 @@ void CHARACTER::init() {
     Chara.hp = 0;
     Chara.angle = 0;
     Chara.stamina = 0;
+    Chara.damageTime = 0;
 }
 void CHARACTER::appear(float wx, float wy, float vx, float vy) {
     Chara.wx = wx;
     Chara.wy = wy;
     Chara.hp = 1;
-    Chara.stamina = Chara.maxStamina;
+   
 }
 void CHARACTER::update() {
     float px = Chara.wx - game()->map()->wx();
@@ -48,58 +50,11 @@ void CHARACTER::draw() {
         fill(Chara.color);
         image(Chara.img, px, py, Chara.angle, game()->map()->scale());
     }
-}
-void CHARACTER::Sdamage() {
-    if (Chara.hp > 0) {
-        if (Chara.damageTime == 0) {
-            Chara.stamina -= 10;
-        }
-        Chara.damageTime = Chara.damageInterval;
-    }
-}
-void CHARACTER::Mdamage() {
-    if (Chara.hp > 0) {
-        if (Chara.damageTime == 0) {
-            Chara.stamina -= 20;
-        }
-        Chara.damageTime = Chara.damageInterval;
-    }
-}
-void CHARACTER::Ldamage() {
-    if (Chara.hp > 0) {
-        if (Chara.damageTime == 0) {
-            Chara.stamina -= 30;
-        }
-        Chara.damageTime = Chara.damageInterval;
-    }
+    drawRectArea(px, py, wLeft(), wTop(), wRight(), wBottom());
 }
 void CHARACTER::Ddamage() {
     if (Chara.hp > 0) {
         Chara.hp--;
-    }
-}
-void CHARACTER::Srecover() {
-    if (Chara.hp > 0) {
-        Chara.stamina += 10;
-        if (Chara.stamina >= Chara.maxStamina) {
-            Chara.stamina = Chara.maxStamina;
-        }
-    }
-}
-void CHARACTER::Mrecover() {
-    if (Chara.hp > 0) {
-        Chara.stamina += 20;
-        if (Chara.stamina >= Chara.maxStamina) {
-            Chara.stamina = Chara.maxStamina;
-        }
-    }
-}
-void CHARACTER::Lrecover() {
-    if (Chara.hp > 0) {
-        Chara.stamina += 30;
-        if (Chara.stamina >= Chara.maxStamina) {
-            Chara.stamina = Chara.maxStamina;
-        }
     }
 }
 void CHARACTER::knock() {
@@ -114,4 +69,58 @@ void CHARACTER::caught() {
 }
 void CHARACTER::noDamage() {
 
+}
+void CHARACTER::Srecover(){
+    if (Chara.hp > 0) {
+        Chara.stamina += 10;
+        if (Chara.stamina >= Chara.maxStamina) {
+            Chara.stamina = Chara.maxStamina;
+        }
+    }
+}
+void CHARACTER::Mrecover(){
+    if (Chara.hp > 0) {
+        Chara.stamina += 20;
+        if (Chara.stamina >= Chara.maxStamina) {
+            Chara.stamina = Chara.maxStamina;
+        }
+    }
+}
+void CHARACTER::Lrecover(){
+    if (Chara.hp > 0) {
+        Chara.stamina += 30;
+        if (Chara.stamina >= Chara.maxStamina) {
+            Chara.stamina = Chara.maxStamina;
+        }
+    }
+}
+void CHARACTER::Sdamage(){
+    if (Chara.hp > 0) {
+        if (Chara.damageTime <= 0) {
+            Chara.stamina -= 10;
+        }
+        Chara.damageTime = Chara.damageInterval;
+    }
+}
+void CHARACTER::Mdamage(){
+    if (Chara.hp > 0) {
+        if (Chara.damageTime <= 0) {
+            Chara.stamina -= 20;
+        }
+        Chara.damageTime = Chara.damageInterval;
+    }
+}
+void CHARACTER::Ldamage(){
+    if (Chara.hp > 0) {
+        if (Chara.damageTime <= 0) {
+            Chara.stamina -= 20;
+        }
+        Chara.damageTime = Chara.damageInterval;
+    }
+}
+void CHARACTER::drawRectArea(float px, float py, float Left, float Top, float Right, float Bottom) {
+    float w = Right - Left;
+    float h = Bottom - Top;
+    fill(100, 255, 100, 128);
+    rect(px, py, w, h);
 }

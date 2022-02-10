@@ -7,6 +7,7 @@
 #include"STAGE_CLEAR.h"
 #include"GAME_OVER.h"
 #include"ENDING.h"
+#include"COUNT_DOWN.h"
 #include"MAP.h"
 #include"FADE.h"
 #include"HP_GAUGE.h"
@@ -35,6 +36,7 @@ private:
 		STAGE_CLEAR::DATA stageClear;
 		GAME_OVER::DATA gameOver;
 		ENDING::DATA ending;
+		COUNT_DOWN::DATA cd;
 
 		FADE::DATA fade;
 		MAP::DATA map;
@@ -48,6 +50,7 @@ private:
 	    ENEMY_BULLET::DATA enemyBullet;
 		CAT::DATA cat;
 		BAT_BULLET::DATA batBullet;
+		HOLE::DATA hole;
 		//キャラクタークラス用
 		CHARACTER::DATA playerChara;
 		CHARACTER::DATA enemyChara;

@@ -18,20 +18,52 @@ void STAGE_CLEAR::init() {
 	game()->fade()->inTrigger();
 }
 void STAGE_CLEAR::draw() {
-	stroke(StageClear.backColor);
-	noStroke();
 	clear(StageClear.backColor);
-	fill(StageClear.textColor);
-	textSize(StageClear.textSize);
-	text(StageClear.str, StageClear.pos.x, StageClear.pos.y);
-
-#ifdef _DEBUG
-	textSize(30);
-	fill(255, 255, 255);
-	text("SPACEキーで進行　Zキーでタイトルに戻る", 30, 30);
-#endif
+	rectMode(CORNER);
 	game()->button()->rectButton(StageClear.backToTitlePos, game()->container()->data().message.buttonColor, game()->container()->data().message.textColor, StageClear.backToTitleText, StageClear.buttonNameTextSize, StageClear.charaNum);
 	game()->button()->rectButton(StageClear.nextPos, game()->container()->data().message.buttonColor, game()->container()->data().message.textColor, StageClear.nextText, StageClear.buttonNameTextSize, StageClear.charaNum);
+	
+
+	COLOR ncolor;
+	COLOR tcolor;
+	COLOR normalColor;
+	COLOR collisionColor(200, 200, 200, 128);
+	rectMode(CORNER);
+	imageColor(normalColor);
+	image(StageClear.img, 0, 0);
+	
+	rectMode(CENTER); 
+	
+	if (game()->button()->game()->button()->collisionRect(StageClear.backToTitlePos, StageClear.buttonW, StageClear.buttonH)) {
+		tcolor = collisionColor;
+	}
+	else {
+		tcolor = normalColor;
+	}
+	imageColor(normalColor);
+
+	image(StageClear.gotoTitleButtonImg, StageClear.backToTitlePos.x, StageClear.backToTitlePos.y);
+
+	imageColor(tcolor);
+	image(StageClear.gotoTitleButtonImg2, StageClear.backToTitlePos.x, StageClear.backToTitlePos.y);
+
+
+
+	if (game()->button()->game()->button()->collisionRect(StageClear.nextPos, StageClear.buttonW, StageClear.buttonH)) {
+		ncolor = collisionColor;
+	}
+	else {
+		ncolor = normalColor;
+	}
+	imageColor(normalColor);
+
+	image(StageClear.nextButtonImg, StageClear.nextPos.x, StageClear.nextPos.y);
+
+	imageColor(ncolor);
+	image(StageClear.nextButtonImg2, StageClear.nextPos.x, StageClear.nextPos.y);
+
+
+
 
 	game()->button()->drawCursor();
 	game()->fade()->draw();

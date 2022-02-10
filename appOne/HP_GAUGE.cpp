@@ -12,24 +12,24 @@ void HP_GAUGE::draw() {
 	COLOR normalColor = COLOR(0,255,0);
 	COLOR attentionColor = COLOR(255,255,0);
 	COLOR dangerColor = COLOR(255,0,0);
-	float normal = game()->container()->data().player.maxStamina * HpGauge.zoom * 0.50f ;
-	float attention = game()->container()->data().player.maxStamina * HpGauge.zoom * 0.20f;
-	float danger = game()->container()->data().player.maxStamina * HpGauge.zoom * 0.10f ;
+	float normal = game()->container()->data().playerChara.maxStamina * HpGauge.zoom * 0.50f ;
+	float attention = game()->container()->data().playerChara.maxStamina * HpGauge.zoom * 0.20f;
+	float danger = game()->container()->data().playerChara.maxStamina * HpGauge.zoom * 0.10f ;
 
 
-	if (normal <= game()->characterManager()->player()->stamina() * HpGauge.zoom && attention < game()->characterManager()->player()->stamina() * HpGauge.zoom) {
+	if (normal <= game()->characterManager()->player()->PlayerSta() * HpGauge.zoom && attention < game()->characterManager()->player()->PlayerSta() * HpGauge.zoom) {
 		color = normalColor;
 	}
-	else if (attention <= game()->characterManager()->player()->stamina() * HpGauge.zoom && danger < game()->characterManager()->player()->stamina() * HpGauge.zoom) {
+	else if (attention <= game()->characterManager()->player()->PlayerSta() * HpGauge.zoom && danger < game()->characterManager()->player()->PlayerSta() * HpGauge.zoom) {
 		color = attentionColor;
 	}
 	else color = dangerColor;
 	
 	rectMode(CORNER);
 	fill(128);
-	rect(0, 0, game()->container()->data().player.maxStamina*HpGauge.zoom+2.5f, 25);
+	rect(0, 0, game()->container()->data().playerChara.maxStamina*HpGauge.zoom+2.5f, 25);
 	fill(color);
-	rect(2.5f,2.5f,game()->characterManager()->player()->stamina()*HpGauge.zoom, 20);
+	rect(2.5f,2.5f, game()->characterManager()->player()->PlayerSta() * HpGauge.zoom, 20);
 }
 
 

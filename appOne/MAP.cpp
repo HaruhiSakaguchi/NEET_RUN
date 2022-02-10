@@ -70,7 +70,7 @@ void MAP::init() {
     if (fileSize % Map.cols != 0) {
         WARNING(1, "最後の行を改行していない", "");
     }
-    Map.dispCols = (int)width / Map.chipSize + 1 * Map.scale;//表示すべき列数
+    Map.dispCols = (int)width / Map.chipSize + 1 * 2;//表示すべき列数
     Map.worldWidth = (float)Map.chipSize * (Map.cols - 2);//ワールドの横幅
     Map.endWorldX = Map.worldWidth - width;//表示できる最後の座標
     Map.wx = 0.0f;//現在表示しているワールド座標
@@ -94,12 +94,12 @@ void MAP::draw() {
                 float px = wx - Map.wx;
                 float py = wy - Map.wy;
                 if (charaId == '1') {
-                    imageColor(0, 0, 0, 128);
+                    //imageColor(0, 0, 0, 128);
                     image(Map.blockImg, px, py, Map.angle, Map.scale);
                 }
                 else if (charaId == '2') {
-                    //imageColor(0, 0, 0, 128);
-                    image(Map.goalImg, px, py, Map.angle, Map.scale);
+                    //imageColor(255);
+                    image(Map.poleImg, px, py, Map.angle, Map.scale);
                 }
             }
             else if (charaId >= 'a' && charaId <= 'z') {

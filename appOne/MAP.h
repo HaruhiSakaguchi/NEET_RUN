@@ -15,7 +15,7 @@ public:
 		float scale = 1;
 		float angle = 0;
 		int blockImg = 0;
-		int goalImg = 0;
+		int poleImg = 0;
 		int chipSize = 0; //正方形マップチップ画像の一辺のドット数
 		char* data = 0; //データ配列のポインタ
 		int cols = 0; //データの列数

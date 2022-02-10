@@ -1,5 +1,4 @@
 #pragma once
-//#include"libone.h"
 #include"COLOR.h"
 #include"VECTOR2.h"
 #include "GAME_OBJECT.h"

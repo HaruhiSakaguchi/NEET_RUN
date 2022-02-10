@@ -12,7 +12,7 @@ void ENEMY::create() {
 }
 void ENEMY::init() {
     Chara.hp = 0;
-    Enemy.stamina = Enemy.maxStamina;
+    Chara.stamina = Chara.maxStamina;
     Enemy.triggerCnt = game()->container()->data().enemy.triggerCnt;
 }
 void ENEMY::appear(float wx, float wy, float vx, float vy) {
@@ -22,7 +22,7 @@ void ENEMY::appear(float wx, float wy, float vx, float vy) {
     Chara.stamina = Chara.maxStamina;
     Enemy.jumpFlag = 0; 
     Enemy.triggerCnt = game()->container()->data().enemy.triggerCnt;
-    StateId = STATE_ID::STRUGGLING;
+    EStateId = ESTATE_ID::STRUGGLING;
    
 }
 void ENEMY::update() {
@@ -45,7 +45,7 @@ void ENEMY::jump() {
 }
 void ENEMY::checkState() {
     if (Chara.wx > game()->map()->wDispRight()) {
-        StateId = STATE_ID::SURVIVED;
+        EStateId = ESTATE_ID::SURVIVED;
         Chara.hp = 0;
     }
     
@@ -57,21 +57,12 @@ void ENEMY::Move() {
     if (Chara.hp > 0) {
         Chara.stamina -= Enemy.staminaDamage;
     }
-    //if (Enemy.jumpFlag == 0 && (isTrigger(KEY_K) || isTrigger(MOUSE_LBUTTON))) {
-    //    Chara.vy = Enemy.initVecUp;
-    //    Enemy.jumpFlag = 1;
-   // }
-   // if (Enemy.jumpFlag == 1) {
-   // Chara.vy += Enemy.gravity * delta;
-     //   Chara.wy += Chara.vy * 60 * delta;
-    //}
     //左右移動
     // 移動ベクトルを決定
-    //Chara.vx = 0.0f;
-    Enemy.speed = 3.4f * 6.0f * Enemy.stamina / 10;
+    
+    Enemy.speed = 3.4f * 6.0f * Chara.stamina / 10;
     Chara.vx = Enemy.speed * delta;
-    //Enemy.stamina -= 0.1f;
-    if (Enemy.stamina <= 1) Enemy.stamina = 1;
+    if (Chara.stamina <= 1) Chara.stamina = 1;
     Chara.animId = Enemy.rightAnimId;
    
 
@@ -140,5 +131,6 @@ void ENEMY::launch() {
     }
 }
 bool ENEMY::survived() {
-    return StateId == STATE_ID::SURVIVED;
+    return EStateId == ESTATE_ID::SURVIVED;
 }
+

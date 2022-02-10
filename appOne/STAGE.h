@@ -34,9 +34,6 @@ public:
     void create();
     void init();
     void update();
-    void countDown();
-    void stagePause();
-    void setPFlag(int flag);
     int count() { return Stage.count; }
     int flag() { return Stage.flag; }
 };

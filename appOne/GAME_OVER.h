@@ -13,14 +13,19 @@ public:
         VECTOR2 pos;
         char str[16];
 
+        int img = 0;
+        int retryImg = 0;
+        int retryImg2 = 0;
+        int gotoTitleImg = 0;
+        int gotoTitleImg2 = 0;
         VECTOR2 backToTitlePos;
         VECTOR2 continuePos;
         float buttonNameTextSize = 30;
-        float charaNum = 7;
+        float charaNum = 8;
         float buttonW = buttonNameTextSize * charaNum;
-        float buttonH = buttonNameTextSize * 1.5f;
-        const char* continueText;
-        const char* backToTitleText;
+        float buttonH = buttonNameTextSize * 2.0f;
+        const char* continueText=0;
+        const char* backToTitleText=0;
     };
 private:
     DATA GameOver;

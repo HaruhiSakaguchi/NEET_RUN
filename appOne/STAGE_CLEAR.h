@@ -14,15 +14,19 @@ public:
         COLOR backColor;
         VECTOR2 pos;
         char str[16];
-        int image = 0;
+        int img = 0;
+        int nextButtonImg = 0;
+        int nextButtonImg2 = 0;
+        int gotoTitleButtonImg = 0;
+        int gotoTitleButtonImg2= 0;
         VECTOR2 backToTitlePos;
         VECTOR2 nextPos;
         float buttonNameTextSize = 30;
-        float charaNum = 7;
+        float charaNum = 8;
         float buttonW = buttonNameTextSize * charaNum;
-        float buttonH = buttonNameTextSize * 1.5f;
-        const char* nextText;
-        const char* backToTitleText;
+        float buttonH = buttonNameTextSize * 2.0f;
+        const char* nextText=0;
+        const char* backToTitleText=0;
     };
 private:
     DATA StageClear;

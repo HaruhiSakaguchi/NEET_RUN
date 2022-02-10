@@ -161,6 +161,7 @@
     <ClCompile Include="CHARACTER.cpp" />
     <ClCompile Include="CHARACTER_MANAGER.cpp" />
     <ClCompile Include="CONTAINER.cpp" />
+    <ClCompile Include="COUNT_DOWN.cpp" />
     <ClCompile Include="EBIFURAI.cpp" />
     <ClCompile Include="ENDING.cpp" />
     <ClCompile Include="ENEMY.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="CHARACTER.h" />
     <ClInclude Include="CHARACTER_MANAGER.h" />
     <ClInclude Include="CONTAINER.h" />
+    <ClInclude Include="COUNT_DOWN.h" />
     <ClInclude Include="EBIFURAI.h" />
     <ClInclude Include="ENDING.h" />
     <ClInclude Include="ENEMY.h" />

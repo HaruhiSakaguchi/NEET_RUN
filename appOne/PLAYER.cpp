@@ -5,6 +5,7 @@
 #include"CONTAINER.h"
 #include"GAME.h"
 #include"MAP.h"
+#include"HOLE.h"
 #include"ENEMY.h"
 #include"PLAYER.h"
 void PLAYER::create() {
@@ -15,14 +16,11 @@ void PLAYER::appear(float wx, float wy, float vx, float vy) {
     Chara.hp = game()->container()->data().playerChara.hp;
     Chara.wx = wx;
     Chara.wy = wy;
-    Chara.stamina = Player.maxStamina;
+    Chara.stamina = Chara.maxStamina;
     Player.jumpFlag = 0;
     StateId = STATE_ID::STRUGGLING;
 }
 void PLAYER::update() {
-    Player.stamina = Chara.stamina;
-    Player.damageTime = Chara.damageTime;
-
     CheckState();
     //ダメージを受けたときちょっとだけ透明化する------------------------------------
     if (Chara.damageTime > 0) {
@@ -36,8 +34,7 @@ void PLAYER::update() {
         Move();
         CollisionWithMap();
     }
-    else
-        Chara.wy += Chara.vy;
+    
 }
 
 void PLAYER::Move() {
@@ -54,10 +51,8 @@ void PLAYER::Move() {
     }
     //左右移動
     // 移動ベクトルを決定
-    //Chara.vx = 0.0f;
     Player.speed = 3.4f * 6.0f * Chara.stamina / 10*2;
     Chara.vx = Player.speed * delta;
-    //Player.stamina -= 0.1f;
     if (Chara.stamina <= 10) Chara.stamina = 10;
     Chara.animId = Player.rightAnimId;
 
@@ -113,36 +108,40 @@ void PLAYER::CheckState() {
     //画面の下に落ちた
     if (Chara.wy > height + game()->map()->chipSize()) {
         StateId = STATE_ID::FALL;
+        Chara.wy += Chara.vy;
         Chara.hp = 0;
         return;
     }
     //ステージクリアした
-    else if (Chara.wx > game()->map()->wDispRight()||survived()) {
+    else if (Chara.wx > game()->map()->wDispRight()) {
         StateId = STATE_ID::SURVIVED;
         Chara.hp = 0;
     }
     //死んだ
     else if (Chara.hp == 0) {
         StateId = STATE_ID::DIED;
-        Chara.vy = Player.initVecUp;//はね始めのトリガー
-    }
-}
-void PLAYER::fall() {
-    StateId = STATE_ID::FALL;
-}
-bool PLAYER::died() {
-    if (StateId == STATE_ID::DIED) {
-        Chara.vx = 0;
-        Chara.vy = 0;
         if (game()->curStateId() == GAME::FIFTH) {}
         else {
-            if (Chara.angle != 90) {
-                Chara.angle += 0.01f;
-                if (Chara.angle >= 90) {
-                    Chara.angle = 90;
+            Chara.vx = 0;
+            Chara.vy = 0;
+            if (StateId != STATE_ID::FALL) {
+                if (Chara.angle != 90) {
+                    Chara.angle += 0.01f;
+                    if (Chara.angle >= 90) {
+                        Chara.angle = 90;
+                    }
                 }
             }
         }
+        Chara.vy = Player.initVecDown;//はね始めのトリガー
+    }
+}
+void PLAYER::fall() {
+    Chara.wx = game()->characterManager()->hole()->px();
+    Chara.vy = 10;
+}
+bool PLAYER::died() {
+    if (StateId == STATE_ID::DIED) {
         return true;
     }
     else if (StateId == STATE_ID::FALL) {

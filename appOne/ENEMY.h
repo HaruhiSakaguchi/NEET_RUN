@@ -29,16 +29,14 @@ public:
        int leftAnimId = 1;
 
        int jumpFlag = 0;
-       float stamina = 0;
-       float maxStamina = 100;
+       
        
        float curWx = 0;
        float initVecUp = 0;
        float initVecDown = 0;
        float gravity = 0;
        
-       float damageTime = 0;
-       float damageInterval = 0;
+  
        float staminaDamage = 0.02f;
        COLOR color;
        COLOR damageColor;
@@ -46,14 +44,15 @@ public:
         };
 private:
     DATA Enemy;
-    enum class STATE_ID { STRUGGLING, DIED, FALL, SURVIVED };
-    STATE_ID StateId = STATE_ID::STRUGGLING;
+    enum class ESTATE_ID { STRUGGLING, DIED, FALL, SURVIVED };
+    ESTATE_ID EStateId = ESTATE_ID::STRUGGLING;
 public:
     ENEMY(class GAME* game) :CHARACTER(game) {}
     void create();
     void appear(float wx, float wy, float vx, float vy);
     void update();
     void launch();
+    
 private:
         void Move();
         void CollisionWithMap();

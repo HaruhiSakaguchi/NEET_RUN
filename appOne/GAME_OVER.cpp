@@ -20,13 +20,46 @@ void GAME_OVER::init() {
 }
 void GAME_OVER::draw() {
 	clear(GameOver.backColor);
-	stroke(GameOver.backColor);
-	fill(GameOver.textColor);
-	textSize(GameOver.textSize);
-	text(GameOver.str, GameOver.pos.x, GameOver.pos.y);
-
-	game()->button()->rectButton(GameOver.backToTitlePos, game()->container()->data().message.buttonColor, game()->container()->data().message.textColor, GameOver.backToTitleText, GameOver.buttonNameTextSize, GameOver.charaNum);
+	
+	COLOR rcolor;
+	COLOR tcolor;
+	COLOR normalColor;
+	COLOR collisionColor(200, 200, 200, 128);
+	rectMode(CORNER);
+	imageColor(normalColor);
+	image(GameOver.img, 0, 0);
+	rectMode(CENTER);game()->button()->rectButton(GameOver.backToTitlePos, game()->container()->data().message.buttonColor, game()->container()->data().message.textColor, GameOver.backToTitleText, GameOver.buttonNameTextSize, GameOver.charaNum);
 	game()->button()->rectButton(GameOver.continuePos, game()->container()->data().message.buttonColor, game()->container()->data().message.textColor, GameOver.continueText, GameOver.buttonNameTextSize, GameOver.charaNum);
+	if (game()->button()->game()->button()->collisionRect(GameOver.backToTitlePos, GameOver.buttonW, GameOver.buttonH)) {
+		tcolor = collisionColor;
+	}
+	else {
+		tcolor = normalColor;
+	}
+	imageColor(normalColor);
+
+	image(GameOver.gotoTitleImg, GameOver.backToTitlePos.x, GameOver.backToTitlePos.y);
+
+	imageColor(tcolor);
+	image(GameOver.gotoTitleImg2, GameOver.backToTitlePos.x, GameOver.backToTitlePos.y);
+
+	
+
+	if (game()->button()->game()->button()->collisionRect(GameOver.continuePos, GameOver.buttonW, GameOver.buttonH)) {
+		rcolor = collisionColor;
+	}
+	else {
+		rcolor = normalColor;
+	}
+	imageColor(normalColor);
+
+	image(GameOver.retryImg, GameOver.continuePos.x, GameOver.continuePos.y);
+
+	imageColor(rcolor);
+	image(GameOver.retryImg2, GameOver.continuePos.x, GameOver.continuePos.y);
+	
+
+
 	game()->button()->drawCursor();
 
 	game()->fade()->draw();

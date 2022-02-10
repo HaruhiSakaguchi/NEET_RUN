@@ -21,6 +21,7 @@ void TITLE::init() {
 }
 void TITLE::draw() {
 	clear();
+	game()->button()->selectButton(1, Title.buttonPos, Title.buttonRadius, Title.color1, Title.color2, Title.text1, Title.buttonNameTextSize, Title.charaNum);
 	COLOR color;
 	COLOR normalColor;
 	COLOR collisionColor(200, 200, 200, 128);
@@ -49,7 +50,6 @@ void TITLE::draw() {
 	fill(255, 255, 255);
 	textSize(30);
 	//text("SPACE‚Åis", 30, 30);
-	game()->button()->selectButton(1, Title.buttonPos, Title.buttonRadius, Title.color1, Title.color2, Title.text1, Title.buttonNameTextSize, Title.charaNum);
 #endif
 	game()->button()->drawCursor();
 	game()->fade()->draw();
