@@ -31,19 +31,19 @@ public:
 		float centerX = 0;
 	};
 	enum CHARA_ID {
-		PLAYER_ID = 'a',
+		PLAYER_ID = 'a',//1
 		PLAYER_BULLET_ID = 'b',
 		ENEMY_BULLET_ID = 'c',
-		CAT_ID = 'd',
+		CAT_ID = 'd',//10
 		BAT_BULLET_ID = 'e',
-		MANHOLE_ID = 'f',
-		ENEMY_ID = 'g',
-		COKE_ID = 'h',
-		TIPS_ID = 'i',
-		RAMEN_ID = 'j',
-		BEAR_ID = 'k',
-		EBIFURAI_ID = 'l',
-		RYMAN_ID = 'm',
+		MANHOLE_ID = 'f',//3
+		ENEMY_ID = 'g',//1
+		COKE_ID = 'h',//5
+		TIPS_ID = 'i',//3
+		RAMEN_ID = 'j',//1
+		BEAR_ID = 'k',//2
+		EBIFURAI_ID = 'l',//6
+		RYMAN_ID = 'm',//5
 	};
 private:
 	DATA Map;

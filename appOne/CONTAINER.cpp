@@ -430,12 +430,12 @@ void CONTAINER::CreateData() {
 	Data.charaMng.numBatBullets = 12;
 	Data.charaMng.numEnemyBullets = 20;
 	Data.charaMng.numHoles = 3;
-	Data.charaMng.numCokes = 5;
-	Data.charaMng.numTips = 3;
-	Data.charaMng.numBears = 2;
-	Data.charaMng.numRamens = 1;
-	Data.charaMng.numEbifurais = 4;
-	Data.charaMng.numRymans = 2;
+	Data.charaMng.numCokes = 7;
+	Data.charaMng.numTips = 4;
+	Data.charaMng.numBears = 3;
+	Data.charaMng.numRamens = 5;
+	Data.charaMng.numEbifurais = 6;
+	Data.charaMng.numRymans = 5;
 
 
 	//フェードクラスのデータ
