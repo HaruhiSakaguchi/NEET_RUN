@@ -13,6 +13,7 @@
 #include"BEAR.h"
 #include"RYMAN.h"
 #include"EBIFURAI.h"
+#include<vector>
 #include"CHARACTER_MANAGER.h"
 CHARACTER_MANAGER::CHARACTER_MANAGER(class GAME* game) :
     GAME_OBJECT(game) {

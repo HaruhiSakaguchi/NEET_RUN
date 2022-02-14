@@ -501,6 +501,12 @@ void CONTAINER::LoadGraphics() {
 	Data.ebifuraiChara.img = loadImage("assets\\item\\item\\障害物\\fry.png");
 	Data.rymanChara.img = loadImage("assets\\item\\item\\障害物\\human.png");
 
+	Data.ending.img[0] =loadImage("assets\\エンドロール\\end_01.png");
+	Data.ending.img[1] =loadImage("assets\\エンドロール\\end_02.png");
+	Data.ending.img[2] =loadImage("assets\\エンドロール\\end_03.png");
+	Data.ending.img[3] =loadImage("assets\\エンドロール\\end_04.png");
+	Data.ending.img[4] =loadImage("assets\\エンドロール\\end_05.png");
+
 	//ANIMS 複数のアニメーションセット
 	Data.loading.anim = new ANIM("assets\\loading\\load");
 	Data.loading.anim->noLoop();

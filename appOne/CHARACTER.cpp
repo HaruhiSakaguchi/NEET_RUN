@@ -50,7 +50,7 @@ void CHARACTER::draw() {
         fill(Chara.color);
         image(Chara.img, px, py, Chara.angle, game()->map()->scale());
     }
-    drawRectArea(px, py, wLeft(), wTop(), wRight(), wBottom());
+    //drawRectArea(px, py, wLeft(), wTop(), wRight(), wBottom());
 }
 void CHARACTER::Ddamage() {
     if (Chara.hp > 0) {
