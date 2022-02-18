@@ -27,6 +27,11 @@ public:
 		COLOR attentionTextColor;
 		COLOR attentionWinColor;
 		COLOR attentionWinEdgeColor;
+
+		int yesImg1 = 0;
+		int yesImg2 = 0;
+		int noImg1 = 0;
+		int noImg2 = 0;
 		//ストーリーで使用するテキスト
 		const char* text = 0;
 		const char* text2 = 0;

@@ -14,6 +14,7 @@ void MAP::create() {
     Map = game()->container()->data().map;
 }
 void MAP::init() {
+    //ファイルを開く
     switch (game()->curStateId()) {
     case GAME::FIRST:
         Map.fileName = Map.fileName1;
@@ -31,7 +32,6 @@ void MAP::init() {
         Map.fileName = Map.fileName5;
         break;
     }
-    //ファイルを開く
     FILE* fp;
     fopen_s(&fp, Map.fileName, "rb");
     WARNING(fp == 0, "マップデータを読み込めません", Map.fileName);
@@ -58,18 +58,18 @@ void MAP::init() {
                 //最初の行の列数
                 Map.cols = cnt;
             }
-            else if (Map.cols != cnt) {
-                //行ごとの列数が違ったらエラー
-                WARNING(1, "列数が不揃い", "");
-            }
+            //else if (Map.cols != cnt) {
+            //    //行ごとの列数が違ったらエラー
+            //    WARNING(1, "列数が不揃い", "");
+            //}
             //行を数えてカウンタをリセット
             Map.rows++;
             cnt = 0;
         }
     }
-    if (fileSize % Map.cols != 0) {
-        WARNING(1, "最後の行を改行していない", "");
-    }
+    //if (fileSize % Map.cols != 0) {
+     //   WARNING(1, "最後の行を改行していない", "");
+    //}
     Map.dispCols = (int)width / Map.chipSize + 1 * 2;//表示すべき列数
     Map.worldWidth = (float)Map.chipSize * (Map.cols - 2);//ワールドの横幅
     Map.endWorldX = Map.worldWidth - width;//表示できる最後の座標

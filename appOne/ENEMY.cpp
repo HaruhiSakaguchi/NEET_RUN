@@ -29,6 +29,13 @@ void ENEMY::update() {
     if (game()->container()->data().stage.count == 0||game()->container()->data().stage.flag==0) {
         Move();
     }
+    if (Chara.damageTime > 0) {
+        Chara.damageTime -= delta;
+        Chara.color = Enemy.damageColor;
+    }
+    else {
+        Chara.color = Enemy.normalColor;
+    }
     CollisionWithMap();
     checkState();
     
@@ -117,6 +124,11 @@ void ENEMY::CollisionWithMap() {
 void ENEMY::launch() {
     //’e”­ŽË----------------------------------------------------------------
     Enemy.elapsedTime += delta;
+    float vx = 0.0f;
+    if (game()->curStateId() != GAME::FIFTH) {
+        vx = 1.0f;
+    }
+    else vx = -1.0f;
     if (Enemy.elapsedTime >= Enemy.interval) {
         Enemy.elapsedTime -= Enemy.interval;
         ++Enemy.triggerCnt %= Enemy.triggerInterval;
@@ -126,7 +138,7 @@ void ENEMY::launch() {
             Enemy.triggerCnt == Enemy.trigger4th  ) {
             Chara.animId = game()->container()->data().enemyBullet.leftAnimId;
             game()->characterManager()->appear(Enemy.bulletCharaId,
-                Chara.wx + Enemy.bulletOffsetX, Chara.wy, 1, 0);
+                Chara.wx + Enemy.bulletOffsetX, Chara.wy, vx, 0);
         }
     }
 }

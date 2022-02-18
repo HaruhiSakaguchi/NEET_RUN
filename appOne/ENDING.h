@@ -14,6 +14,9 @@ public:
         char str[16];
         int img[6];
         int backImg = 0;
+        float speed = 100.0f* 2;
+        float interval = 0.0f;
+        float maxInterval = 50000.0f;
     };
 private:
     DATA Ending;
@@ -34,5 +37,9 @@ public:
         curImageNum = imageNum;
     }
     void setImage();
+    void toE2();
+    void toE3();
+    void toE4();
+    void toE5();
 };
 

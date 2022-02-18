@@ -48,7 +48,7 @@ void CONTAINER::CreateData() {
 	Data.message.attentionTextPos.y = Data.message.attentionWinPos.y + Data.message.textPosOfst.y - Data.message.attentionWinH / 3;
 	Data.message.yesPos.x = Data.message.attentionTextPos.x + 100;
 	Data.message.yesPos.y = Data.message.attentionTextPos.y + 50;
-	Data.message.noPos.x = Data.message.yesPos.x + 200,
+	Data.message.noPos.x = Data.message.yesPos.x + 250,
 	Data.message.noPos.y = Data.message.yesPos.y;
 	Data.message.buttonColor = COLOR(200, 200, 255);
 	//ローディングクラスのデータ
@@ -92,7 +92,7 @@ void CONTAINER::CreateData() {
 	Data.story.text = "スキップしますか？ ";
 	Data.story.text2 = "  YES";
 	Data.story.text3 = "   NO";
-	Data.story.skipButtonPos.x = 750;
+	Data.story.skipButtonPos.x = 900;
 	Data.story.skipButtonPos.y = 30;
 
 	//ステージクラスのデータ
@@ -278,10 +278,10 @@ void CONTAINER::CreateData() {
 	Data.playerChara.charaId = MAP::PLAYER_ID;
 	Data.playerChara.hp = 1;
 	Data.playerChara.groupId = 0;//味方グループは0
-	Data.playerChara.offsetLeft = 10.0f * 2;
-	Data.playerChara.offsetTop = 1.0f * 2;
+	Data.playerChara.offsetLeft = 3.0f * 2;
+	Data.playerChara.offsetTop = 0.2f * 2;
 	Data.playerChara.offsetRight = 60.0f * 2;
-	Data.playerChara.offsetBottom = 60.0f * 2;
+	Data.playerChara.offsetBottom = 50.0f * 2;
 	Data.playerChara.knockBackVx = 100;
 	Data.playerChara.knockBackVy = 100;
 	Data.playerChara.maxStamina = 100;
@@ -309,7 +309,6 @@ void CONTAINER::CreateData() {
 	Data.enemyChara.damageInterval = 5 * 0.016f * 2;
 	Data.enemyChara.knockBackVx = -100;
 	Data.enemyChara.knockBackVy = 100;
-	Data.enemyChara.color = COLOR(0, 0, 0);
 	Data.enemy.jumpFlag = 0;
 	Data.enemy.initVecUp = -16.0f * 1.1f;
 	Data.enemy.initVecDown = 3.0f * 1.1f;
@@ -324,6 +323,8 @@ void CONTAINER::CreateData() {
 	Data.enemy.trigger2nd = 270;
 	Data.enemy.trigger3rd = 380;
 	Data.enemy.trigger4th = 400;
+	Data.enemy.damageColor = COLOR(255, 0, 0, 25);
+	Data.enemy.normalColor = COLOR(255, 255, 255);
 
 	Data.enemy.bulletCharaId = MAP::ENEMY_BULLET_ID;
 	Data.enemyBulletChara.charaId = MAP::ENEMY_BULLET_ID;
@@ -385,14 +386,7 @@ void CONTAINER::CreateData() {
 	Data.bearChara.offsetRight = 70.0f * 2;
 	Data.bearChara.offsetBottom = 70.0f * 2;
 
-	Data.batBulletChara.charaId = MAP::BAT_BULLET_ID;
-	Data.batBulletChara.groupId = 2;//敵グループは1
-	Data.batBulletChara.hp = 1;
-	Data.batBulletChara.speed = 4.7f * 60;
-	Data.batBulletChara.offsetLeft = 20.0f * 2;
-	Data.batBulletChara.offsetTop = 20.0f * 2;
-	Data.batBulletChara.offsetRight = 35.0f * 2;
-	Data.batBulletChara.offsetBottom = 30.0f * 2;
+
 
 	Data.holeChara.charaId = MAP::MANHOLE_ID;
 	Data.holeChara.groupId = 1;//敵グループは1
@@ -427,7 +421,6 @@ void CONTAINER::CreateData() {
 	Data.charaMng.numPlayers = 1;
 	Data.charaMng.numEnemies = 1;
 	Data.charaMng.numCats = 10;
-	Data.charaMng.numBatBullets = 12;
 	Data.charaMng.numEnemyBullets = 20;
 	Data.charaMng.numHoles = 3;
 	Data.charaMng.numCokes = 7;
@@ -465,6 +458,14 @@ void CONTAINER::LoadGraphics() {
 	Data.story.backImg[3] = loadImage("assets\\ストーリー背景\\ストーリー背景\\roji_02.png");
 	Data.story.backImg[4] = loadImage("assets\\ストーリー背景\\ストーリー背景\\store.png");
 
+	Data.story.skipImg = loadImage("assets\\skip.png");
+	Data.story.skipImg2 = loadImage("assets\\skip.png");
+	Data.message.yesImg1 = loadImage("assets\\ok.png");
+	Data.message.yesImg2 = loadImage("assets\\ok.png");
+	Data.message.noImg1 = loadImage("assets\\no.png");
+	Data.message.noImg2 = loadImage("assets\\no.png");
+
+
 	Data.stage.backImg = loadImage("assets\\back.png");
 
 	Data.stageClear.img = loadImage("assets\\リザルト\\リザルト\\sc.png");
@@ -496,7 +497,7 @@ void CONTAINER::LoadGraphics() {
 	Data.bearChara.img = loadImage("assets\\item\\item\\回復\\Beer.png");
 
 	Data.catChara.img = loadImage("assets\\item\\item\\障害物\\cat.png");
-	Data.batBulletChara.img = loadImage("assets\\batBullet.png");
+	
 
 	Data.ebifuraiChara.img = loadImage("assets\\item\\item\\障害物\\fry.png");
 	Data.rymanChara.img = loadImage("assets\\item\\item\\障害物\\human.png");
@@ -513,10 +514,10 @@ void CONTAINER::LoadGraphics() {
 	
 	Data.loading.animData.interval = 0.1f;
 
-	Data.playerChara.anims = new ANIMS("assets\\player");
+	Data.playerChara.anims = new ANIMS("assets\\新都");
 	Data.playerChara.animData.interval = 0.1f;
 
-	Data.enemyChara.anims = new ANIMS("assets\\player");
+	Data.enemyChara.anims = new ANIMS("assets\\おにいさん");
 	Data.enemyChara.animData.interval = 0.1f;
 
 	Data.message.okanDefImg = loadImage("assets\\okan\\okan\\01.png");
@@ -525,8 +526,8 @@ void CONTAINER::LoadGraphics() {
 	Data.message.okanSpImg  = loadImage("assets\\okan\\okan\\04.png");
 	Data.message.okanDlImg  = loadImage("assets\\okan\\okan\\05.png");
 
-	/*Data.message.neetDefImg = loadImage("assets\\okan\\okan\\01.png");
-	Data.message.neetAngImg = loadImage("assets\\okan\\okan\\02.png");
+	/*Data.message.neetDefImg = loadImage("assets\\chi_ex.png");*/
+	/*Data.message.neetAngImg = loadImage("assets\\okan\\okan\\02.png");
 	Data.message.neetHpImg = loadImage("assets\\okan\\okan\\03.png");
 	Data.message.neetSpImg = loadImage("assets\\okan\\okan\\04.png");
 	Data.message.neetPnImg = loadImage("assets\\okan\\okan\\04.png");

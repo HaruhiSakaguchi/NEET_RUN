@@ -9,7 +9,6 @@ public:
         int numEnemies = 0;
         int numEnemyBullets = 0;
         int numCats = 0;
-        int numBatBullets = 0;
         int numHoles = 0;
         int numCokes = 0;
         int numTips = 0;

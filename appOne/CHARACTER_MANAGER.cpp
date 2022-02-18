@@ -5,7 +5,6 @@
 #include"PLAYER.h"
 #include"ENEMY_BULLET.h"
 #include"CAT.h"
-#include"BAT_BULLET.h"
 #include"HOLE.h"
 #include"COKE.h"
 #include"TIPS.h"
@@ -32,7 +31,6 @@ void CHARACTER_MANAGER::create() {
     Total += CharaMng.numEnemies;
     Total += CharaMng.numEnemyBullets;
     Total += CharaMng.numCats;
-    Total += CharaMng.numBatBullets;
     Total += CharaMng.numHoles;
     Total += CharaMng.numCokes;
     Total += CharaMng.numTips;
@@ -53,7 +51,6 @@ void CHARACTER_MANAGER::create() {
     for (i = 0; i < CharaMng.numEnemies; i++)      Characters[j++] = Enemy;
     for (i = 0; i < CharaMng.numEnemyBullets; i++)    Characters[j++] = new ENEMY_BULLET(game());
     for (i = 0; i < CharaMng.numCats; i++)          Characters[j++] = new CAT(game());
-    for (i = 0; i < CharaMng.numBatBullets; i++)    Characters[j++] = new BAT_BULLET(game());
     for (i = 0; i < CharaMng.numCokes; i++)    Characters[j++] = new COKE(game());
     for (i = 0; i < CharaMng.numTips; i++)    Characters[j++] = new TIPS(game());
     for (i = 0; i < CharaMng.numHoles; i++)    Characters[j++] = Hole;
@@ -84,7 +81,6 @@ void CHARACTER_MANAGER::appear(char charaId, float wx, float wy, float vx, float
     }
 }
 void CHARACTER_MANAGER::update() {
-
     for (int i = 0; i < Total; i++) {
         if (Characters[i]->hp() > 0) {
             Characters[i]->update();

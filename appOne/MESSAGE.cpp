@@ -497,7 +497,7 @@ void MESSAGE::draw() {
 		if (game()->curStateId() == GAME::THIRD) {
 			Message.text = Message.text3_13;
 			Message.text2 = Message.space;
-			setCharaName(0);
+			setCharaName(Message.space);
 
 		}
 		if (game()->curStateId() == GAME::FOURTH) {
@@ -532,8 +532,8 @@ void MESSAGE::draw() {
 		}
 		if (game()->curStateId() == GAME::THIRD) {
 			Message.text = Message.text3_14;
-			 
 			Message.text2 = Message.space;
+			setCharaName(Message.space);
 
 		}
 		if (game()->curStateId() == GAME::FOURTH) {
@@ -766,6 +766,7 @@ void MESSAGE::draw() {
 		break;
 	case GAME::text_Last:
 		Message.text = Message.text_Last;
+		Message.text2 = Message.space;
 		setCharaName(Message.space);
 		break;
 	}
@@ -899,6 +900,12 @@ void MESSAGE::init() {
 /// <param name="text2"></param>
 /// <param name="text3"></param>
 void MESSAGE::AttentionWindow(const char* text1, const char* text2, const char* text3) {
+	COLOR tcolor;
+	COLOR normalColor;
+	COLOR collisionColor(200, 200, 200, 128);
+	game()->button()->rectButton(Message.yesPos, Message.buttonColor, Message.attentionTextColor, text2, Message.buttonNameTextSize, Message.charaNum);
+	game()->button()->rectButton(Message.noPos, Message.buttonColor, Message.attentionTextColor, text3, Message.buttonNameTextSize, Message.charaNum);
+
 	RectWindow(Message.attentionWinPos,
 		Message.attentionWinW, Message.attentionWinH,
 		Message.attentionWinColor, Message.attentionWinEdgeColor);
@@ -908,18 +915,48 @@ void MESSAGE::AttentionWindow(const char* text1, const char* text2, const char* 
 	text(text1, Message.attentionTextPos.x, Message.attentionTextPos.y);
 	textSize(Message.attentionTextSize - 20);
 
-	game()->button()->rectButton(Message.yesPos, Message.buttonColor, Message.attentionTextColor, text2, Message.buttonNameTextSize, Message.charaNum);
-	game()->button()->rectButton(Message.noPos, Message.buttonColor, Message.attentionTextColor, text3, Message.buttonNameTextSize, Message.charaNum);
+
+	rectMode(CENTER);
+	imageColor(normalColor);
+	image(Message.yesImg1, Message.yesPos.x, Message.yesPos.y);
+
+	rectMode(CENTER);
+
+	if (game()->button()->game()->button()->collisionRect(Message.yesPos, Message.buttonW, Message.buttonH)) {
+		tcolor = collisionColor;
+	}
+	else {
+		tcolor = normalColor;
+	}
+
+	imageColor(tcolor);
+	image(Message.yesImg2, Message.yesPos.x, Message.yesPos.y);
+
+	imageColor(normalColor);
+	image(Message.noImg1, Message.noPos.x, Message.noPos.y);
+
+	rectMode(CENTER);
+
+	if (game()->button()->game()->button()->collisionRect(Message.noPos, Message.buttonW, Message.buttonH)) {
+		tcolor = collisionColor;
+	}
+	else {
+		tcolor = normalColor;
+	}
+
+	imageColor(tcolor);
+	image(Message.noImg2, Message.noPos.x, Message.noPos.y);
+	
 }
 void MESSAGE::disPlayCharaImg() {
 	rectMode(CORNER);
 	if (Message.charaImg1 != 0)
 	{
-		image(Message.charaImg1, -100, -250);
+		image(Message.charaImg1, -100, -150);
 	}
 	if (Message.charaImg2 != 0)
 	{
-		image(Message.charaImg2, 00, -250);
+		image(Message.charaImg2, 300, -150);
 	}
 }
 

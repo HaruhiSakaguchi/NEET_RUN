@@ -19,8 +19,32 @@ void STORY::create() {
 	Story = game()->container()->data().story;
 }
 void STORY::draw() {
-	clear(Story.backColor);
+	COLOR tcolor;
+	COLOR normalColor;
+	COLOR collisionColor(200, 200, 200, 128);
+	clear(normalColor);
+	game()->button()->rectButton(Story.skipButtonPos, game()->container()->data().message.buttonColor,
+		game()->container()->data().message.textColor, Story.skipText, Story.skipTextSize, Story.skipCharaNum);
 	backGround();
+
+	rectMode(CENTER);
+	imageColor(normalColor);
+	image(Story.skipImg, Story.skipButtonPos.x, Story.skipButtonPos.y);
+
+	rectMode(CENTER);
+
+	if (game()->button()->game()->button()->collisionRect(Story.skipButtonPos, Story.skipButtonW, Story.skipButtonH)) {
+		tcolor = collisionColor;
+	}
+	else {
+		tcolor = normalColor;
+	}
+
+	imageColor(tcolor);
+	image(Story.skipImg2, Story.skipButtonPos.x, Story.skipButtonPos.y);
+
+
+
 
 #ifdef _DEBUG
 	/*int i = 0;
@@ -48,8 +72,6 @@ void STORY::draw() {
 	//text(Story.str, Story.pos.x, Story.pos.y);
 	game()->message()->draw();
 
-	game()->button()->rectButton(Story.skipButtonPos, game()->container()->data().message.buttonColor,
-		game()->container()->data().message.textColor, Story.skipText, Story.skipTextSize, Story.skipCharaNum);
 
 	if (Story.Flag == 1) {
 		game()->message()->AttentionWindow(Story.text, Story.text2, Story.text3);
@@ -145,7 +167,7 @@ void STORY::update() {
 void STORY::backGround() {
 	clear();
 	rectMode(CORNER);
-	fill(Story.backColor);
+	COLOR normalColor;
 	switch (game()->curSceneId()) {
 	case GAME::FIRST:
 	case GAME::SECOND:
@@ -167,6 +189,7 @@ void STORY::backGround() {
 		Story.backImage = Story.backImg[0];
 		break;
 	}
+	imageColor(normalColor);
 	image(Story.backImage, 0, 0);
 }
 

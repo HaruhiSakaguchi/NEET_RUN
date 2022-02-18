@@ -17,7 +17,6 @@
 #include"ENEMY_BULLET.h"
 #include"CAT.h"
 #include"HOLE.h"
-#include"BAT_BULLET.h"
 #include"ENEMY.h"
 #include"BEAR.h"
 #include"EBIFURAI.h"
@@ -49,7 +48,6 @@ private:
 		EBIFURAI::DATA ebifurai;
 	    ENEMY_BULLET::DATA enemyBullet;
 		CAT::DATA cat;
-		BAT_BULLET::DATA batBullet;
 		HOLE::DATA hole;
 		//キャラクタークラス用
 		CHARACTER::DATA playerChara;

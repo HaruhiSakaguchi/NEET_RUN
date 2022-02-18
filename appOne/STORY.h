@@ -20,6 +20,8 @@ public:
         int backImg[5];
         int charaImg1 = 0;
         int charaImg2 = 0;
+        int skipImg = 0;
+        int skipImg2 = 0;
         float buttonNameTextSize = 40;
         float charaNum = 7;
         float buttonW = buttonNameTextSize * charaNum/2;

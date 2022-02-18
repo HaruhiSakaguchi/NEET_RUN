@@ -156,7 +156,6 @@
     <ClCompile Include="ANIMS.cpp" />
     <ClCompile Include="BEAR.cpp" />
     <ClCompile Include="CAT.cpp" />
-    <ClCompile Include="BAT_BULLET.cpp" />
     <ClCompile Include="BUTTON.cpp" />
     <ClCompile Include="CHARACTER.cpp" />
     <ClCompile Include="CHARACTER_MANAGER.cpp" />
@@ -199,7 +198,6 @@
     <ClInclude Include="ANIMS.h" />
     <ClInclude Include="BEAR.h" />
     <ClInclude Include="CAT.h" />
-    <ClInclude Include="BAT_BULLET.h" />
     <ClInclude Include="BUTTON.h" />
     <ClInclude Include="CHARACTER.h" />
     <ClInclude Include="CHARACTER_MANAGER.h" />
@@ -232,10 +230,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="assets\map1.txt" />
-    <Text Include="Map2.txt" />
-    <Text Include="Map3.txt" />
-    <Text Include="Map4.txt" />
-    <Text Include="Map5.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

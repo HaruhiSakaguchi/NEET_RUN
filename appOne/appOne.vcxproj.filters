@@ -44,9 +44,6 @@
     <Filter Include="recover_item">
       <UniqueIdentifier>{47abe27a-c582-4331-b357-98ee029f5c54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="damage_item">
-      <UniqueIdentifier>{ad53e0f9-d164-416b-8ee5-db2e2ceee4ca}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
@@ -82,9 +79,6 @@
     </ClCompile>
     <ClCompile Include="SCENE.cpp">
       <Filter>scene\base</Filter>
-    </ClCompile>
-    <ClCompile Include="BAT_BULLET.cpp">
-      <Filter>character</Filter>
     </ClCompile>
     <ClCompile Include="PLAYER.cpp">
       <Filter>character</Filter>
@@ -161,7 +155,9 @@
     <ClCompile Include="PROLOGUE.cpp">
       <Filter>scene</Filter>
     </ClCompile>
-    <ClCompile Include="COUNT_DOWN.cpp" />
+    <ClCompile Include="COUNT_DOWN.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME.h">
@@ -184,9 +180,6 @@
     </ClInclude>
     <ClInclude Include="SCENE.h">
       <Filter>scene\base</Filter>
-    </ClInclude>
-    <ClInclude Include="BAT_BULLET.h">
-      <Filter>character</Filter>
     </ClInclude>
     <ClInclude Include="PLAYER.h">
       <Filter>character</Filter>
@@ -263,22 +256,12 @@
     <ClInclude Include="PROLOGUE.h">
       <Filter>scene</Filter>
     </ClInclude>
-    <ClInclude Include="COUNT_DOWN.h" />
+    <ClInclude Include="COUNT_DOWN.h">
+      <Filter>scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="assets\map1.txt">
-      <Filter>map\map_text</Filter>
-    </Text>
-    <Text Include="Map2.txt">
-      <Filter>map\map_text</Filter>
-    </Text>
-    <Text Include="Map3.txt">
-      <Filter>map\map_text</Filter>
-    </Text>
-    <Text Include="Map4.txt">
-      <Filter>map\map_text</Filter>
-    </Text>
-    <Text Include="Map5.txt">
       <Filter>map\map_text</Filter>
     </Text>
   </ItemGroup>

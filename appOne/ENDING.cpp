@@ -4,6 +4,7 @@
 #include"FADE.h"
 #include"graphic.h"
 #include"input.h"
+#include"window.h"
 #include "TITLE.h"
 ENDING::ENDING(class GAME* game) :
 	SCENE(game) {
@@ -16,18 +17,33 @@ void ENDING::create() {
 	Ending = game()->container()->data().ending;
 }
 void ENDING::init() {
+	curImageNum = ImageNum::E1;
 	game()->fade()->inTrigger();
 	game()->changeState(GAME::FIRST);
+}
+void ENDING::toE2() {
+	if (curImageNum == ImageNum::E1) {
+		curImageNum = ImageNum::E2;
+	}
+}
+void ENDING::toE3() {
+	if (curImageNum == ImageNum::E2) {
+		curImageNum = ImageNum::E3;
+	}
+}
+void ENDING::toE4() {
+	if (curImageNum == ImageNum::E3) {
+		curImageNum = ImageNum::E4;
+	}
+}
+void ENDING::toE5() {
+	if (curImageNum == ImageNum::E4) {
+		curImageNum = ImageNum::E5;
+	}
 }
 void ENDING::draw() {
 	clear(Ending.backColor);
 	image(Ending.backImg, 0, 0);
-
-#ifdef _DEBUG
-	textSize(30);
-	fill(255, 255, 255);
-	text("SPACEキーでタイトルに戻る", 30, 30);
-#endif
 	game()->fade()->draw();
 }
 void ENDING::nextScene() {
@@ -35,33 +51,66 @@ void ENDING::nextScene() {
 		if (isTrigger(KEY_SPACE) || isTrigger(MOUSE_LBUTTON)) {
 			game()->fade()->outTrigger();
 		}
-	}
-	if (game()->fade()->outEndFlag()) {
-		game()->changeScene(GAME::TITLE_ID);
-		game()->changeState(GAME::FIRST);
-		game()->changeText(GAME::text_1);
+		if (game()->fade()->outEndFlag()) {
+			game()->changeScene(GAME::TITLE_ID);
+			game()->changeState(GAME::FIRST);
+			game()->changeText(GAME::text_1);
+		}
 	}
 }
 void ENDING::update() {
-	if (isTrigger(KEY_SPACE) || isTrigger(MOUSE_LBUTTON)) {
 		switch (curImageNum) {
 		case E1:
-			setImageNum(E2);
+			Ending.interval -= Ending.speed * delta;
+			if (Ending.interval <= 0 ||(isTrigger(KEY_SPACE)||isTrigger(MOUSE_LBUTTON))) {
+				game()->fade()->outTrigger();
+			}
+			if (game()->fade()->outEndFlag()) {
+				Ending.interval = Ending.maxInterval;
+				toE2();
+			}
 			break;
 		case E2:
-			setImageNum(E3);
+			Ending.interval -= Ending.speed * delta;
+			if (Ending.interval <= 0 || ((isTrigger(KEY_SPACE) || isTrigger(MOUSE_LBUTTON)))) {
+				game()->fade()->outTrigger();
+			}
+			if (game()->fade()->outEndFlag()) {
+				Ending.interval = Ending.maxInterval;
+				toE3();
+			}
+			
 			break;
 		case E3:
-			setImageNum(E4);
+			Ending.interval -= Ending.speed * delta;
+			if (Ending.interval <= 0 || ((isTrigger(KEY_SPACE) || isTrigger(MOUSE_LBUTTON)))) {
+				game()->fade()->outTrigger();
+			}
+			if (game()->fade()->outEndFlag()) {
+	
 
+				Ending.interval = Ending.maxInterval;
+				toE4();
+				
+			}
 			break;
 		case E4:
-			setImageNum(E5);
+			Ending.interval -= Ending.speed * delta;
+			if (Ending.interval <= 0 || ((isTrigger(KEY_SPACE) || isTrigger(MOUSE_LBUTTON)))) {
+				game()->fade()->outTrigger();
+			}
+			if (game()->fade()->outEndFlag()) {
+				
+
+				Ending.interval = Ending.maxInterval;
+				toE5();
+				
+			}
 			break;
 		default:
 			break;
 		}
-	}
+	
 	setImage();
 }
 void ENDING::setImage() {

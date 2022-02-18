@@ -25,11 +25,12 @@ void GAME_OVER::draw() {
 	COLOR tcolor;
 	COLOR normalColor;
 	COLOR collisionColor(200, 200, 200, 128);
+	game()->button()->rectButton(GameOver.continuePos, game()->container()->data().message.buttonColor, game()->container()->data().message.textColor, GameOver.continueText, GameOver.buttonNameTextSize, GameOver.charaNum);
+	game()->button()->rectButton(GameOver.backToTitlePos, game()->container()->data().message.buttonColor, game()->container()->data().message.textColor, GameOver.backToTitleText, GameOver.buttonNameTextSize, GameOver.charaNum);
 	rectMode(CORNER);
 	imageColor(normalColor);
 	image(GameOver.img, 0, 0);
-	rectMode(CENTER);game()->button()->rectButton(GameOver.backToTitlePos, game()->container()->data().message.buttonColor, game()->container()->data().message.textColor, GameOver.backToTitleText, GameOver.buttonNameTextSize, GameOver.charaNum);
-	game()->button()->rectButton(GameOver.continuePos, game()->container()->data().message.buttonColor, game()->container()->data().message.textColor, GameOver.continueText, GameOver.buttonNameTextSize, GameOver.charaNum);
+	rectMode(CENTER);
 	if (game()->button()->game()->button()->collisionRect(GameOver.backToTitlePos, GameOver.buttonW, GameOver.buttonH)) {
 		tcolor = collisionColor;
 	}
@@ -63,11 +64,6 @@ void GAME_OVER::draw() {
 	game()->button()->drawCursor();
 
 	game()->fade()->draw();
-#ifdef _DEBUG
-	textSize(30);
-	fill(255, 255, 255);
-	text("Zキーでタイトルに戻る　Xキーでリトライ", 30, 30);
-#endif
 }
 void GAME_OVER::nextScene() {
 	//タイトルに戻る
@@ -92,7 +88,7 @@ void GAME_OVER::nextScene() {
 			setReturnFlag(0);
 		}
 		else if (GameOver.retryFlag == 1) {
-			game()->changeScene(GAME::STAGE_ID);
+			game()->changeScene(GAME::COUNT_DOWN_ID);
 			setRetryFlag(0);
 		}
 	}

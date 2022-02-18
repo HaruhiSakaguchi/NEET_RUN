@@ -35,13 +35,12 @@ public:
 		PLAYER_BULLET_ID = 'b',
 		ENEMY_BULLET_ID = 'c',
 		CAT_ID = 'd',//10
-		BAT_BULLET_ID = 'e',
 		MANHOLE_ID = 'f',//3
 		ENEMY_ID = 'g',//1
-		COKE_ID = 'h',//5
-		TIPS_ID = 'i',//3
-		RAMEN_ID = 'j',//1
-		BEAR_ID = 'k',//2
+		COKE_ID = 'h',//7
+		TIPS_ID = 'i',//4
+		RAMEN_ID = 'j',//5
+		BEAR_ID = 'k',//3
 		EBIFURAI_ID = 'l',//6
 		RYMAN_ID = 'm',//5
 	};

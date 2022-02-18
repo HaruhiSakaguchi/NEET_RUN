@@ -20,12 +20,12 @@ void ENEMY_BULLET::appear(float wx , float wy, float vx, float vy){
         Chara.angle = 45;
         break;
     case GAME::THIRD:
-        Chara.img = Chara.img3;
-        Chara.angle = 30;
-        break;
-    case GAME::FOURTH:
         Chara.img = Chara.img4;
         Chara.angle = -90;
+        break;
+    case GAME::FOURTH:
+        Chara.img = Chara.img3;
+        Chara.angle = 30;
         break;
     default:
         Chara.img = Chara.img1;
